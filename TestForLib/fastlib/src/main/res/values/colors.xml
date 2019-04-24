@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/main_color</color>
+    <color name="colorPrimaryDark">@color/main_color</color>
+    <color name="colorAccent">@color/main_color</color>
+
+    <color name="main_color">#5d5ff0</color>
+    <color name="light_main">#7F81F3</color>
+    <color name="blue_bcb">#BCBDF1</color>
+    <color name="red_tag">#FB2B52</color>
+    <color name="red_border">#f3585a</color>
+    <color name="red_text">#ff535b</color>
+    <color name="msg_bg">#fe2e55</color>
+    <color name="red_msg">#ff041d</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white40per">#40ffffff</color>
+    <color name="gray">#666666</color>
+
+    <color name="black">#000000</color>
+    <color name="black_80per">#80000000</color>
+    <color name="black_60per">#60000000</color>
+    <color name="black_50per">#50000000</color>
+    <color name="black_77per">#77000000</color>
+    <color name="black_40per">#40000000</color>
+    <color name="black_19">#191919</color>
+    <color name="grey_28">#282828</color>
+    <color name="black_33">#333333</color>
+    <color name="black_38">#383838</color>
+    <color name="grey_566267">#566267</color>
+    <color name="grey_80">#808080</color>
+    <color name="grey_99">#999999</color>
+    <color name="grey_93">#939393</color>
+    <color name="grey_ad">#adadad</color>
+    <color name="grey_a1">#a1a1a1</color>
+    <color name="grey_fa">#fafafa</color>
+    <color name="grey_pressed">#efefef</color>
+    <color name="grey_d3">#d3d3d3</color>
+    <color name="grey_d8">#d8d8d8</color>
+    <color name="grey_af">#afafaf</color>
+    <color name="red_ff3d39">#ff3d39</color>
+    <color name="red_fc3">#fc343e</color>
+    <color name="red_fe8">#FE8D93</color>
+    <color name="red_fdc">#fdc9cc</color>
+
+    <color name="grey_fe">#fefefe</color>
+    <color name="grey_f7f6">#f7f6f6</color>
+    <color name="green_bg">#5ddcdc</color>
+    <color name="blue_4b9">#4b9efa</color>
+    <color name="blue_71dc">#71dcfc</color>
+    <color name="blue_7f8">#7f81f3</color>
+    <color name="blue_69b">#69beff</color>
+    <color name="blue_ebe">#ebedfd</color>
+    <color name="blue_82d8">#82d8d9fb</color>
+    <color name="purple_d8d">#d8d9fb</color>
+    <color name="purple_7f8">#7f81f3</color>
+    <color name="split_line_bootom_color">#ffa8adb3</color>
+
+    <color name="line_ee">#eeeeee</color>
+    <color name="line_eb">#ebebeb</color>
+    <color name="line_dc">#dcdcdc</color>
+    <color name="line_dd">#dddddd</color>
+
+    <color name="page_bg">#f7f6f6</color>
+    <color name="textHint">#aeaeae</color>
+
+    <color name="grey_200">#eeeeee</color>
+    <color name="grey_75">#757575</color>
+    <color name="grey_66">#666666</color>
+
+    <color name="black_tttt">#cc000000</color>
+
+    <color name="__actionbar_color">@android:color/holo_blue_dark</color>
+
+    <color name="__pick_complete_btn_color">@android:color/white</color>
+
+    <color name="__pick_pic_item_normal_color">@android:color/white</color>
+
+    <color name="__pick_pic_item_slected_color">@android:color/holo_blue_light</color>
+
+    <color name="__display_item_delete_bg_color">#2f000000</color>
+
+
+    <color name="lightRed">#FC8E90</color>
+
+    <color name="textHintWhite">#80ffffff</color>
+    <color name="accountBgColor">#50000000</color>
+    <color name="halfBlack">#50000000</color>
+    <color name="halfWhite">#50ffffff</color>
+    <color name="black_80">#80000000</color>
+
+    <color name="yellow_f0a13a">#f0a13a</color>
+    <color name="yellow_ffb">#ffbe00</color>
+    <color name="grey_e7">#e7e7e7</color>
+    <color name="grey_f7">#7F7F7F</color>
+    <color name="grey_c0">#c0c0c0</color>
+    <color name="grey_ee">#eeeeee</color>
+    <color name="grey_dd">#dddddd</color>
+
+    <color name="grey_c4">#c4c4c4</color>
+    <color name="grey_c8">#c8c8c8</color>
+    <color name="grey_f1">#f1f1f1</color>
+    <color name="grey_f6f8">#f6f8f7</color>
+    <color name="grey_f2">#f2f2f2</color>
+    <color name="grey_cf">#cfcfcf</color>
+    <color name="red_fd">#fd3838</color>
+    <color name="halfBlue">#5041c3fc</color>
+    <color name="halfRed">#50f35557</color>
+    <color name="red_f9a">#F9AAAB</color>
+    <color name="grey_ea">#EAEAEA</color>
+    <color name="grey_ae">#aeaeae</color>
+    <color name="grey_c3c1">#c3c1c1</color>
+    <color name="grey_e1">#e1e1e1</color>
+
+</resources>

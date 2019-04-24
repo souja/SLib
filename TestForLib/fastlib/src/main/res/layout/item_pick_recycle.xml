@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="321px"
+        android:layout_height="327px">
+
+        <ImageView
+            android:id="@+id/__display_iv"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_gravity="bottom"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/ib_del"
+            android:layout_width="72px"
+            android:layout_height="72px"
+            android:layout_gravity="right"
+            android:background="@color/transparent"
+            android:scaleType="center"
+            android:src="@drawable/ic_del_photo" />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/ed_photoMark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="请输入照片备注"
+        android:maxLength="10"
+        android:padding="12px"
+        android:singleLine="true"
+        android:textSize="36px" />
+</LinearLayout>

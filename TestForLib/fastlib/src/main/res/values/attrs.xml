@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="TitleBar">
+        <attr name="mTitle" format="string" />
+        <attr name="mTitleColor" format="color" />
+        <attr name="mMaxTitleLength" format="integer" />
+        <attr name="mBgColor" format="color" />
+        <attr name="mBgRes" format="reference" />
+        <attr name="mDefaultBack" format="boolean" />
+        <attr name="mLeftSrc" format="reference" />
+        <attr name="mRightSrc" format="reference" />
+        <attr name="mRightSrcB" format="reference" />
+        <attr name="mLeftText" format="string" />
+        <attr name="mRightText" format="string" />
+        <attr name="mRightTextColor" format="color" />
+        <attr name="mDefineId" format="boolean" />
+        <attr name="mNoLine" format="boolean" />
+        <attr name="mGoBack" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MLoadingDialog" tools:ignore="MissingDefaultResource">
+        <attr name="mTip" format="string" />
+        <attr name="mLoadBg" format="color" />
+        <attr name="definedId" format="boolean" />
+        <attr name="noShape" format="boolean" />
+        <attr name="txtColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PxBlurringView">
+        <attr name="blurRadius" format="integer" />
+        <attr name="downsampleFactor" format="integer" />
+        <attr name="overlayColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularImageView">
+        <attr name="border" format="boolean" />
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_shadow" format="boolean" />
+        <attr name="civ_shadow_color" format="color" />
+        <attr name="civ_shadow_radius" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="type" format="enum">
+            <enum name="circle" value="1" />
+            <enum name="round" value="2" />
+        </attr>
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="WScreenItem">
+        <attr name="mItemName" format="string" />
+        <attr name="mNoArrow" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MCropCoverView">
+        <attr name="mRatioType" format="enum">
+            <enum name="Square" value="1" />
+            <enum name="Rectangle" value="2" />
+        </attr>
+        <attr name="mLeftDis" format="integer" />
+        <attr name="mSize" format="integer" />
+        <attr name="mCropWidth" format="integer" />
+        <attr name="mCropHeight" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
+        <attr name="mMTop" format="dimension" />
+        <attr name="mMBot" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="MCheckBox">
+        <attr name="mDrawable" format="reference" /><!--小图标背景，设置为selector-->
+        <attr name="mDrawableWidth" format="dimension" /><!--小图标宽度，缩放需要-->
+        <attr name="mDrawableHeight" format="dimension" /><!--小图标高度，缩放需要-->
+        <attr name="mText" format="string" />
+        <attr name="mTextFocus" format="string" />
+        <attr name="mTxtColor" format="color" />
+        <attr name="mTxtColorFocus" format="color" />
+        <attr name="mChecked" format="boolean" />
+        <attr name="mSelfControl" format="boolean" />
+        <attr name="noBg" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PageIndicatorView">
+        <attr name="piv_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+
+        <attr name="piv_viewPager" format="reference" />
+        <attr name="piv_select" format="integer" />
+
+        <attr name="piv_count" format="integer" />
+        <attr name="piv_dynamicCount" format="boolean" />
+
+        <attr name="piv_radius" format="dimension" />
+        <attr name="piv_padding" format="dimension" />
+        <attr name="piv_strokeWidth" format="dimension" />
+        <attr name="piv_scaleFactor" format="float" />
+        <attr name="piv_autoVisibility" format="boolean" />
+
+        <attr name="piv_unselectedColor" format="color" />
+        <attr name="piv_selectedColor" format="color" />
+
+        <attr name="piv_interactiveAnimation" format="boolean" />
+        <attr name="piv_animationDuration" format="integer" />
+        <attr name="piv_animationType">
+            <enum name="none" value="0" />
+            <enum name="color" value="1" />
+            <enum name="scale" value="2" />
+            <enum name="worm" value="3" />
+            <enum name="slide" value="4" />
+            <enum name="fill" value="5" />
+            <enum name="thinWorm" value="6" />
+            <enum name="drop" value="7" />
+            <enum name="swap" value="8" />
+            <enum name="scale_down" value="9" />
+        </attr>
+        <attr name="piv_rtl_mode">
+            <enum name="on" value="0" />
+            <enum name="off" value="1" />
+            <enum name="auto" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <attr name="cciv_icon" format="reference" />
+    <attr name="cciv_color" format="color" />
+    <attr name="cciv_bgcolor" format="color" />
+    <attr name="cciv_text" format="string" />
+    <attr name="cciv_text_size" format="dimension" />
+
+    <declare-styleable name="ChangeColorIconView">
+        <attr name="cciv_icon" />
+        <attr name="cciv_color" />
+        <attr name="cciv_bgcolor" />
+        <attr name="cciv_text" />
+        <attr name="cciv_text_size" />
+    </declare-styleable>
+
+    <declare-styleable name="MyFlowLayout">
+        <attr name="columns" format="integer" />
+        <attr name="mPadding" format="dimension" />
+        <attr name="mlPadding" format="dimension" />
+        <attr name="mtPadding" format="dimension" />
+        <attr name="mrPadding" format="dimension" />
+        <attr name="mbPadding" format="dimension" />
+        <attr name="autoPadding" format="boolean" />
+        <attr name="autoHorPadding" format="boolean" />
+        <attr name="autoVerPadding" format="boolean" />
+        <attr name="centerHorizontal" format="boolean" />
+        <attr name="centerVertical" format="boolean" />
+        <attr name="hLineMargin" format="dimension" />
+        <attr name="vLineMargin" format="dimension" />
+        <attr name="mMinHeight" format="dimension" />
+        <attr name="selection" format="integer" />
+        <attr name="mMaxLine" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TextProgressBar">
+        <attr name="mPTxt" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="MCheckableTextView">
+        <attr name="mCheck" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MCheckableImageView">
+        <attr name="bCheck" format="boolean" />
+    </declare-styleable>
+</resources>

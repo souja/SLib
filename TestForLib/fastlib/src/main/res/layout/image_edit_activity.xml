@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <me.kareluo.imaging.view.IMGView
+        android:id="@+id/image_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000" />
+
+    <ViewSwitcher
+        android:id="@+id/vs_op"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@anim/image_fade_in"
+        android:outAnimation="@anim/image_fade_out">
+
+        <include layout="@layout/image_edit_opt_layout" />
+
+        <include layout="@layout/image_edit_clip_layout" />
+
+    </ViewSwitcher>
+
+    <LinearLayout
+        android:id="@+id/layout_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:clickable="true"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_white_corner"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_sizeA"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="1:1"
+                android:textColor="@color/image_color_blue"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_sizeB"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="2:1"
+                android:textColor="@color/image_color_blue"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_sizeC"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="3:2"
+                android:textColor="@color/image_color_blue"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_sizeD"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="4:3"
+                android:textColor="@color/image_color_blue"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancelSet"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_white_corner"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="取消"
+            android:textColor="@color/image_color_blue"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

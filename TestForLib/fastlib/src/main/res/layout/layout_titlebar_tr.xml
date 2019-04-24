@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/titlebar_style"
+    android:background="@drawable/shape_title_bg">
+
+    <ImageButton
+        android:id="@+id/ib_leftBtn"
+        style="@style/title_img_btn_style"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_leftBtn"
+        style="@style/title_text_btn_style"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_pageTitle"
+        style="@style/title_style" />
+
+    <FrameLayout
+        android:id="@+id/layout_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:id="@+id/tv_rightBtn"
+            style="@style/title_text_btn_style"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ib_rightBtn"
+            style="@style/title_img_btn_style"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/ib_rightBtnB"
+        style="@style/title_img_btn_style"
+        android:layout_marginRight="15px"
+        android:layout_toLeftOf="@id/layout_temp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/line_dc" />
+</RelativeLayout>

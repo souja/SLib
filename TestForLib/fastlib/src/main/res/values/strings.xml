@@ -1,0 +1,23 @@
+<resources>
+
+    <string name="netErrTip" translatable="false">网络连接失败，请检查网络后重试</string>
+    <string name="emptyDataTip" translatable="false">暂无相关数据</string>
+    <string name="choice" translatable="false">选择</string>
+    <string name="edit_img" translatable="false">编辑</string>
+    <string name="complete" translatable="false">完成</string>
+    <string name="sdcard_nosize" translatable="false">暂无外部存储</string>
+
+    <string name="saving_image" translatable="false">图片保存中</string>
+    <string name="not_enough_space" translatable="false">存储空间不足</string>
+    <string name="preparing_card" translatable="false">正在检查存储设备</string>
+    <string name="no_storage_card" translatable="false">无可用存储</string>
+
+
+    <string name="tips_not_wifi" translatable="false">您当前正在使用移动网络，继续播放将消耗流量</string>
+    <string name="tips_not_wifi_confirm" translatable="false">继续播放</string>
+    <string name="tips_not_wifi_cancel" translatable="false">停止播放</string>
+    <string name="no_url" translatable="false">播放地址无效</string>
+    <string name="replay" translatable="false">重播</string>
+    <string name="click_to_restart" translatable="false">点击重试</string>
+    <string name="video_loading_faild" translatable="false">视频加载失败</string>
+</resources>

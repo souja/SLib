@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_bar_height">135px</dimen>
+
+    <dimen name="jz_start_button_w_h_normal">45dp</dimen>
+    <dimen name="jz_start_button_w_h_fullscreen">62dp</dimen>
+</resources>

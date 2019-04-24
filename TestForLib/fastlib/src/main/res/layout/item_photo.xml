@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_mediaPreview"
+            android:layout_width="match_parent"
+            android:layout_height="360px"
+            android:scaleType="center" />
+
+        <View
+            android:id="@+id/v_temp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_80per"
+            android:visibility="invisible" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cb_chooseMedia"
+            android:layout_width="81px"
+            android:layout_height="81px"
+            android:layout_gravity="right" />
+
+        <View
+            android:id="@+id/v_choose"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:layout_gravity="right"
+            android:clickable="true" />
+    </FrameLayout>
+
+</LinearLayout>

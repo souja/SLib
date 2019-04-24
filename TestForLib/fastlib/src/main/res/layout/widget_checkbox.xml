@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <View
+        android:id="@+id/v_msg"
+        android:layout_width="18px"
+        android:layout_height="18px"
+        android:layout_marginLeft="42px"
+        android:background="@drawable/shape_red_dot"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/mcbBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null" />
+
+    <TextView
+        android:id="@+id/mcbTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12px"
+        android:gravity="center"
+        android:text="Menu"
+        android:textSize="33px" />
+</LinearLayout>
