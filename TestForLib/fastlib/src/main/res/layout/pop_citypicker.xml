@@ -20,7 +20,7 @@
             android:layout_marginRight="15dp"
             android:gravity="center_vertical"
             android:text="确定"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/main_color"
             android:textSize="18sp" />
 
         <TextView
