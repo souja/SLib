@@ -162,8 +162,6 @@ public class SHttpUtil {
 
     }
 
-    private Disposable mDisposable;
-
     @SuppressLint("CheckResult")
     private static <T> void handleOnRequestErr(ProgressDialog dialog, RequestParams params, Throwable ex, IHttpCallBack<T> callBack) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
