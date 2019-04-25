@@ -24,6 +24,8 @@ public class SelectImgOptions {
     public static final String IMAGES_CROP_Y = "option6";
     //上次选择的相册目录
     public static final String GALLERY_LAST = "gallery_default_dir";
+    //只在已选择的图片中操作
+    public static final String IMAGES_HANDLE_ONLY_SELECTED = "selected";
 
     //最大可选择张数
     public int max;
