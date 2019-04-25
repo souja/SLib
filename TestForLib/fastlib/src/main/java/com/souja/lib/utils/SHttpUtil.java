@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
 
 public class SHttpUtil {
 
-    protected static String HTTP, VERSION;
+    public static String HTTP, VERSION="/v1";
     private static Context mContext;
 
     private static final int M_HTTP_SUCCESS = 1;//接口成功
@@ -256,7 +256,6 @@ public class SHttpUtil {
 
     private static <T> void loginOutDate(IHttpCallBack<T> callBack) {
         VERSION = "";
-
         if (MGlobal.get().containsKey(LibConstants.RX_LOGIN_OUTDATE)) {
             Flowable.just("").subscribe(MGlobal.get().getAction(LibConstants.RX_LOGIN_OUTDATE));
         } else callBack.OnFailure("登录过期，请重新登录");
