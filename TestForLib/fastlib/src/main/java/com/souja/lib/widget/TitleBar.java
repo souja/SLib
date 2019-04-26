@@ -45,7 +45,7 @@ public class TitleBar extends RelativeLayout {
 
     private void init(AttributeSet attrs) {
         int colorBlack = mContext.getResources().getColor(R.color.black_33);
-        int colorMain = mContext.getResources().getColor(R.color.main_color);
+        int colorMain = mContext.getResources().getColor(R.color.lib_main_color);
 
         TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.TitleBar);
         View titleLayout = LayoutInflater.from(mContext).inflate(R.layout.layout_titlebar, this);

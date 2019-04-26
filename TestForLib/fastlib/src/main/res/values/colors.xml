@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/main_color</color>
-    <color name="colorPrimaryDark">@color/main_color</color>
-    <color name="colorAccent">@color/main_color</color>
 
-    <color name="main_color">#5d5ff0</color>
+    <color name="lib_main_color">#5d5ff0</color>
     <color name="light_main">#7F81F3</color>
     <color name="blue_bcb">#BCBDF1</color>
     <color name="red_tag">#FB2B52</color>

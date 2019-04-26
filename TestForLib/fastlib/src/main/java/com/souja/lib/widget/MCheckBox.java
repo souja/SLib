@@ -61,7 +61,7 @@ public class MCheckBox extends LinearLayout implements Checkable {
             text = a.getString(R.styleable.MCheckBox_mText);
             textFocus = a.getString(R.styleable.MCheckBox_mTextFocus);
             textColor = a.getColor(R.styleable.MCheckBox_mTxtColor,
-                    getResources().getColor(R.color.main_color));
+                    getResources().getColor(R.color.lib_main_color));
             textColorFocus = a.getColor(R.styleable.MCheckBox_mTxtColorFocus, -1);
         } finally {
             a.recycle();

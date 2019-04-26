@@ -33,7 +33,7 @@
                 android:id="@+id/tv_itemName"
                 style="@style/text_48px"
                 android:text="保存到本地"
-                android:textColor="@color/main_color" />
+                android:textColor="@color/lib_main_color" />
         </LinearLayout>
 
         <View

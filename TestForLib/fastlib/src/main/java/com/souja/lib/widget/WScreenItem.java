@@ -52,7 +52,7 @@ public class WScreenItem extends LinearLayout {
         initViews();
         setClickable(true);
         Resources res = getResources();
-        txtFocus = res.getColor(R.color.main_color);
+        txtFocus = res.getColor(R.color.lib_main_color);
         txtBlur = res.getColor(R.color.grey_566267);
 
 

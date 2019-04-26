@@ -31,7 +31,7 @@
             android:id="@+id/tv_tip"
             style="@style/text_45px"
             android:text="图片加载中..."
-            android:textColor="@color/main_color" />
+            android:textColor="@color/lib_main_color" />
     </LinearLayout>
 
 </RelativeLayout>

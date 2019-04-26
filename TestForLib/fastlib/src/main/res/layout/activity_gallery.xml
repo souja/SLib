@@ -45,7 +45,7 @@
             android:paddingLeft="30px"
             android:paddingRight="30px"
             android:text="@string/complete"
-            android:textColor="@color/main_color"
+            android:textColor="@color/lib_main_color"
             android:textSize="42px" />
     </RelativeLayout>
 

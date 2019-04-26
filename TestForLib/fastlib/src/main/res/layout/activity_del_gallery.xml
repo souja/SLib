@@ -7,7 +7,7 @@
 
     <RelativeLayout
         style="@style/titlebar_style"
-        android:background="@color/main_color">
+        android:background="@color/lib_main_color">
 
         <ImageButton
             android:id="@+id/backbutton"
