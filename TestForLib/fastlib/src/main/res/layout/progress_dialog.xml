@@ -15,13 +15,13 @@
         <ProgressBar
             android:layout_width="150px"
             android:layout_height="150px"
-            android:layout_marginRight="36px"
             android:indeterminate="false"
             android:indeterminateDuration="1000" />
 
         <TextView
             android:id="@+id/content"
             style="@style/text_common"
+            android:layout_marginTop="24px"
             android:text="请稍候..."
             android:textColor="@color/white"
             android:visibility="gone"
