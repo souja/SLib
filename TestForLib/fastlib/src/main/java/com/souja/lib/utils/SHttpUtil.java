@@ -58,12 +58,16 @@ public class SHttpUtil {
 
     public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack) {
-       return Request(dialog, url, method, mParams, dataClass, callBack, null);
+        return Request(dialog, url, method, mParams, dataClass, callBack, null);
     }
 
     public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (!NetWorkUtils.isNetworkAvailable(mContext)) {
+            if (callBack2 != null) {
+                callBack2.error(EnumExceptions.NO_INTERNET.getDesc());
+                return null;
+            }
             callBack.OnFailure(EnumExceptions.NO_INTERNET.getDesc());
             return null;
         }
@@ -115,7 +119,11 @@ public class SHttpUtil {
                                                    final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         LogUtil.e("===" + params.getUri() + "===\nresponse===>>>" + result);
         if (result == null) {
-            callBack.OnFailure("服务器异常");
+            if (callBack2 != null) {
+                callBack2.error(EnumExceptions.BAD_GET_AWAY.getDesc());
+                return;
+            }
+            callBack.OnFailure(EnumExceptions.BAD_GET_AWAY.getDesc());
             return;
         }
         RequestResult resultObj = (RequestResult) GsonUtil.getObj(result, RequestResult.class);
@@ -195,6 +203,10 @@ public class SHttpUtil {
         if (errStr.contains("404")) {
             loginOutDate(callBack, callBack2);
         } else {
+            if (callBack2 != null) {
+                callBack2.error(getErrMsgStr(errStr));
+                return;
+            }
             callBack.OnFailure(getErrMsgStr(errStr));
         }
     }
