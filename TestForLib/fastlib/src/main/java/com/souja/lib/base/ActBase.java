@@ -105,6 +105,11 @@ public abstract class ActBase extends AppCompatActivity {
             addSubscription(o, getAction(key));
     }
 
+    public void addSubscription(int key) {
+        if (containsKey(key))
+            addSubscription("", getAction(key));
+    }
+
     protected InputMethodManager inputMethodManager;
     private List<Callback.Cancelable> mCancelables;
     private List<Integer> actions;
