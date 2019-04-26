@@ -10,6 +10,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.souja.lib.enums.EnumExceptions;
 import com.souja.lib.inter.IHttpCallBack;
+import com.souja.lib.inter.SelfHandleCallBack;
 import com.souja.lib.models.ODataPage;
 import com.souja.lib.models.RequestResult;
 
@@ -24,17 +25,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.disposables.Disposable;
 
 public class SHttpUtil {
 
-    public static String HTTP, VERSION="/v1";
+    public static String HTTP, VERSION = "/v1";
     private static Context mContext;
 
     private static final int M_HTTP_SUCCESS = 1;//接口成功
     private static final int M_MULT_LOGIN = 9;//其它设备登录
 
-    public static void setContext(Context context){
+    public static void setContext(Context context) {
         mContext = context;
     }
 
@@ -58,6 +58,11 @@ public class SHttpUtil {
 
     public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack) {
+       return Request(dialog, url, method, mParams, dataClass, callBack, null);
+    }
+
+    public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
+                                                  final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (!NetWorkUtils.isNetworkAvailable(mContext)) {
             callBack.OnFailure(EnumExceptions.NO_INTERNET.getDesc());
             return null;
@@ -70,12 +75,12 @@ public class SHttpUtil {
 
             @Override
             public void onSuccess(String result) {
-                handleOnRequestSuccess(result, mParams, dataClass, callBack);
+                handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                handleOnRequestErr(dialog, mParams, ex, callBack);
+                handleOnRequestErr(dialog, mParams, ex, callBack, callBack2);
             }
 
             @Override
@@ -107,7 +112,7 @@ public class SHttpUtil {
     }
 
     private static <T> void handleOnRequestSuccess(String result, RequestParams params,
-                                                   final Class<T> dataClass, IHttpCallBack<T> callBack) {
+                                                   final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         LogUtil.e("===" + params.getUri() + "===\nresponse===>>>" + result);
         if (result == null) {
             callBack.OnFailure("服务器异常");
@@ -123,9 +128,17 @@ public class SHttpUtil {
                 pageObj = (ODataPage) GsonUtil.getObj(resultObj.pagination.toString(), ODataPage.class);
 
             if (isNull(resultObj.data) || ((JsonArray) resultObj.data).size() == 0) {
+                if (callBack2 != null) {
+                    callBack2.handle("");
+                    return;
+                }
                 callBack.OnSuccess(msg, pageObj, new ArrayList<>());
             } else if (resultObj.data.isJsonArray()) {
                 String dataArr = resultObj.data.toString();
+                if (callBack2 != null) {
+                    callBack2.handle(dataArr);
+                    return;
+                }
                 if (dataClass == String.class) {
                     Gson gson = new Gson();
                     String[] array = gson.fromJson(dataArr, String[].class);
@@ -151,25 +164,36 @@ public class SHttpUtil {
                     callBack.OnSuccess(msg, pageObj, GsonUtil.getArr(dataArr, dataClass));
             } else {
                 String dataStr = resultObj.data.toString();
+                if (callBack2 != null) {
+                    callBack2.handle(dataStr);
+                    return;
+                }
                 ArrayList<T> dataList = new ArrayList<>();
                 dataList.add(new Gson().fromJson(dataStr, dataClass));
                 callBack.OnSuccess(msg, pageObj, dataList);
             }
         } else {
-            if (code == M_MULT_LOGIN) loginOutDate(callBack);
-            else callBack.OnFailure(msg == null ? "服务器异常" : msg);
+            if (code == M_MULT_LOGIN) loginOutDate(callBack, callBack2);
+            else {
+                if (callBack2 != null) {
+                    callBack2.handle("服务器异常");
+                    return;
+                }
+                callBack.OnFailure(msg == null ? "服务器异常" : msg);
+            }
         }
 
     }
 
     @SuppressLint("CheckResult")
-    private static <T> void handleOnRequestErr(ProgressDialog dialog, RequestParams params, Throwable ex, IHttpCallBack<T> callBack) {
+    private static <T> void handleOnRequestErr(ProgressDialog dialog, RequestParams params, Throwable ex,
+                                               IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
 
         String errStr = ex.toString();
         LogUtil.e("===" + params.getUri() + "===\n===>>>onError:" + errStr);
         if (errStr.contains("404")) {
-            loginOutDate(callBack);
+            loginOutDate(callBack, callBack2);
         } else {
             callBack.OnFailure(getErrMsgStr(errStr));
         }
@@ -252,11 +276,17 @@ public class SHttpUtil {
         return element == null || element.isJsonNull();
     }
 
-    private static <T> void loginOutDate(IHttpCallBack<T> callBack) {
+    private static <T> void loginOutDate(IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         VERSION = "";
         if (MGlobal.get().containsKey(LibConstants.RX_LOGIN_OUTDATE)) {
             Flowable.just("").subscribe(MGlobal.get().getAction(LibConstants.RX_LOGIN_OUTDATE));
-        } else callBack.OnFailure("登录过期，请重新登录");
+        } else {
+            if (callBack2 != null) {
+                callBack2.handle("登录过期，请重新登录");
+                return;
+            }
+            callBack.OnFailure("登录过期，请重新登录");
+        }
     }
 
 
