@@ -55,8 +55,8 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initMain();
 
-    private AlertDialog _mDialog;
-    private TextView _tvProgressTip;
+    protected AlertDialog _mDialog;
+    protected TextView _tvProgressTip;
 
     public AlertDialog getDialog() {
         createDialog(null);

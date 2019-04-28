@@ -38,8 +38,8 @@ import io.reactivex.functions.Consumer;
 
 public abstract class ActBase extends AppCompatActivity {
 
-    private AlertDialog _mDialog;
-    private TextView _tvProgressTip;
+    protected AlertDialog _mDialog;
+    protected TextView _tvProgressTip;
     
     /**
      * 设置页面视图Resource
