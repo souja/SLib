@@ -17,6 +17,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -72,6 +73,22 @@ import top.zibin.luban.OnRenameListener;
  */
 
 public class MTool {
+
+    public static AlertDialog createDialog(Context context) {
+        return createDialog(context, null);
+    }
+
+    public static AlertDialog createDialog(Context context, String msg) {
+        AlertDialog dialog = new AlertDialog.Builder(context, R.style.CustomProgressDialog).create();
+        View loadView = LayoutInflater.from(context).inflate(R.layout.m_dialog_new, null);
+        dialog.setView(loadView, 0, 0, 0, 0);
+        dialog.setCanceledOnTouchOutside(false);
+        if (!TextUtils.isEmpty(msg)) {
+            TextView tvTip = loadView.findViewById(R.id.tvTip);
+            tvTip.setText(msg);
+        }
+        return dialog;
+    }
 
     public static int getStatusBarHeight(Context context) {
         int statusBarHeight = 0;
