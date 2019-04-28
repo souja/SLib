@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+
+import com.souja.lib.R;
 
 public class MDialog extends AlertDialog {
     protected MDialog(@NonNull Context context) {
@@ -22,7 +25,7 @@ public class MDialog extends AlertDialog {
     }
 
     private void init(Context context) {
-        
+        LayoutInflater.from(context).inflate(R.layout.m_dialog_new,null);
     }
 
 

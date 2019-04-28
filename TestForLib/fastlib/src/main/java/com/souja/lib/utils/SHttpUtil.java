@@ -1,9 +1,9 @@
 package com.souja.lib.utils;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -38,30 +38,30 @@ public class SHttpUtil {
         mContext = context;
     }
 
-    public static <T> Callback.Cancelable Post(ProgressDialog dialog, String url, RequestParams mParams,
+    public static <T> Callback.Cancelable Post(AlertDialog dialog, String url, RequestParams mParams,
                                                final Class<T> dataClass, IHttpCallBack<T> callBack) {
         LogUtil.e("POST");
         return Request(dialog, url, HttpMethod.POST, mParams, dataClass, callBack);
     }
 
-    public static <T> Callback.Cancelable Get(ProgressDialog dialog, String url, RequestParams mParams,
+    public static <T> Callback.Cancelable Get(AlertDialog dialog, String url, RequestParams mParams,
                                               final Class<T> dataClass, IHttpCallBack<T> callBack) {
         LogUtil.e("GET");
         return Request(dialog, url, HttpMethod.GET, mParams, dataClass, callBack);
     }
 
-    public static <T> Callback.Cancelable Delete(ProgressDialog dialog, String url, RequestParams mParams,
+    public static <T> Callback.Cancelable Delete(AlertDialog dialog, String url, RequestParams mParams,
                                                  final Class<T> dataClass, IHttpCallBack<T> callBack) {
         LogUtil.e("DELETE");
         return Request(dialog, url, HttpMethod.DELETE, mParams, dataClass, callBack);
     }
 
-    public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
+    public static <T> Callback.Cancelable Request(AlertDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack) {
         return Request(dialog, url, method, mParams, dataClass, callBack, null);
     }
 
-    public static <T> Callback.Cancelable Request(ProgressDialog dialog, String url, HttpMethod method, RequestParams mParams,
+    public static <T> Callback.Cancelable Request(AlertDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (!NetWorkUtils.isNetworkAvailable(mContext)) {
             if (callBack2 != null) {
@@ -194,7 +194,7 @@ public class SHttpUtil {
     }
 
     @SuppressLint("CheckResult")
-    private static <T> void handleOnRequestErr(ProgressDialog dialog, RequestParams params, Throwable ex,
+    private static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
                                                IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
 

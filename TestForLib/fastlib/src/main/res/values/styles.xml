@@ -263,17 +263,17 @@
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
-
     <style name="CommProgressDialog" parent="@style/CustomDialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="colorAccent">@color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <!--自定义耗时对话框-->
     <style name="CustomProgressDialog" parent="Theme.AppCompat.Dialog">
-        <!--此属性控制悬浮窗背景是否变暗-->
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/white</item>
     </style>
+
 </resources>
