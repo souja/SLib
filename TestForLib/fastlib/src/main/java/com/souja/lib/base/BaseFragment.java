@@ -79,6 +79,7 @@ public abstract class BaseFragment extends Fragment {
         _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "加载中..." : msg);
     }
 
+    //========================Post
     public <T> void Post(AlertDialog dialog, String url, RequestParams params,
                          final Class<T> dataClass, IHttpCallBack callBack) {
         addRequest(SHttpUtil.Post(dialog, url, params, dataClass, callBack));
@@ -110,6 +111,7 @@ public abstract class BaseFragment extends Fragment {
         Post(null, url, new RequestParams(), dataClass, callBack);
     }
 
+    //========================Get
     public <T> void Get(AlertDialog dialog, String url, RequestParams params,
                         final Class<T> dataClass, IHttpCallBack callBack) {
         addRequest(SHttpUtil.Get(dialog, url, params, dataClass, callBack));
@@ -132,6 +134,11 @@ public abstract class BaseFragment extends Fragment {
         Get(null, url, params, dataClass, callBack);
     }
 
+    public void Get(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Get(dialog, url, new RequestParams(), Object.class, callBack);
+    }
+
+    //========================Delete
     public <T> void Delete(AlertDialog dialog, String url, RequestParams params,
                            final Class<T> dataClass, IHttpCallBack callBack) {
         addRequest(SHttpUtil.Delete(dialog, url, params, dataClass, callBack));
@@ -144,6 +151,10 @@ public abstract class BaseFragment extends Fragment {
     public <T> void Delete(String url, RequestParams params,
                            final Class<T> dataClass, IHttpCallBack callBack) {
         Delete(null, url, params, dataClass, callBack);
+    }
+
+    public void Delete(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Delete(dialog, url, new RequestParams(), Object.class, callBack);
     }
 
     public void showToast(String msg) {
