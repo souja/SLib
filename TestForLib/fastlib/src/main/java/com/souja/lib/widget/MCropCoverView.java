@@ -37,6 +37,7 @@ public class MCropCoverView extends View {
     private int cropWidth,//裁剪的宽度
             cropHeight;//裁剪的高度
     private Path mPath;
+    private boolean bInited;
 
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
@@ -59,36 +60,39 @@ public class MCropCoverView extends View {
     }
 
     private void setupValues() {
-        int screenHeight = MGlobal.get().getDeviceHeight();
-        LogUtil.e("screenHeight:" + screenHeight);
+        if (!bInited) {
+            bInited = true;
+            int screenHeight = MGlobal.get().getDeviceHeight();
+            LogUtil.e("screenHeight:" + screenHeight);
 
-        if (cropWidth != -1) {
-            if (cropWidth <= 0) cropWidth = 960;
-            mLeft = (int) (((1080 - cropWidth) / 2) * ScreenUtil.mScale);
-            cropWidth = (int) (cropWidth * ScreenUtil.mScale);
-            cropHeight = (int) ((cropHeight == -1 ? cropWidth : cropHeight) * ScreenUtil.mScale);
-            mRight = cropWidth + mLeft;
-            drawHeight = cropHeight;
-        } else {
-            size = (int) (size * ScreenUtil.mScale);
-            mLeft = (int) (mLeft * ScreenUtil.mScale);
-            mRight = size + mLeft;
-            if (mRatioType == 1) {
-                drawHeight = size;
+            if (cropWidth != -1) {
+                if (cropWidth <= 0) cropWidth = 960;
+                mLeft = (int) (((1080 - cropWidth) / 2) * ScreenUtil.mScale);
+                cropWidth = (int) (cropWidth * ScreenUtil.mScale);
+                cropHeight = (int) ((cropHeight == -1 ? cropWidth : cropHeight) * ScreenUtil.mScale);
+                mRight = cropWidth + mLeft;
+                drawHeight = cropHeight;
             } else {
+                size = (int) (size * ScreenUtil.mScale);
+                mLeft = (int) (mLeft * ScreenUtil.mScale);
+                mRight = size + mLeft;
+                if (mRatioType == 1) {
+                    drawHeight = size;
+                } else {
 //            drawHeight = size / 3 * 2;
-                drawHeight = size / 2;
+                    drawHeight = size / 2;
+                }
             }
+
+            mTop = (screenHeight - drawHeight) / 2;
+            mBot = mTop + drawHeight;
+
+            LogUtil.e("draw w-h:" + size + "&" + drawHeight);
+            LogUtil.e("t-b-l-r:" + mTop + "&" + mBot + "&" + mLeft + "&" + mRight);
+
+            mPath = new Path();
+            mPath.addRect(mLeft, mTop, mRight, mBot, Path.Direction.CW);
         }
-
-        mTop = (screenHeight - drawHeight) / 2;
-        mBot = mTop + drawHeight;
-
-        LogUtil.e("draw w-h:" + size + "&" + drawHeight);
-        LogUtil.e("t-b-l-r:" + mTop + "&" + mBot + "&" + mLeft + "&" + mRight);
-
-        mPath = new Path();
-        mPath.addRect(mLeft, mTop, mRight, mBot, Path.Direction.CW);
     }
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_19">
+
+    <com.souja.lib.widget.TouchImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_but_loading" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.souja.lib.widget.MCropCoverView
+            android:id="@+id/iv_rect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_skip"
+            style="@style/cropImgBtn"
+            android:text="跳过" />
+
+        <TextView
+            android:id="@+id/tv_finish"
+            style="@style/cropImgBtn"
+            android:layout_gravity="bottom|right"
+            android:text="完成" />
+    </FrameLayout>
+</RelativeLayout>

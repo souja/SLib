@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.souja.test">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".MApp"
         android:allowBackup="true"
@@ -11,7 +14,7 @@
         android:theme="@style/AppTheme">
         <!--参数初始化-->
         <activity
-            android:name=".ActMain"
+            android:name=".ActSplash"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeMain">
             <intent-filter>
@@ -20,5 +23,17 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ActMain"
+            android:theme="@style/ThemeMain" />
+        <activity
+            android:name="com.souja.lib.base.ActCrop"
+            android:theme="@style/ThemeMain" />
+        <activity
+            android:name="com.souja.lib.base.ActPhotoGallery"
+            android:theme="@style/ThemeMain" />
+        <activity
+            android:name="com.souja.lib.base.ActivityGallery"
+            android:theme="@style/ThemeMain" />
     </application>
 </manifest>
