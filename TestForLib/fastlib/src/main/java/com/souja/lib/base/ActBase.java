@@ -40,7 +40,7 @@ public abstract class ActBase extends AppCompatActivity {
 
     protected AlertDialog _mDialog;
     protected TextView _tvProgressTip;
-
+    public ActBase _this;
     /**
      * 设置页面视图Resource
      * e.g. R.layout.act_test
@@ -296,8 +296,8 @@ public abstract class ActBase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handleOnCreate(savedInstanceState);
-
         ScreenUtil.setScale(this);
+        _this=this;
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (setViewRes() != 0)
             setContentView(setViewRes());
