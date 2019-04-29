@@ -1,6 +1,5 @@
 package com.souja.lib.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
@@ -121,7 +120,7 @@ public class SHttpUtil {
         });
     }
 
-    private static <T> void handleOnRequestSuccess(String result, RequestParams params,
+    public static <T> void handleOnRequestSuccess(String result, RequestParams params,
                                                    final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         LogUtil.e("===" + params.getUri() + "===\nresponse===>>>" + result);
         if (result == null) {
@@ -199,8 +198,7 @@ public class SHttpUtil {
 
     }
 
-    @SuppressLint("CheckResult")
-    private static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
+    public static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
                                                IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
 
@@ -264,7 +262,25 @@ public class SHttpUtil {
     }
 
 
-    private static void addIdentify(RequestParams params) {
+    public static RequestParams formatJStrParams(String paramJStr) {
+        RequestParams paramJson = new RequestParams();
+        if (!MTool.isEmpty(paramJStr)) {
+            String finalStr = "\"" + paramJStr.replace("\"", "\\\"") + "\"";
+            LogUtil.e("===Request params===" + paramJStr);
+            paramJson.setBodyContent(finalStr);
+        }
+        paramJson.addHeader("Content-Type", "application/json");
+        return paramJson;
+    }
+
+
+    public static RequestParams defaultParam() {
+        RequestParams paramJson = new RequestParams();
+        paramJson.addHeader("Content-Type", "application/json");
+        return paramJson;
+    }
+
+    public static void addIdentify(RequestParams params) {
         if (identifyMap.size() == 0) return;
         for (String key : identifyMap.keySet()) {
             params.setHeader(key, identifyMap.get(key));
@@ -272,7 +288,7 @@ public class SHttpUtil {
         }
     }
 
-    private static String getErrMsgStr(String errStr) {
+    public static String getErrMsgStr(String errStr) {
         if (errStr.contains("ConnectException") || errStr.contains("NoRouteToHostException")) {
             return EnumExceptions.SERVER_FAILED.getDesc();
         } else if (errStr.contains("Software caused connection abort")) {
