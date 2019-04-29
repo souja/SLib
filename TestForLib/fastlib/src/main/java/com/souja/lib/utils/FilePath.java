@@ -3,6 +3,8 @@ package com.souja.lib.utils;
 
 import android.os.Environment;
 
+import com.souja.lib.SLib;
+
 import java.io.File;
 
 public class FilePath {
@@ -10,7 +12,7 @@ public class FilePath {
     //im日志缓存路径
     public static String getLogPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "00IMLog/";
+                + File.separator + SLib.APP_NAME + File.separator + "00IMLog/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -20,7 +22,7 @@ public class FilePath {
 
     public static String getWebCachePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "sonic";
+                + File.separator + SLib.APP_NAME + File.separator + "sonic";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -29,7 +31,7 @@ public class FilePath {
     }
     public static String getAvatarPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "avatar";
+                + File.separator + SLib.APP_NAME + File.separator + "avatar";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -39,7 +41,7 @@ public class FilePath {
     //案例广场图片缓存
     public static String getBigImgPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "bigImgs";
+                + File.separator + SLib.APP_NAME + File.separator + "bigImgs";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -50,7 +52,7 @@ public class FilePath {
     //案例广场图片缓存
     public static String getSquareCaseImgPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "squareImgs";
+                + File.separator + SLib.APP_NAME + File.separator + "squareImgs";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -61,7 +63,7 @@ public class FilePath {
     //营销图缓存
     public static String getSaleCoverPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "saleCover";
+                + File.separator + SLib.APP_NAME + File.separator + "saleCover";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -72,7 +74,7 @@ public class FilePath {
     //案例详情缓存
     public static String getCaseDetailPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "caseDetail";
+                + File.separator + SLib.APP_NAME + File.separator + "caseDetail";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -83,7 +85,7 @@ public class FilePath {
     //商机，产品图片，第一张，缓存，用于分享
     public static String getBizImgSharePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "biz";
+                + File.separator + SLib.APP_NAME + File.separator + "biz";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -93,7 +95,7 @@ public class FilePath {
 
     public static String getGlidePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + FileUtil.APP_NAME + File.separator + "glideCache";
+                + File.separator + SLib.APP_NAME + File.separator + "glideCache";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -113,7 +115,7 @@ public class FilePath {
 
     public static String getTempPicturePath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "temp";
+                + File.separator + SLib.APP_NAME + File.separator + "temp";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -123,7 +125,7 @@ public class FilePath {
 
     public static String getDownloadPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "download";
+                + File.separator + SLib.APP_NAME + File.separator + "download";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -133,7 +135,7 @@ public class FilePath {
 
     public static String getDatabasePath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "db";
+                + File.separator + SLib.APP_NAME + File.separator + "db";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -143,7 +145,7 @@ public class FilePath {
 
     public static String getTemplateBaseDir() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + "/templates/";
+                + File.separator + SLib.APP_NAME + "/templates/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -153,7 +155,7 @@ public class FilePath {
 
     public static String getCompressMarkPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + "/compressMark";
+                + File.separator + SLib.APP_NAME + "/compressMark";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -172,7 +174,7 @@ public class FilePath {
 
     public static String getSavingZipPath(int templateId) {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + "/templates/";
+                + File.separator + SLib.APP_NAME + "/templates/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -188,7 +190,7 @@ public class FilePath {
 
     public static String getCompressedPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "compressed";
+                + File.separator + SLib.APP_NAME + File.separator + "compressed";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -198,7 +200,7 @@ public class FilePath {
 
     public static File getWaterMarkPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "waterMarked";
+                + File.separator + SLib.APP_NAME + File.separator + "waterMarked";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -254,7 +256,7 @@ public class FilePath {
     //test ignore
     public static String getTestImgPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + FileUtil.APP_NAME + File.separator + "testImgs";
+                + File.separator + SLib.APP_NAME + File.separator + "testImgs";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();

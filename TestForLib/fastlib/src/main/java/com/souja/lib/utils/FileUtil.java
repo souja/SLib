@@ -1,7 +1,5 @@
 package com.souja.lib.utils;
 
-import org.xutils.x;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,7 +7,6 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 public class FileUtil {
-    public static final String APP_NAME = x.isDebug() ? "011testHosFiles" : "myztHosFiles";
 
     public static File setUpPhotoFile() throws IOException {
         try {
