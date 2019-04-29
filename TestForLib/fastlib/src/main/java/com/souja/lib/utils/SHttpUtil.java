@@ -33,6 +33,18 @@ public class SHttpUtil {
     private static final int M_HTTP_SUCCESS = 1;//接口成功
     private static final int M_MULT_LOGIN = 9;//其它设备登录
 
+    public interface SelfControl {
+        void onSuc(String result);
+
+        void onErr(String msg);
+    }
+
+    private static SelfControl mSelfControl;
+
+    public static void setSelftControl(SelfControl control) {
+        mSelfControl = control;
+    }
+
     public static void setContext(Context context) {
         mContext = context;
     }
@@ -56,7 +68,7 @@ public class SHttpUtil {
     }
 
     public static <T> Callback.Cancelable Put(AlertDialog dialog, String url, RequestParams mParams,
-                                                 final Class<T> dataClass, IHttpCallBack<T> callBack) {
+                                              final Class<T> dataClass, IHttpCallBack<T> callBack) {
         LogUtil.e("PUT");
         return Request(dialog, url, HttpMethod.PUT, mParams, dataClass, callBack);
     }
@@ -84,12 +96,18 @@ public class SHttpUtil {
 
             @Override
             public void onSuccess(String result) {
-                handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
+                if (mSelfControl != null) mSelfControl.onSuc(result);
+                else
+                    handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                handleOnRequestErr(dialog, mParams, ex, callBack, callBack2);
+                if (mSelfControl != null) {
+                    if (dialog != null) dialog.dismiss();
+                    mSelfControl.onErr(ex.toString());
+                } else
+                    handleOnRequestErr(dialog, mParams, ex, callBack, callBack2);
             }
 
             @Override
@@ -121,7 +139,7 @@ public class SHttpUtil {
     }
 
     public static <T> void handleOnRequestSuccess(String result, RequestParams params,
-                                                   final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
+                                                  final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         LogUtil.e("===" + params.getUri() + "===\nresponse===>>>" + result);
         if (result == null) {
             if (callBack2 != null) {
@@ -199,10 +217,12 @@ public class SHttpUtil {
     }
 
     public static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
-                                               IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
+                                              IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
 
         String errStr = ex.toString();
+
+
         LogUtil.e("===" + params.getUri() + "===\n===>>>onError:" + errStr);
         if (errStr.contains("404")) {
             loginOutDate(callBack, callBack2);
