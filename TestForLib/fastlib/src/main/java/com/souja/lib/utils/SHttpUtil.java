@@ -33,15 +33,15 @@ public class SHttpUtil {
     private static final int M_HTTP_SUCCESS = 1;//接口成功
     private static final int M_MULT_LOGIN = 9;//其它设备登录
 
-    public interface SelfControl {
-        void onSuc(String result);
+    public interface SelfControl<T> {
+        void onSuc(String url, String result, IHttpCallBack<T> callBack, final Class<T> dataClass);
 
         void onErr(String msg);
     }
 
     private static SelfControl mSelfControl;
 
-    public static void setSelftControl(SelfControl control) {
+    public static void setSelfControl(SelfControl control) {
         mSelfControl = control;
     }
 
@@ -96,7 +96,8 @@ public class SHttpUtil {
 
             @Override
             public void onSuccess(String result) {
-                if (mSelfControl != null) mSelfControl.onSuc(result);
+                if (mSelfControl != null)
+                    mSelfControl.onSuc(mParams.getUri(), result, callBack, dataClass);
                 else
                     handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
             }
