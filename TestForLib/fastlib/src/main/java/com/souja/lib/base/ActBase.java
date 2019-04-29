@@ -40,11 +40,11 @@ public abstract class ActBase extends AppCompatActivity {
 
     protected AlertDialog _mDialog;
     protected TextView _tvProgressTip;
-    
+
     /**
      * 设置页面视图Resource
      * e.g. R.layout.act_test
-     * */
+     */
     protected abstract int setViewRes();
 
     //页面逻辑处理
@@ -143,15 +143,9 @@ public abstract class ActBase extends AppCompatActivity {
         _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "加载中..." : msg);
     }
 
-    public <T> void Post(AlertDialog dialog, String url, RequestParams params,
-                         final Class<T> dataClass, IHttpCallBack callBack) {
+    public <T> void Post(AlertDialog dialog, String url, RequestParams params, final Class<T> dataClass,
+                         IHttpCallBack callBack) {
         addRequest(SHttpUtil.Post(dialog, url, params, dataClass, callBack));
-    }
-
-    //不需要解析返回数据模型
-    public void Post(AlertDialog dialog, String url, RequestParams params,
-                     IHttpCallBack callBack) {
-        addRequest(SHttpUtil.Post(dialog, url, params, Object.class, callBack));
     }
 
     //不需要Dialog
@@ -164,9 +158,9 @@ public abstract class ActBase extends AppCompatActivity {
         Post(dialog, url, new RequestParams(), dataClass, callBack);
     }
 
-    //不需要（Dialog 和 解析返回数据模型）
-    public void Post(String url, RequestParams params, IHttpCallBack callBack) {
-        Post(null, url, params, Object.class, callBack);
+    //不需要解析返回数据模型
+    public void Post(AlertDialog dialog, String url, RequestParams params, IHttpCallBack callBack) {
+        addRequest(SHttpUtil.Post(dialog, url, params, Object.class, callBack));
     }
 
     //不需要（Dialog 和 请求参数）
@@ -174,26 +168,52 @@ public abstract class ActBase extends AppCompatActivity {
         Post(null, url, new RequestParams(), dataClass, callBack);
     }
 
-    public <T> void Get(AlertDialog dialog, String url, RequestParams params,
-                        final Class<T> dataClass, IHttpCallBack callBack) {
+
+    //不需要（Dialog 和 解析返回数据模型）
+    public void Post(String url, RequestParams params, IHttpCallBack callBack) {
+        Post(null, url, params, Object.class, callBack);
+    }
+
+
+    //不需要（请求参数 和 解析返回数据模型）
+    public void Post(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Post(dialog, url, new RequestParams(), Object.class, callBack);
+    }
+
+
+    public <T> void Get(AlertDialog dialog, String url, RequestParams params, final Class<T> dataClass,
+                        IHttpCallBack callBack) {
         addRequest(SHttpUtil.Get(dialog, url, params, dataClass, callBack));
     }
 
+    //no dialog
+    public <T> void Get(String url, RequestParams params, final Class<T> dataClass, IHttpCallBack callBack) {
+        Get(null, url, params, dataClass, callBack);
+    }
+
+    //no param
     public <T> void Get(AlertDialog dialog, String url, final Class<T> dataClass, IHttpCallBack callBack) {
         Get(dialog, url, new RequestParams(), dataClass, callBack);
     }
 
-    public void Get(String url, RequestParams params, IHttpCallBack callBack) {
-        Get(null, url, params, Object.class, callBack);
+    //no model
+    public void Get(AlertDialog dialog, String url, RequestParams params, IHttpCallBack callBack) {
+        Get(dialog, url, params, Object.class, callBack);
     }
 
+    //no dialog && param
     public <T> void Get(String url, Class<T> dataClass, IHttpCallBack<T> callBack) {
         Get(null, url, new RequestParams(), dataClass, callBack);
     }
 
-    public <T> void Get(String url, RequestParams params,
-                        final Class<T> dataClass, IHttpCallBack callBack) {
-        Get(null, url, params, dataClass, callBack);
+    //no dialog && model
+    public void Get(String url, RequestParams params, IHttpCallBack callBack) {
+        Get(null, url, params, Object.class, callBack);
+    }
+
+    //no param && model
+    public void Get(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Get(dialog, url, new RequestParams(), Object.class, callBack);
     }
 
     public <T> void Delete(AlertDialog dialog, String url, RequestParams params,
@@ -201,13 +221,70 @@ public abstract class ActBase extends AppCompatActivity {
         addRequest(SHttpUtil.Delete(dialog, url, params, dataClass, callBack));
     }
 
+    //no dialog
+    public <T> void Delete(String url, RequestParams params, final Class<T> dataClass, IHttpCallBack callBack) {
+        Delete(null, url, params, dataClass, callBack);
+    }
+
+    //no param
+    public <T> void Delete(AlertDialog dialog, String url, final Class<T> dataClass, IHttpCallBack callBack) {
+        Delete(dialog, url, new RequestParams(), dataClass, callBack);
+    }
+
+    //no model
+    public void Delete(AlertDialog dialog, String url, RequestParams params, IHttpCallBack callBack) {
+        Get(dialog, url, params, Object.class, callBack);
+    }
+
+    //no dialog && param
+    public <T> void Delete(String url, Class<T> dataClass, IHttpCallBack<T> callBack) {
+        Delete(null, url, new RequestParams(), dataClass, callBack);
+    }
+
+    //no dialog && model
     public void Delete(String url, RequestParams params, IHttpCallBack callBack) {
         Delete(null, url, params, Object.class, callBack);
     }
 
-    public <T> void Delete(String url, RequestParams params,
+    //no param && model
+    public void Delete(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Delete(dialog, url, new RequestParams(), Object.class, callBack);
+    }
+
+
+    public <T> void Put(AlertDialog dialog, String url, RequestParams params,
                            final Class<T> dataClass, IHttpCallBack callBack) {
-        Delete(null, url, params, dataClass, callBack);
+        addRequest(SHttpUtil.Put(dialog, url, params, dataClass, callBack));
+    }
+
+    //no dialog
+    public <T> void Put(String url, RequestParams params, final Class<T> dataClass, IHttpCallBack callBack) {
+        Put(null, url, params, dataClass, callBack);
+    }
+
+    //no param
+    public <T> void Put(AlertDialog dialog, String url, final Class<T> dataClass, IHttpCallBack callBack) {
+        Put(dialog, url, new RequestParams(), dataClass, callBack);
+    }
+
+    //no model
+    public void Put(AlertDialog dialog, String url, RequestParams params, IHttpCallBack callBack) {
+        Get(dialog, url, params, Object.class, callBack);
+    }
+
+    //no dialog && param
+    public <T> void Put(String url, Class<T> dataClass, IHttpCallBack<T> callBack) {
+        Put(null, url, new RequestParams(), dataClass, callBack);
+    }
+
+    //no dialog && model
+    public void Put(String url, RequestParams params, IHttpCallBack callBack) {
+        Put(null, url, params, Object.class, callBack);
+    }
+
+    //no param && model
+    public void Put(AlertDialog dialog, String url, IHttpCallBack callBack) {
+        Put(dialog, url, new RequestParams(), Object.class, callBack);
     }
 
     protected InputMethodManager inputMethodManager;
@@ -255,55 +332,5 @@ public abstract class ActBase extends AppCompatActivity {
         }
         mDisposable = null;
         super.onDestroy();
-    }
-
-    public boolean isHideInput(View v, MotionEvent event) {
-        if (v != null && (v instanceof EditText)) {
-            int[] leftTop = {0, 0};
-            v.getLocationInWindow(leftTop);
-            int left = leftTop[0];
-            int top = leftTop[1];
-            int bottom = top + v.getHeight();
-            int right = left + v.getWidth();
-            if (event.getX() > left && event.getX() < right
-                    && event.getY() > top && event.getY() < bottom) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void requestInput() {
-        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            View v = getCurrentFocus();
-            if (isHideInput(v, ev)) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm != null) {
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-            return super.dispatchTouchEvent(ev);
-        }
-
-        if (getWindow().superDispatchTouchEvent(ev)) {
-            return true;
-        }
-        return onTouchEvent(ev);
-    }
-
-    protected void hideSoftKeyboard() {
-        if (getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
-            if (getCurrentFocus() != null)
-                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-        }
     }
 }

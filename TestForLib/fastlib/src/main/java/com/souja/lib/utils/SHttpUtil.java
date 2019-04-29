@@ -56,6 +56,12 @@ public class SHttpUtil {
         return Request(dialog, url, HttpMethod.DELETE, mParams, dataClass, callBack);
     }
 
+    public static <T> Callback.Cancelable Put(AlertDialog dialog, String url, RequestParams mParams,
+                                                 final Class<T> dataClass, IHttpCallBack<T> callBack) {
+        LogUtil.e("PUT");
+        return Request(dialog, url, HttpMethod.PUT, mParams, dataClass, callBack);
+    }
+
     public static <T> Callback.Cancelable Request(AlertDialog dialog, String url, HttpMethod method, RequestParams mParams,
                                                   final Class<T> dataClass, IHttpCallBack<T> callBack) {
         return Request(dialog, url, method, mParams, dataClass, callBack, null);
