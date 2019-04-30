@@ -1,6 +1,5 @@
 package com.souja.lib.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
@@ -34,6 +33,18 @@ public class SHttpUtil {
     private static final int M_HTTP_SUCCESS = 1;//接口成功
     private static final int M_MULT_LOGIN = 9;//其它设备登录
 
+    public interface SelfControl<T> {
+        void onSuc(String url, String result, IHttpCallBack<T> callBack, final Class<T> dataClass);
+
+        void onErr(String msg);
+    }
+
+    private static SelfControl mSelfControl;
+
+    public static void setSelfControl(SelfControl control) {
+        mSelfControl = control;
+    }
+
     public static void setContext(Context context) {
         mContext = context;
     }
@@ -57,7 +68,7 @@ public class SHttpUtil {
     }
 
     public static <T> Callback.Cancelable Put(AlertDialog dialog, String url, RequestParams mParams,
-                                                 final Class<T> dataClass, IHttpCallBack<T> callBack) {
+                                              final Class<T> dataClass, IHttpCallBack<T> callBack) {
         LogUtil.e("PUT");
         return Request(dialog, url, HttpMethod.PUT, mParams, dataClass, callBack);
     }
@@ -85,12 +96,19 @@ public class SHttpUtil {
 
             @Override
             public void onSuccess(String result) {
-                handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
+                if (mSelfControl != null)
+                    mSelfControl.onSuc(mParams.getUri(), result, callBack, dataClass);
+                else
+                    handleOnRequestSuccess(result, mParams, dataClass, callBack, callBack2);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                handleOnRequestErr(dialog, mParams, ex, callBack, callBack2);
+                if (mSelfControl != null) {
+                    if (dialog != null) dialog.dismiss();
+                    mSelfControl.onErr(ex.toString());
+                } else
+                    handleOnRequestErr(dialog, mParams, ex, callBack, callBack2);
             }
 
             @Override
@@ -121,8 +139,8 @@ public class SHttpUtil {
         });
     }
 
-    private static <T> void handleOnRequestSuccess(String result, RequestParams params,
-                                                   final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
+    public static <T> void handleOnRequestSuccess(String result, RequestParams params,
+                                                  final Class<T> dataClass, IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         LogUtil.e("===" + params.getUri() + "===\nresponse===>>>" + result);
         if (result == null) {
             if (callBack2 != null) {
@@ -199,12 +217,13 @@ public class SHttpUtil {
 
     }
 
-    @SuppressLint("CheckResult")
-    private static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
-                                               IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
+    public static <T> void handleOnRequestErr(AlertDialog dialog, RequestParams params, Throwable ex,
+                                              IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         if (dialog != null && dialog.isShowing()) dialog.dismiss();
 
         String errStr = ex.toString();
+
+
         LogUtil.e("===" + params.getUri() + "===\n===>>>onError:" + errStr);
         if (errStr.contains("404")) {
             loginOutDate(callBack, callBack2);
@@ -264,7 +283,25 @@ public class SHttpUtil {
     }
 
 
-    private static void addIdentify(RequestParams params) {
+    public static RequestParams formatJStrParams(String paramJStr) {
+        RequestParams paramJson = new RequestParams();
+        if (!MTool.isEmpty(paramJStr)) {
+            String finalStr = "\"" + paramJStr.replace("\"", "\\\"") + "\"";
+            LogUtil.e("===Request params===" + paramJStr);
+            paramJson.setBodyContent(finalStr);
+        }
+        paramJson.addHeader("Content-Type", "application/json");
+        return paramJson;
+    }
+
+
+    public static RequestParams defaultParam() {
+        RequestParams paramJson = new RequestParams();
+        paramJson.addHeader("Content-Type", "application/json");
+        return paramJson;
+    }
+
+    public static void addIdentify(RequestParams params) {
         if (identifyMap.size() == 0) return;
         for (String key : identifyMap.keySet()) {
             params.setHeader(key, identifyMap.get(key));
@@ -272,7 +309,7 @@ public class SHttpUtil {
         }
     }
 
-    private static String getErrMsgStr(String errStr) {
+    public static String getErrMsgStr(String errStr) {
         if (errStr.contains("ConnectException") || errStr.contains("NoRouteToHostException")) {
             return EnumExceptions.SERVER_FAILED.getDesc();
         } else if (errStr.contains("Software caused connection abort")) {
