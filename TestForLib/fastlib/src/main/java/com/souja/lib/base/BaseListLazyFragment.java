@@ -13,8 +13,10 @@ import com.souja.lib.R;
 import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.inter.IListPage;
 import com.souja.lib.models.ODataPage;
+import com.souja.lib.utils.SHttpUtil;
 import com.souja.lib.utils.ScreenUtil;
 
+import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
@@ -29,6 +31,12 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
 
     protected void notifyAdapter() {
         //如果有自己的处理，重写此方法
+    }
+
+    //请求类型，默认POST
+    protected boolean isGet() {
+        //如果请求方法是GET，重写此方法，return true;
+        return false;
     }
 
     protected RequestParams getRequestParams() {
@@ -87,39 +95,42 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
 
     protected void getList(boolean retry) {
         if (retry) setRetryDefaultTip();
-        Post(getRequestUrl(pageIndex), getRequestParams(), getResultClass(), new IHttpCallBack<T>() {
-            @Override
-            public void OnSuccess(String msg, ODataPage page, ArrayList<T> data) {
-                mRefreshLayout.finishRefresh();
-                mRefreshLayout.finishLoadMore();
-                if (pageIndex == 1) {
-                    baseList.clear();
-                    pageAmount = page.getTotalPages();
-                }
 
-                if (data.size() > 0) {
-                    baseList.addAll(data);
-                }
-                mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
-                if (pageIndex == 1 && data.size() == 0) ShowEmptyView();
-                else ShowContentView();
-                recyclerView.getAdapter().notifyDataSetChanged();
-                notifyAdapter();
-            }
+        addRequest(SHttpUtil.Request(null, getRequestUrl(pageIndex),
+                isGet() ? HttpMethod.GET : HttpMethod.POST,
+                getRequestParams(), getResultClass(), new IHttpCallBack<T>() {
+                    @Override
+                    public void OnSuccess(String msg, ODataPage page, ArrayList<T> data) {
+                        mRefreshLayout.finishRefresh();
+                        mRefreshLayout.finishLoadMore();
+                        if (pageIndex == 1) {
+                            baseList.clear();
+                            pageAmount = page.getTotalPages();
+                        }
 
-            @Override
-            public void OnFailure(String msg) {
-                if (isProgressing()) {
-                    setErrMsgRetry(msg);
-                    setMClick(() -> getList(true));
-                } else {
-                    mRefreshLayout.finishRefresh();
-                    mRefreshLayout.finishLoadMore();
-                    showToast(msg);
-                    if (pageIndex > 1) pageIndex--;
-                }
-            }
-        });
+                        if (data.size() > 0) {
+                            baseList.addAll(data);
+                        }
+                        mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
+                        if (pageIndex == 1 && data.size() == 0) ShowEmptyView();
+                        else ShowContentView();
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                        notifyAdapter();
+                    }
+
+                    @Override
+                    public void OnFailure(String msg) {
+                        if (isProgressing()) {
+                            setErrMsgRetry(msg);
+                            setMClick(() -> getList(true));
+                        } else {
+                            mRefreshLayout.finishRefresh();
+                            mRefreshLayout.finishLoadMore();
+                            showToast(msg);
+                            if (pageIndex > 1) pageIndex--;
+                        }
+                    }
+                }));
     }
 
     protected void updateList() {
