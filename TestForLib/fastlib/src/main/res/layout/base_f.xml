@@ -15,21 +15,20 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:gravity="center"
-        tools:visibility="gone">
+        android:orientation="vertical">
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:layout_width="81px"
-            android:layout_height="81px"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:indeterminate="false" />
 
         <TextView
             android:id="@+id/content"
-            style="@style/wrapContent"
-            android:layout_marginLeft="36px"
-            android:text="请稍候..."
-            android:textColor="@color/grey_99"
-            android:textSize="48px" />
+            style="@style/text_45px"
+            android:layout_marginTop="30px"
+            android:text="加载中..."
+            android:textColor="@color/grey_80" />
     </LinearLayout>
 
     <LinearLayout
@@ -39,8 +38,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="569px"
