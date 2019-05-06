@@ -186,12 +186,12 @@ public class MLoadingDialog extends LinearLayout {
         emptyView.setVisibility(VISIBLE);
     }
 
-    public void hideEmptyView() {
-        emptyView.setVisibility(GONE);
+    public void showEmptyView(String emptyTip) {
+        mTvEmpty.setText(emptyTip);
+        emptyView.setVisibility(VISIBLE);
     }
 
-    public void hideEmptyView(String emptyTip) {
-        mTvEmpty.setText(emptyTip);
+    public void hideEmptyView() {
         emptyView.setVisibility(GONE);
     }
 
