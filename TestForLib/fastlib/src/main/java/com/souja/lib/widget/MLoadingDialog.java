@@ -43,10 +43,14 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     private final String defaultTip = "请稍候...";
-    private TextView mTvTip, mTvBigTip, mTvSmallTip;
-    private View llBody;
+    private TextView mTvTip, mTvBigTip, mTvSmallTip, mTvEmpty;
+    private View llBody, emptyView;
     private FrameLayout wholeBody;
     private ProgressBar mProgressBar;
+
+    private MLoadingClick mClick;
+    private String mTip;
+
 
     private void init(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.common_progress, this);
@@ -56,6 +60,8 @@ public class MLoadingDialog extends LinearLayout {
         llBody = findViewById(R.id.ll_body);
         wholeBody = findViewById(R.id.progress_body);
         mProgressBar = findViewById(R.id.progressBar);
+        emptyView = findViewById(R.id.ll_empty);
+        mTvEmpty = findViewById(R.id.tv_emptyTip);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MLoadingDialog);
         try {
@@ -84,9 +90,6 @@ public class MLoadingDialog extends LinearLayout {
                 mClick.onLoadingClick();
         });
     }
-
-    private MLoadingClick mClick;
-
     public void setMClick(MLoadingClick listener) {
         mClick = listener;
     }
@@ -95,9 +98,27 @@ public class MLoadingDialog extends LinearLayout {
         void onLoadingClick();
     }
 
-    private String mTip;
+    public void show() {
+        hideEmptyView();
+        mTvTip.setVisibility(GONE);
+        mTvBigTip.setVisibility(GONE);
+        mTvSmallTip.setVisibility(GONE);
+        if (getVisibility() != VISIBLE)
+            setVisibility(VISIBLE);
+    }
+
+    public void dismiss() {
+        hideEmptyView();
+        if (getVisibility() != GONE)
+            setVisibility(GONE);
+    }
+
+    public boolean isShowing() {
+        return getVisibility() == VISIBLE;
+    }
 
     public void setTip(String tip) {
+        hideEmptyView();
         setMClick(null);
         if (mProgressBar != null && mProgressBar.getVisibility() != VISIBLE)
             mProgressBar.setVisibility(VISIBLE);
@@ -109,6 +130,7 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     public void setRetryDefaultTip() {
+        hideEmptyView();
         setMClick(null);
         if (mProgressBar != null && mProgressBar.getVisibility() != VISIBLE)
             mProgressBar.setVisibility(VISIBLE);
@@ -119,29 +141,12 @@ public class MLoadingDialog extends LinearLayout {
         }
     }
 
-    public void show() {
-        mTvTip.setVisibility(GONE);
-        mTvBigTip.setVisibility(GONE);
-        mTvSmallTip.setVisibility(GONE);
-//        mTvTip.setText(mTip);
-        if (getVisibility() != VISIBLE)
-            setVisibility(VISIBLE);
-    }
-
-    public void dismiss() {
-        if (getVisibility() != GONE)
-            setVisibility(GONE);
-    }
-
-    public boolean isShowing() {
-        return getVisibility() == VISIBLE;
-    }
-
     public void hideProgress() {
         mProgressBar.setVisibility(GONE);
     }
 
     public void setErrMsg(String msg) {
+        hideEmptyView();
         if (getVisibility() != VISIBLE)
             setVisibility(VISIBLE);
         hideProgress();
@@ -150,6 +155,7 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     public void setErrMsg(int msgRes) {
+        hideEmptyView();
         if (getVisibility() != VISIBLE)
             setVisibility(VISIBLE);
         hideProgress();
@@ -158,6 +164,7 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     public void setErrMsgRetry(String msg) {
+        hideEmptyView();
         if (getVisibility() != VISIBLE)
             setVisibility(VISIBLE);
         hideProgress();
@@ -166,6 +173,7 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     public void setErrMsg(String big, String small) {
+        hideEmptyView();
         hideProgress();
         mTvTip.setVisibility(GONE);
         mTvBigTip.setVisibility(VISIBLE);
@@ -174,11 +182,29 @@ public class MLoadingDialog extends LinearLayout {
         mTvSmallTip.setText(small);
     }
 
+    public void showEmptyView() {
+        emptyView.setVisibility(VISIBLE);
+    }
+
+    public void hideEmptyView() {
+        emptyView.setVisibility(GONE);
+    }
+
+    public void hideEmptyView(String emptyTip) {
+        mTvEmpty.setText(emptyTip);
+        emptyView.setVisibility(GONE);
+    }
+
+    public void setEmptyTip(String emptyTip) {
+        mTvEmpty.setText(emptyTip);
+    }
+
     public void addEmptyView(View emptyView) {
         wholeBody.addView(emptyView);
     }
 
     public void hideAllTip() {
+        hideEmptyView();
         mProgressBar.setVisibility(GONE);
         mTvTip.setVisibility(GONE);
         mTvBigTip.setVisibility(GONE);

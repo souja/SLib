@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.souja.lib.R;
 import com.souja.lib.inter.IBaseLazyFragmentListener;
+import com.souja.lib.utils.ScreenUtil;
 
 
 /**
@@ -18,12 +19,14 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
 
 
     public void setTip(String tip) {
+        HideEmptyView();
         setMClick(null);
         if (mProgressBar.getVisibility() != View.VISIBLE) mProgressBar.setVisibility(View.VISIBLE);
         mTvTip.setText(tip);
     }
 
     public void setRetryDefaultTip() {
+        HideEmptyView();
         setMClick(null);
         if (progressView != null && progressView.getVisibility() != View.VISIBLE)
             progressView.setVisibility(View.VISIBLE);
@@ -34,6 +37,51 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         }
     }
 
+    public void setErrMsgRetry(String msg) {
+        HideEmptyView();
+        if (progressView.getVisibility() != View.VISIBLE)
+            progressView.setVisibility(View.VISIBLE);
+        hideProgress();
+        mTvTip.setVisibility(View.VISIBLE);
+        mTvTip.setText(msg + "\n\n点击重试");
+    }
+
+    public void setErrMsg(String msg) {
+        HideEmptyView();
+        hideProgress();
+        mTvTip.setVisibility(View.VISIBLE);
+        mTvTip.setText(msg);
+    }
+
+    public void setErrMsg(int msgRes) {
+        HideEmptyView();
+        if (progressView.getVisibility() != View.VISIBLE)
+            progressView.setVisibility(View.VISIBLE);
+        hideProgress();
+        mTvTip.setVisibility(View.VISIBLE);
+        mTvTip.setText(msgRes);
+    }
+
+    public void ShowEmptyView() {
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    public void HideEmptyView() {
+        emptyView.setVisibility(View.GONE);
+    }
+
+    public void hideProgress() {
+        HideEmptyView();
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    public void setMClick(MLoadingClick listener) {
+        mClick = listener;
+    }
+
+    public interface MLoadingClick {
+        void onLoadingClick();
+    }
 
     private FrameLayout contentView;
     private View progressView, emptyView;
@@ -48,43 +96,6 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         initPrepare();
     }
 
-    public void setErrMsgRetry(String msg) {
-        if (progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msg + "\n\n点击重试");
-    }
-
-    public void setErrMsg(String msg) {
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msg);
-    }
-
-    public void setErrMsg(int msgRes) {
-        if (progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msgRes);
-    }
-
-    public void hideProgress() {
-        mProgressBar.setVisibility(View.GONE);
-    }
-
-    public void setMClick(MLoadingClick listener) {
-        mClick = listener;
-    }
-
-    public interface MLoadingClick {
-        void onLoadingClick();
-    }
-
-    public void ShowEmptyView() {
-        emptyView.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public int setupLayoutRes() {
@@ -106,7 +117,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
     }
 
     public void setContentView(View v) {
-//        ScreenUtil.initScale(v);
+        ScreenUtil.initScale(v);
         contentView.addView(v, new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }

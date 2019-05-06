@@ -12,18 +12,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="484px"
-            android:layout_height="386px"
-            android:background="@drawable/ic_nodata" />
+            android:layout_width="569px"
+            android:layout_height="444px"
+            android:background="@drawable/ic_empty" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_42px"
             android:layout_marginTop="45px"
-            android:layout_marginRight="30px"
             android:text="暂无数据"
-            android:textColor="@color/grey_80"
-            android:textSize="42px" />
+            android:textColor="@color/grey_80" />
     </LinearLayout>
 
     <LinearLayout

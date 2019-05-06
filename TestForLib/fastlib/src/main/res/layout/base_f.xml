@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:gravity="center">
+        android:gravity="center"
+        tools:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -37,13 +39,18 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="569px"
+            android:layout_height="444px"
+            android:background="@drawable/ic_empty" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/text_42px"
+            android:layout_marginTop="45px"
             android:text="暂无数据"
-            android:textColor="@color/grey_80"
-            android:textSize="42px" />
+            android:textColor="@color/grey_80" />
     </LinearLayout>
 </FrameLayout>

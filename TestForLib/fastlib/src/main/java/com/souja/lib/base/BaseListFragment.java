@@ -23,7 +23,6 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
 
     public static final String KEY_REFRESH = "refreshFlag";
     private boolean enableRefresh = true;
-
     protected int pageIndex = 1, pageAmount = 1;
     protected ArrayList<T> baseList;
 
@@ -125,9 +124,8 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                     baseList.addAll(data);
                 }
                 smartRefresh.setEnableLoadMore(pageIndex < pageAmount);
-                if (pageIndex == 1 && data.size() == 0) {
-                    mLoadingDialog.setErrMsg("暂无数据");
-                } else hideLoading();
+                if (pageIndex == 1 && data.size() == 0) mLoadingDialog.showEmptyView();
+                else hideLoading();
                 recyclerView.getAdapter().notifyDataSetChanged();
                 notifyAdapter();
             }

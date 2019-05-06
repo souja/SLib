@@ -26,14 +26,14 @@ import java.util.ArrayList;
 /**
  * 列表类型页面基类，如“我的招聘”列表页面
  * 页面结构：TitleBar + SmartRefresh + RecyclerView + LoadingDialog
- * */
+ */
 public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
 
     //设置页面标题
     protected abstract void setupTitle(TitleBar titleBar);
 
     //请求类型，默认POST
-    protected boolean isGet(){
+    protected boolean isGet() {
         //如果请求方法是GET，重写此方法，return true;
         return false;
     }
@@ -64,7 +64,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         getList(false);
     }
 
-    public void setContentBg(int color){
+    public void setContentBg(int color) {
         body.setBackgroundColor(color);
     }
 
@@ -72,7 +72,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
     protected TitleBar mTitleBar;
     protected MLoadingDialog mLoadingDialog;
     protected SmartRefreshLayout mSmartRefresh;
-    protected  RecyclerView mRecyclerView;
+    protected RecyclerView mRecyclerView;
 
     protected ArrayList<T> baseList;
     protected int pageIndex = 1, pageAmount = 1;
@@ -82,7 +82,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         return R.layout.act_base_list_page;
     }
 
-    private void initViews(){
+    private void initViews() {
         body = findViewById(R.id.body);
         body = findViewById(R.id.m_title);
         mLoadingDialog = findViewById(R.id.m_loading);
@@ -135,9 +135,8 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                             baseList.addAll(data);
                         }
                         mSmartRefresh.setEnableLoadMore(pageIndex < pageAmount);
-                        if (pageIndex == 1 && data.size() == 0) {
-                            mLoadingDialog.setErrMsg("暂无数据");
-                        } else mLoadingDialog.dismiss();
+                        if (pageIndex == 1 && data.size() == 0) mLoadingDialog.showEmptyView();
+                        else mLoadingDialog.dismiss();
                         mRecyclerView.getAdapter().notifyDataSetChanged();
                         notifyAdapter();
                     }

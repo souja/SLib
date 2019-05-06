@@ -101,9 +101,8 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                     baseList.addAll(data);
                 }
                 mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
-                if (pageIndex == 1 && data.size() == 0) {
-                    setErrMsg("暂无数据");
-                } else ShowContentView();
+                if (pageIndex == 1 && data.size() == 0) ShowEmptyView();
+                else ShowContentView();
                 recyclerView.getAdapter().notifyDataSetChanged();
                 notifyAdapter();
             }
