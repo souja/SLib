@@ -66,6 +66,15 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         emptyView.setVisibility(View.VISIBLE);
     }
 
+    public void ShowEmptyView(String emptyTip) {
+        mTvEmpty.setText(emptyTip);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    public void setEmptyTip(String emptyTip) {
+        mTvEmpty.setText(emptyTip);
+    }
+
     public void HideEmptyView() {
         emptyView.setVisibility(View.GONE);
     }
@@ -85,7 +94,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
 
     private FrameLayout contentView;
     private View progressView, emptyView;
-    private TextView mTvTip;
+    private TextView mTvTip, mTvEmpty;
     private ProgressBar mProgressBar;
     protected View _contentView;
     private MLoadingClick mClick;
@@ -109,6 +118,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         emptyView = _rootView.findViewById(R.id.layout_empty);
         mProgressBar = _rootView.findViewById(R.id.progress_bar);
         mTvTip = _rootView.findViewById(R.id.content);
+        mTvEmpty = _rootView.findViewById(R.id.tv_emptyTip);
 
         progressView.setOnClickListener(vv -> {
             if (mClick != null)

@@ -46,6 +46,7 @@
             android:background="@drawable/ic_empty" />
 
         <TextView
+            android:id="@+id/tv_emptyTip"
             style="@style/text_42px"
             android:layout_marginTop="45px"
             android:text="暂无数据"
