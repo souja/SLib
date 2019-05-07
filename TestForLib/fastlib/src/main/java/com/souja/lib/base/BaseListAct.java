@@ -84,7 +84,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
 
     private void initViews() {
         body = findViewById(R.id.body);
-        body = findViewById(R.id.m_title);
+        mTitleBar = findViewById(R.id.m_title);
         mLoadingDialog = findViewById(R.id.m_loading);
         mSmartRefresh = findViewById(R.id.smartRefresh);
         mRecyclerView = findViewById(R.id.recyclerView);
