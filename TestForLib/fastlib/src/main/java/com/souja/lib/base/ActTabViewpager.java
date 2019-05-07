@@ -24,7 +24,7 @@ public abstract class ActTabViewpager extends ActBase {
     /**
      * 设置各页面小标题
      * */
-    protected abstract String[] setTitles();
+    public abstract String[] setTitles();
 
     /**
      * 设置标题文字间距
@@ -34,10 +34,10 @@ public abstract class ActTabViewpager extends ActBase {
 
     private String[] mTitles;
     private BaseFragment[] mFragments;
-    protected int tabLeftMargin, tabRightMargin;
+    public int tabLeftMargin, tabRightMargin;
 
     @Override
-    protected int setViewRes() {
+    public int setViewRes() {
         return R.layout.act_tab_viewpaer;
     }
 
@@ -48,7 +48,7 @@ public abstract class ActTabViewpager extends ActBase {
     }
 
     @Override
-    protected void initMain() {
+    public void initMain() {
         initViews();
         mTitles = setTitles();
         mFragments = new BaseFragment[mTitles.length];
@@ -90,6 +90,6 @@ public abstract class ActTabViewpager extends ActBase {
         viewpager.setOffscreenPageLimit(mTitles.length - 1);
     }
 
-    protected abstract void initFragments(BaseFragment[] fragments);
+    public abstract void initFragments(BaseFragment[] fragments);
 
 }

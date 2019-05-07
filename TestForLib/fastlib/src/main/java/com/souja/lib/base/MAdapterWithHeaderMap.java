@@ -16,8 +16,8 @@ import java.util.List;
  */
 
 public abstract class MAdapterWithHeaderMap<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
-    protected ArrayMap<String, List<T>> mList;
+    public Context mContext;
+    public ArrayMap<String, List<T>> mList;
     private int pageIndex = 1, pageAmount = 1;
     private final int LOADING = 1, LAST = 2, EMPTY = 3, HEADER = 4;
 
@@ -40,13 +40,13 @@ public abstract class MAdapterWithHeaderMap<T> extends RecyclerView.Adapter<Recy
 
     public abstract void onBindView(RecyclerView.ViewHolder holder, int position);
 
-    protected void bindEmpty(RecyclerView.ViewHolder holder) {
+    public void bindEmpty(RecyclerView.ViewHolder holder) {
     }
 
-    protected void bindLast(RecyclerView.ViewHolder holder) {
+    public void bindLast(RecyclerView.ViewHolder holder) {
     }
 
-    protected void bindHeader(RecyclerView.ViewHolder holder) {
+    public void bindHeader(RecyclerView.ViewHolder holder) {
     }
 
     @Override

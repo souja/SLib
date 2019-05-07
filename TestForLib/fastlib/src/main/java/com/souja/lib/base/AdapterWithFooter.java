@@ -15,8 +15,8 @@ import java.util.List;
  * Created by Ydz on 2017/6/12 0012.
  */
 public abstract class AdapterWithFooter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
-    protected List<T> mList;
+    public Context mContext;
+    public List<T> mList;
     private final int COMMON = 1, EMPTY = 2, FOOTER = 3;
 
     public AdapterWithFooter(Context context, List<T> list) {
@@ -38,10 +38,10 @@ public abstract class AdapterWithFooter<T> extends RecyclerView.Adapter<Recycler
 
     public abstract void onBindView(RecyclerView.ViewHolder holder, int position);
 
-    protected void bindEmpty(RecyclerView.ViewHolder holder) {
+    public void bindEmpty(RecyclerView.ViewHolder holder) {
     }
 
-    protected void bindFooter(RecyclerView.ViewHolder holder) {
+    public void bindFooter(RecyclerView.ViewHolder holder) {
     }
 
     @Override

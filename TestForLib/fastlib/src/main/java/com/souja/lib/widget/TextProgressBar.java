@@ -71,7 +71,7 @@ public class TextProgressBar extends ProgressBar {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         int width = getWidth();

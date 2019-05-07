@@ -57,7 +57,7 @@ public abstract class ActBaseEd extends ActBase {
         return onTouchEvent(ev);
     }
 
-    protected void hideSoftKeyboard() {
+    public void hideSoftKeyboard() {
         if (getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
             if (getCurrentFocus() != null)
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),

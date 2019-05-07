@@ -317,7 +317,7 @@ public class WheelView extends View {
      * @param oldValue the old wheel value
      * @param newValue the new wheel value
      */
-    protected void notifyChangingListeners(int oldValue, int newValue) {
+    public void notifyChangingListeners(int oldValue, int newValue) {
         for (OnWheelChangedListener listener : changingListeners) {
             listener.onChanged(this, oldValue, newValue);
         }
@@ -344,7 +344,7 @@ public class WheelView extends View {
     /**
      * Notifies listeners about starting scrolling
      */
-    protected void notifyScrollingListenersAboutStart() {
+    public void notifyScrollingListenersAboutStart() {
         for (OnWheelScrollListener listener : scrollingListeners) {
             listener.onScrollingStarted(this);
         }
@@ -353,7 +353,7 @@ public class WheelView extends View {
     /**
      * Notifies listeners about ending scrolling
      */
-    protected void notifyScrollingListenersAboutEnd() {
+    public void notifyScrollingListenersAboutEnd() {
         for (OnWheelScrollListener listener : scrollingListeners) {
             listener.onScrollingFinished(this);
         }
@@ -380,7 +380,7 @@ public class WheelView extends View {
     /**
      * Notifies listeners about clicking
      */
-    protected void notifyClickListenersAboutClick(int item) {
+    public void notifyClickListenersAboutClick(int item) {
         for (OnWheelClickedListener listener : clickingListeners) {
             listener.onItemClicked(this, item);
         }
@@ -630,7 +630,7 @@ public class WheelView extends View {
     }
     
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
@@ -656,7 +656,7 @@ public class WheelView extends View {
     }
     
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    public void onLayout(boolean changed, int l, int t, int r, int b) {
         layout(r - l, b - t);
     }
     
@@ -673,7 +673,7 @@ public class WheelView extends View {
     }
     
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         
         if (viewAdapter != null && viewAdapter.getItemsCount() > 0) {

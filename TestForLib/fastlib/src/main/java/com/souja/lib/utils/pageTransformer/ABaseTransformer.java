@@ -14,7 +14,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *            Position of page relative to the current front-and-center position of the pager. 0 is front and
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
-    protected abstract void onTransform(View page, float position);
+    public abstract void onTransform(View page, float position);
 
     /**
      * Apply a property transformation to the given page. For most use cases, this method should not be overridden.
@@ -39,7 +39,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *
      * @return
      */
-    protected boolean hideOffscreenPages() {
+    public boolean hideOffscreenPages() {
         return true;
     }
 
@@ -48,7 +48,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *
      * @return
      */
-    protected boolean isPagingEnabled() {
+    public boolean isPagingEnabled() {
         return false;
     }
 
@@ -66,7 +66,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *            Position of page relative to the current front-and-center position of the pager. 0 is front and
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
-    protected void onPreTransform(View page, float position) {
+    public void onPreTransform(View page, float position) {
         final float width = page.getWidth();
 
         page.setRotationX(0);
@@ -97,7 +97,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *            Position of page relative to the current front-and-center position of the pager. 0 is front and
      *            center. 1 is one full page position to the right, and -1 is one page position to the left.
      */
-    protected void onPostTransform(View page, float position) {
+    public void onPostTransform(View page, float position) {
     }
 
     /**
@@ -107,7 +107,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      * @param min
      * @return
      */
-    protected static final float min(float val, float min) {
+    public static final float min(float val, float min) {
         return val < min ? min : val;
     }
 

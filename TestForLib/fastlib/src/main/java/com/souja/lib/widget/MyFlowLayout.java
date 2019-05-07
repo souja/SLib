@@ -129,7 +129,7 @@ public class MyFlowLayout extends ViewGroup {
 //    private boolean bFixed;
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //        LogUtil.e("onMeasure:" + getChildCount());
         // 获得它的父容器为它设置的测量模式和大小
         mFinalWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -253,7 +253,7 @@ public class MyFlowLayout extends ViewGroup {
     }*/
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    public void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int maxWidth = getMeasuredWidth();
         int maxHeight = getMeasuredHeight();
 

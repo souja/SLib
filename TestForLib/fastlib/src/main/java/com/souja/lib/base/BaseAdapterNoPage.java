@@ -15,10 +15,10 @@ import java.util.List;
  * Created by ydz on 2016/4/5.
  */
 public abstract class BaseAdapterNoPage<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
-    protected List<T> mList;
+    public Context mContext;
+    public List<T> mList;
     private final int type_empty = 1;
-    protected LayoutInflater mInflater;
+    public LayoutInflater mInflater;
 
     public BaseAdapterNoPage(Context context, List<T> list) {
         mContext = context;

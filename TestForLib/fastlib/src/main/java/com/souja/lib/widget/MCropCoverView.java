@@ -140,7 +140,7 @@ public class MCropCoverView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //保存当前canvas 状态
         canvas.save();

@@ -74,12 +74,12 @@ public class ActivityGallery extends ActBase {
     }
 
     @Override
-    protected int setViewRes() {
+    public int setViewRes() {
         return com.souja.lib.R.layout.activity_gallery;
     }
 
     @Override
-    protected void initMain() {
+    public void initMain() {
         initViews();
         initIntent();
         initVp();
@@ -205,7 +205,7 @@ public class ActivityGallery extends ActBase {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LibConstants.REQ_IMAGE_EDIT) {
             if (resultCode == RESULT_OK) {

@@ -13,10 +13,10 @@ import java.util.List;
  * Created by Ydz on 2017/7/5 0005.
  */
 public abstract class MBaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
-    protected List<T> mList;
-    protected LayoutInflater mInflater;
-    protected CommonItemClickListener mCommonItemClickListener;
+    public Context mContext;
+    public List<T> mList;
+    public LayoutInflater mInflater;
+    public CommonItemClickListener mCommonItemClickListener;
 
     public MBaseAdapter(Context context, List<T> list) {
         this(context, list, null);

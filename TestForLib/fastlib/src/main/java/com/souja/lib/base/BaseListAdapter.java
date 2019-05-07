@@ -17,7 +17,7 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
 
     public Context mContext;
     public List<T> mList;
-    protected LayoutInflater mInflater;
+    public LayoutInflater mInflater;
 
     public BaseListAdapter(Context context, List<T> list) {
         mContext = context;

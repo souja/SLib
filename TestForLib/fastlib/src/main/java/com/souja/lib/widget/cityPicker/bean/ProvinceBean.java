@@ -66,7 +66,7 @@ public class ProvinceBean implements Parcelable {
   public ProvinceBean() {
   }
 
-  protected ProvinceBean(Parcel in) {
+  public ProvinceBean(Parcel in) {
     this.id = in.readString();
     this.name = in.readString();
     this.cityList = in.createTypedArrayList(CityBean.CREATOR);

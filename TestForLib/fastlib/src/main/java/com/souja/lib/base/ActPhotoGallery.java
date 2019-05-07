@@ -106,12 +106,12 @@ public class ActPhotoGallery extends ActBase {
     }
 
     @Override
-    protected int setViewRes() {
+    public int setViewRes() {
         return com.souja.lib.R.layout.act_select_media;
     }
 
     @Override
-    protected void initMain() {
+    public void initMain() {
         instance = this;
         strComplete = getResources().getString(com.souja.lib.R.string.complete);
         defaultDir = SPHelper.getString(SelectImgOptions.GALLERY_LAST);
@@ -336,7 +336,7 @@ public class ActPhotoGallery extends ActBase {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (REQUEST_CODE2 == requestCode) { //相机
@@ -410,7 +410,7 @@ public class ActPhotoGallery extends ActBase {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         instance = null;
         delAction(LibConstants.CROP_IMG);
         super.onDestroy();

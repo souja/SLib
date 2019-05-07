@@ -30,36 +30,36 @@ import java.util.ArrayList;
 public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
 
     //设置页面标题
-    protected abstract void setupTitle(TitleBar titleBar);
+    public abstract void setupTitle(TitleBar titleBar);
 
     //请求类型，默认POST
-    protected boolean isGet() {
+    public boolean isGet() {
         //如果请求方法是GET，重写此方法，return true;
         return false;
     }
 
     //在获取到列表数据并且ui更新完毕后，如果有自己的一些其他处理，重写此方法进行
-    protected void notifyAdapter() {
+    public void notifyAdapter() {
 
     }
 
     //设置接口请求参数
-    protected RequestParams getRequestParams() {
+    public RequestParams getRequestParams() {
         //默认无附加参数，如需附加参数，重写此方法进行添加
         return new RequestParams();
     }
 
     //设置适配器布局类型，如LinearLayoutManager（线性布局）、GridLayoutManager（网格布局）。
-    protected RecyclerView.LayoutManager getLayoutMgr() {
+    public RecyclerView.LayoutManager getLayoutMgr() {
         //默认返回LinearLayoutManger，如需其他类型 重写此方法进行修改
         return new LinearLayoutManager(_this);
     }
 
-    protected void hideLoading() {
+    public void hideLoading() {
         mLoadingDialog.dismiss();
     }
 
-    protected void updateList() {
+    public void updateList() {
         pageIndex = 1;
         getList(false);
     }
@@ -68,17 +68,17 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         body.setBackgroundColor(color);
     }
 
-    protected View body;
-    protected TitleBar mTitleBar;
-    protected MLoadingDialog mLoadingDialog;
-    protected SmartRefreshLayout mSmartRefresh;
-    protected RecyclerView mRecyclerView;
+    public View body;
+    public TitleBar mTitleBar;
+    public MLoadingDialog mLoadingDialog;
+    public SmartRefreshLayout mSmartRefresh;
+    public RecyclerView mRecyclerView;
 
-    protected ArrayList<T> baseList;
-    protected int pageIndex = 1, pageAmount = 1;
+    public ArrayList<T> baseList;
+    public int pageIndex = 1, pageAmount = 1;
 
     @Override
-    protected int setViewRes() {
+    public int setViewRes() {
         return R.layout.act_base_list_page;
     }
 
@@ -91,7 +91,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
     }
 
     @Override
-    protected void initMain() {
+    public void initMain() {
         initViews();
         setupTitle(mTitleBar);
         baseList = new ArrayList<>();
@@ -114,7 +114,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         getList(false);
     }
 
-    protected void getList(boolean retry) {
+    public void getList(boolean retry) {
         String requestUrl = getRequestUrl(pageIndex);
         if (TextUtils.isEmpty(requestUrl)) return;
 

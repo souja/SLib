@@ -35,17 +35,17 @@ import io.reactivex.functions.Consumer;
 
 public abstract class ActBase extends AppCompatActivity {
 
-    protected AlertDialog _mDialog;
-    protected TextView _tvProgressTip;
+    public AlertDialog _mDialog;
+    public TextView _tvProgressTip;
     public ActBase _this;
     /**
      * 设置页面视图Resource
      * e.g. R.layout.act_test
      */
-    protected abstract int setViewRes();
+    public abstract int setViewRes();
 
     //页面逻辑处理
-    protected abstract void initMain();
+    public abstract void initMain();
 
     public void showToast(String msg) {
         if (msg == null || msg.contains("onNext")) return;
@@ -284,13 +284,13 @@ public abstract class ActBase extends AppCompatActivity {
         Put(dialog, url, new RequestParams(), Object.class, callBack);
     }
 
-    protected InputMethodManager inputMethodManager;
+    public InputMethodManager inputMethodManager;
     private List<Callback.Cancelable> mCancelables;
     private List<Integer> actions;
     private Disposable mDisposable;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handleOnCreate(savedInstanceState);
         ScreenUtil.setScale(this);
@@ -301,7 +301,7 @@ public abstract class ActBase extends AppCompatActivity {
         initMain();
     }
 
-    protected void handleOnCreate(Bundle savedInstanceState) {
+    public void handleOnCreate(Bundle savedInstanceState) {
     }
 
     @Override
@@ -312,7 +312,7 @@ public abstract class ActBase extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         if (mCancelables != null) {
             for (Callback.Cancelable req : mCancelables) {
                 if (req != null && !req.isCancelled()) req.cancel();

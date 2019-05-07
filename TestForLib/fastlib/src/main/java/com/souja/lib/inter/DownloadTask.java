@@ -35,12 +35,12 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     @Override
-    protected void onPreExecute() {
+    public void onPreExecute() {
         mCallBack.onPreExecute();
     }
 
     @Override
-    protected Integer doInBackground(Void... params) {
+    public Integer doInBackground(Void... params) {
         URL url;
         HttpURLConnection connection = null;
         InputStream in = null;
@@ -97,12 +97,12 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     @Override
-    protected void onProgressUpdate(Integer... values) {
+    public void onProgressUpdate(Integer... values) {
         mCallBack.onProgressUpdate(values[0]);
     }
 
     @Override
-    protected void onPostExecute(Integer i) {
+    public void onPostExecute(Integer i) {
         if (i == null) {
             if (mNewApkInstaller.exists()) {
                 try {

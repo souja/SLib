@@ -65,7 +65,7 @@ public class CityBean implements Parcelable {
     public CityBean() {
     }
 
-    protected CityBean(Parcel in) {
+    public CityBean(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.cityList = in.createTypedArrayList(DistrictBean.CREATOR);

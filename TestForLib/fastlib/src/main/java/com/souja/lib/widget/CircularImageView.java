@@ -166,7 +166,7 @@ public class CircularImageView extends AppCompatImageView {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    public void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         canvasSize = w;
         if (h < canvasSize)
@@ -252,7 +252,7 @@ public class CircularImageView extends AppCompatImageView {
 
     //region Mesure Method
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = measureWidth(widthMeasureSpec);
         int height = measureHeight(heightMeasureSpec);
         /*int imageSize = (width < height) ? width : height;

@@ -14,9 +14,9 @@ import java.util.List;
  * Created by soda on 2016/4/5.
  */
 public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
+    public Context mContext;
     public List<T> mList;
-    protected LayoutInflater mInflater;
+    public LayoutInflater mInflater;
 
     public BaseAdapterEmpty(Context context, List<T> list) {
         mContext = context;
@@ -29,7 +29,7 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
                 R.layout.item_common_nodata, parent, false));
     }
 
-    protected void bindEmpty(RecyclerView.ViewHolder holder) {
+    public void bindEmpty(RecyclerView.ViewHolder holder) {
     }
 
     public abstract RecyclerView.ViewHolder onCreateView(ViewGroup parent, int viewType);

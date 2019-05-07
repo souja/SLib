@@ -96,7 +96,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
     private View progressView, emptyView;
     private TextView mTvTip, mTvEmpty;
     private ProgressBar mProgressBar;
-    protected View _contentView;
+    public View _contentView;
     private MLoadingClick mClick;
 
     @Override
@@ -132,7 +132,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
-    protected boolean isProgressing() {
+    public boolean isProgressing() {
         return progressView.getVisibility() == View.VISIBLE;
     }
 

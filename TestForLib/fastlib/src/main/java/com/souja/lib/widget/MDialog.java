@@ -9,17 +9,17 @@ import android.view.LayoutInflater;
 import com.souja.lib.R;
 
 public class MDialog extends AlertDialog {
-    protected MDialog(@NonNull Context context) {
+    public MDialog(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    protected MDialog(@NonNull Context context, int themeResId) {
+    public MDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
         init(context);
     }
 
-    protected MDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    public MDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         init(context);
     }

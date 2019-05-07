@@ -239,14 +239,14 @@ public class SwipeListLayout extends FrameLayout {
     ;
 
     @Override
-    protected void onFinishInflate() {
+    public void onFinishInflate() {
         super.onFinishInflate();
         hiddenView = getChildAt(0); // 得到隐藏按钮的linearlayout
         itemView = getChildAt(1); // 得到最上层的linearlayout
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    public void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         // 测量子View的长和宽
         itemWidth = itemView.getMeasuredWidth();
@@ -256,7 +256,7 @@ public class SwipeListLayout extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right,
+    public void onLayout(boolean changed, int left, int top, int right,
                             int bottom) {
         layout(Status.Close);
     }

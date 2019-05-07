@@ -14,11 +14,11 @@ import java.util.List;
  * Created by soda on 2016/4/5.
  */
 public abstract class BaseAdapterPage<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected Context mContext;
+    public Context mContext;
     public List<T> mList;
-    protected LayoutInflater mInflater;
-    protected int pageIndex = 1, pageAmount = 1;
-    protected final int type_loading = 1, type_last = 2, type_empty = 3;
+    public LayoutInflater mInflater;
+    public int pageIndex = 1, pageAmount = 1;
+    public final int type_loading = 1, type_last = 2, type_empty = 3;
 
     public BaseAdapterPage(Context context, List<T> list) {
         mContext = context;
@@ -31,7 +31,7 @@ public abstract class BaseAdapterPage<T> extends RecyclerView.Adapter<RecyclerVi
                 R.layout.item_common_nodata, parent, false));
     }
 
-    protected void bindEmpty(RecyclerView.ViewHolder holder, int position) {
+    public void bindEmpty(RecyclerView.ViewHolder holder, int position) {
     }
 
     public abstract RecyclerView.ViewHolder onCreateView(ViewGroup parent, int viewType);

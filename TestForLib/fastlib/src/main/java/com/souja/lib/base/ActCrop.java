@@ -43,7 +43,7 @@ public class ActCrop extends ActBase {
     }
 
     @Override
-    protected int setViewRes() {
+    public int setViewRes() {
         return R.layout.act_crop;
     }
 
@@ -55,7 +55,7 @@ public class ActCrop extends ActBase {
     }
 
     @Override
-    protected void initMain() {
+    public void initMain() {
         MTool.setStatusBarFullTransparent(getWindow());
         MTool.setStatusBarTextColor(getWindow(), true);
         initViews();

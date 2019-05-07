@@ -55,8 +55,8 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initMain();
 
-    protected AlertDialog _mDialog;
-    protected TextView _tvProgressTip;
+    public AlertDialog _mDialog;
+    public TextView _tvProgressTip;
 
     public AlertDialog getDialog() {
         createDialog(null);
@@ -197,8 +197,8 @@ public abstract class BaseFragment extends Fragment {
     public FragmentActivity mBaseActivity;
     public FragmentManager mFragmentManager;
     private boolean isPrepared;
-    protected View _rootView;
-    protected InputMethodManager inputMethodManager;
+    public View _rootView;
+    public InputMethodManager inputMethodManager;
     private List<Callback.Cancelable> mCancelables;
     private List<Integer> actions;
     /**

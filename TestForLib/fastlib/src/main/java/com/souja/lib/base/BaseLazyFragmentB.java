@@ -21,7 +21,7 @@ public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLaz
     private View progressView, emptyView;
     private TextView mTvTip, mTvEmpty;
     private ProgressBar mProgressBar;
-    protected View _contentView;
+    public View _contentView;
 
     @Override
     public int setupLayoutRes() {
@@ -127,7 +127,7 @@ public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLaz
         emptyView.setVisibility(View.GONE);
     }
 
-    protected boolean isProgressing() {
+    public boolean isProgressing() {
         return progressView.getVisibility() == View.VISIBLE;
     }
 

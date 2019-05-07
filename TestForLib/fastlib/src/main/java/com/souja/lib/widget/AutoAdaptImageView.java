@@ -107,7 +107,7 @@ public class AutoAdaptImageView extends ImageView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mBitmap == null) return;
         canvas.drawBitmap(mBitmap, matrix, null);

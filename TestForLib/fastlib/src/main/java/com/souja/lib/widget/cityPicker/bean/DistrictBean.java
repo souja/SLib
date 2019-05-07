@@ -50,7 +50,7 @@ public class DistrictBean implements Parcelable {
     public DistrictBean() {
     }
 
-    protected DistrictBean(Parcel in) {
+    public DistrictBean(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
     }

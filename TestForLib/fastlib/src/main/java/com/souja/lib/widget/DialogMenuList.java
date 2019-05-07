@@ -68,7 +68,7 @@ public class DialogMenuList extends ProgressDialog {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_menu_list, null);
         ScreenUtil.initScale(contentView);

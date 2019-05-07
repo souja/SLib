@@ -119,7 +119,7 @@ public class ChangeColorIconWithTextView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         // 得到绘制icon的宽
@@ -136,7 +136,7 @@ public class ChangeColorIconWithTextView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         if (mIconBitmap != null) {
             mIconRect = new Rect(getWidth() / 2 - mIconBitmap.getWidth() / 2, iconOffset, getWidth() / 2 + mIconBitmap.getWidth() / 2, iconOffset + mIconBitmap.getHeight());
             canvas.drawBitmap(mIconBitmap, null, mIconRect, null);
@@ -243,7 +243,7 @@ public class ChangeColorIconWithTextView extends View {
     private static final String STATE_ALPHA = "state_alpha";
 
     @Override
-    protected Parcelable onSaveInstanceState() {
+    public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(INSTANCE_STATE, super.onSaveInstanceState());
         bundle.putFloat(STATE_ALPHA, mAlpha);
@@ -251,7 +251,7 @@ public class ChangeColorIconWithTextView extends View {
     }
 
     @Override
-    protected void onRestoreInstanceState(Parcelable state) {
+    public void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             mAlpha = bundle.getFloat(STATE_ALPHA);

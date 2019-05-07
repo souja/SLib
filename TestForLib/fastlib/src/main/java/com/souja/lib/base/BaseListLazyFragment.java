@@ -26,31 +26,31 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
     public static final String KEY_REFRESH = "refreshFlag";
     private boolean enableRefresh = true;
 
-    protected int pageIndex = 1, pageAmount = 1;
-    protected ArrayList<T> baseList;
+    public int pageIndex = 1, pageAmount = 1;
+    public ArrayList<T> baseList;
 
-    protected void notifyAdapter() {
+    public void notifyAdapter() {
         //如果有自己的处理，重写此方法
     }
 
     //请求类型，默认POST
-    protected boolean isGet() {
+    public boolean isGet() {
         //如果请求方法是GET，重写此方法，return true;
         return false;
     }
 
-    protected RequestParams getRequestParams() {
+    public RequestParams getRequestParams() {
         //如果接口需要自定义参数，重写此方法
         return new RequestParams();
     }
 
-    protected RecyclerView.LayoutManager getLayoutMgr() {
+    public RecyclerView.LayoutManager getLayoutMgr() {
         //默认返回LinearLayoutManger，如需其他类型 重写此方法
         return new LinearLayoutManager(mBaseActivity);
     }
 
-    protected RecyclerView recyclerView;
-    protected SmartRefreshLayout mRefreshLayout;
+    public RecyclerView recyclerView;
+    public SmartRefreshLayout mRefreshLayout;
 
     private void initViews() {
         recyclerView = _contentView.findViewById(R.id.recyclerView);
@@ -93,7 +93,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
         getList(false);
     }
 
-    protected void getList(boolean retry) {
+    public void getList(boolean retry) {
         if (retry) setRetryDefaultTip();
 
         addRequest(SHttpUtil.Request(null, getRequestUrl(pageIndex),
@@ -133,7 +133,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                 }));
     }
 
-    protected void updateList() {
+    public void updateList() {
         pageIndex = 1;
         getList(false);
     }

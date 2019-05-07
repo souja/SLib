@@ -69,7 +69,7 @@ public class RoundImageView extends AppCompatImageView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         /**
          * 当模式为圆形模式的时候，我们强制让宽高一致
          */
@@ -83,7 +83,7 @@ public class RoundImageView extends AppCompatImageView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         Drawable mDrawable = getDrawable();
         Matrix mDrawMatrix = getImageMatrix();
         if (mDrawable == null) {

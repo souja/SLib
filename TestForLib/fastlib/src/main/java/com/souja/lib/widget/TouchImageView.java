@@ -57,7 +57,7 @@ public class TouchImageView extends AppCompatImageView {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    public void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 //        srcImage = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_avatar_1);
     }
@@ -139,7 +139,7 @@ public class TouchImageView extends AppCompatImageView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         if (srcImage == null) {
             super.onDraw(canvas);
             return;
@@ -269,7 +269,7 @@ public class TouchImageView extends AppCompatImageView {
      *
      * @return
      */
-    protected float[] getBitmapPoints(Bitmap bitmap, Matrix matrix) {
+    public float[] getBitmapPoints(Bitmap bitmap, Matrix matrix) {
         float[] dst = new float[8];
         float[] src = new float[]{
                 0, 0,

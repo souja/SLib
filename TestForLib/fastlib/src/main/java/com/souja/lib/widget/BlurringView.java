@@ -67,7 +67,7 @@ public class BlurringView extends View {
     private Allocation mBlurInput, mBlurOutput;
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mBlurredView != null) {
             if (prepare()) {
@@ -120,7 +120,7 @@ public class BlurringView extends View {
     }
 
     @SuppressLint("NewApi")
-    protected boolean prepare() {
+    public boolean prepare() {
         final int width = mBlurredView.getWidth();
         final int height = mBlurredView.getHeight();
 
@@ -164,7 +164,7 @@ public class BlurringView extends View {
     }
 
     @SuppressLint("NewApi")
-    protected void blur() {
+    public void blur() {
         mBlurInput.copyFrom(mBitmapToBlur);
         mBlurScript.setInput(mBlurInput);
         mBlurScript.forEach(mBlurOutput);
@@ -172,7 +172,7 @@ public class BlurringView extends View {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (mRenderScript != null) {
             mRenderScript.destroy();
