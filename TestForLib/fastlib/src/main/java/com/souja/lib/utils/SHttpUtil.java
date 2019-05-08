@@ -27,7 +27,7 @@ import io.reactivex.Flowable;
 
 public class SHttpUtil {
 
-    public static String HTTP, VERSION = "/v1";
+    public static String M_HTTP, VERSION = "/v1";
     private static Context mContext;
 
     private static final int M_HTTP_SUCCESS = 1;//接口成功
@@ -263,9 +263,9 @@ public class SHttpUtil {
             }
         }
         if (outControl) {
-            url = HTTP + url;
+            url = M_HTTP + url;
         } else {
-            url = HTTP + VERSION + url;
+            url = M_HTTP + VERSION + url;
         }
         LogUtil.e("===RequestUrl===" + url);
         return url;
