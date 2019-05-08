@@ -72,6 +72,7 @@ public abstract class BaseFragment extends Fragment {
         if (_mDialog == null) {
             _mDialog = new AlertDialog.Builder(mBaseActivity, R.style.CustomProgressDialog).create();
             View loadView = LayoutInflater.from(mBaseActivity).inflate(R.layout.m_dialog_new, null);
+            ScreenUtil.initScale(loadView);
             _mDialog.setView(loadView, 0, 0, 0, 0);
             _mDialog.setCanceledOnTouchOutside(false);
             _tvProgressTip = loadView.findViewById(R.id.tvTip);

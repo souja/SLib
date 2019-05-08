@@ -81,6 +81,7 @@ public class MTool {
     public static AlertDialog createDialog(Context context, String msg) {
         AlertDialog dialog = new AlertDialog.Builder(context, R.style.CustomProgressDialog).create();
         View loadView = LayoutInflater.from(context).inflate(R.layout.m_dialog_new, null);
+        ScreenUtil.initScale(loadView);
         dialog.setView(loadView, 0, 0, 0, 0);
         dialog.setCanceledOnTouchOutside(false);
         if (!TextUtils.isEmpty(msg)) {

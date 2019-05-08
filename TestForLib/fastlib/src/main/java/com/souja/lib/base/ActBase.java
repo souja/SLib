@@ -133,6 +133,7 @@ public abstract class ActBase extends AppCompatActivity {
         if (_mDialog == null) {
             _mDialog = new AlertDialog.Builder(this, R.style.CustomProgressDialog).create();
             View loadView = LayoutInflater.from(this).inflate(R.layout.m_dialog_new, null);
+            ScreenUtil.initScale(loadView);
             _mDialog.setView(loadView, 0, 0, 0, 0);
             _mDialog.setCanceledOnTouchOutside(false);
             _tvProgressTip = loadView.findViewById(R.id.tvTip);
