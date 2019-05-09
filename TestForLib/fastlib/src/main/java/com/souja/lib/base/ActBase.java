@@ -138,7 +138,7 @@ public abstract class ActBase extends AppCompatActivity {
             _mDialog.setCanceledOnTouchOutside(false);
             _tvProgressTip = loadView.findViewById(R.id.tvTip);
         }
-        _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "加载中..." : msg);
+        _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "请稍候..." : msg);
     }
 
     public <T> void Post(AlertDialog dialog, String url, RequestParams params, final Class<T> dataClass,

@@ -77,7 +77,7 @@ public abstract class BaseFragment extends Fragment {
             _mDialog.setCanceledOnTouchOutside(false);
             _tvProgressTip = loadView.findViewById(R.id.tvTip);
         }
-        _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "加载中..." : msg);
+        _tvProgressTip.setText(TextUtils.isEmpty(msg) ? "请稍候..." : msg);
     }
 
     //========================Post

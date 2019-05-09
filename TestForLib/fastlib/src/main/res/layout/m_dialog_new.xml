@@ -18,6 +18,6 @@
         android:id="@+id/tvTip"
         style="@style/text_45px"
         android:layout_marginTop="30px"
-        android:text="加载中..."
+        android:text="请稍候..."
         android:textColor="@android:color/white" />
 </LinearLayout>

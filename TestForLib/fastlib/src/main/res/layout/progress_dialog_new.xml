@@ -16,7 +16,7 @@
         style="@style/text_42px"
         android:layout_marginTop="36px"
         android:gravity="center"
-        android:text="加载中..."
+        android:text="请稍候..."
         android:textColor="@android:color/white" />
 
 </LinearLayout>
