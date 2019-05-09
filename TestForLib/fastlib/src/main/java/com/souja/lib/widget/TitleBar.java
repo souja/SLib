@@ -23,6 +23,8 @@ import org.xutils.common.util.LogUtil;
  */
 public class TitleBar extends RelativeLayout {
 
+    private Context mContext;
+
     private ImageButton mLeftImageBtn,//left image btn
             mRightImageBtn,//right image btn
             mRightImageBtnB;//another right image btn ,to the left of mRightImageBtn
@@ -30,7 +32,8 @@ public class TitleBar extends RelativeLayout {
     private TextView mTitle,//title text
             mLeftTextBtn,//left text btn
             mRightTextBtn;//right text btn
-    private Context mContext;
+
+    private View mLineBot;
 
     public TitleBar(Context context) {
         this(context, null);
@@ -55,7 +58,7 @@ public class TitleBar extends RelativeLayout {
         mRightTextBtn = titleLayout.findViewById(R.id.tv_rightBtn);
         mRightImageBtn = titleLayout.findViewById(R.id.ib_rightBtn);
         mRightImageBtnB = titleLayout.findViewById(R.id.ib_rightBtnB);
-        View mLineBot = titleLayout.findViewById(R.id.v_lineBot);
+        mLineBot = titleLayout.findViewById(R.id.v_lineBot);
 
         try {
             //max title length
@@ -133,6 +136,9 @@ public class TitleBar extends RelativeLayout {
         }
     }
 
+    public void setBotLineVisible(boolean visible) {
+        mLineBot.setVisibility(visible ? VISIBLE : INVISIBLE);
+    }
 
     public String getTitle() {
         return mTitle.getText().toString();
