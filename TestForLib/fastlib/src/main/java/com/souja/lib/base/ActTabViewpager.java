@@ -32,8 +32,8 @@ public abstract class ActTabViewpager extends ActBase {
     public abstract int[] setTabMargins();
 
 
-    private String[] mTitles;
-    private BaseFragment[] mFragments;
+    public String[] mTitles;
+    public BaseFragment[] mFragments;
     public int tabLeftMargin, tabRightMargin;
 
     @Override
