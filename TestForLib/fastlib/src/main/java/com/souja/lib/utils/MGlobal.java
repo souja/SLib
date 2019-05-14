@@ -12,17 +12,7 @@ import io.reactivex.functions.Consumer;
 /**
  * Created by Souja on 2018/3/12 0012.
  */
-
 public class MGlobal {
-
-    public static final String CACHE_CITY = "cacheCity";//缓存城市
-    private final String KEY_SCREEN_PARAM = "windowScreenParams";
-
-    public static boolean bQmp;//是否全面屏（刘海屏）
-    private int deviceWidth, deviceHeight;
-    private float density;
-
-    private ArrayMap<Integer, Consumer<Object>> actionMap;
 
     private static MGlobal instance;
 
@@ -38,18 +28,21 @@ public class MGlobal {
         return instance;
     }
 
+
+    private ArrayMap<Integer, Consumer<Object>> actionMap;
+    private int deviceWidth, deviceHeight;
+    private float density;
+
     private void init() {
         actionMap = new ArrayMap<>();
     }
 
-    private void initScreenParams(int w, int h, float de, boolean qmp) {
+    private void initScreenParams(int w, int h, float de) {
         deviceWidth = w;
         deviceHeight = h;
         density = de;
-        bQmp = qmp;
         LogUtil.e("[DeviceInfo]width=" + deviceWidth
                 + ",height=" + deviceHeight + ",density=" + density);
-        LogUtil.e(bQmp ? "全面/刘海屏手机" : "非 全面/刘海屏手机");
     }
 
     public void initScreenParam(DisplayMetrics dm) {
@@ -57,21 +50,18 @@ public class MGlobal {
         this.deviceHeight = dm.heightPixels;
         this.density = dm.density;
         LogUtil.e("mScale=" + (double) deviceWidth / 1080d);
-
-        int sw = deviceWidth, sh = deviceHeight;
-        bQmp = ((sw == 720 || sw == 768) && sh > 1280) ||
-                (sw == 1080 && sh > 1920) || (sw == 1440 && sh > 2560);
-        initScreenParams(dm.widthPixels, dm.heightPixels, dm.density, bQmp);
-        SPHelper.putString(KEY_SCREEN_PARAM, new ScreenParam(deviceWidth, deviceHeight, density, bQmp ? 1 : 0).toString());
+        initScreenParams(dm.widthPixels, dm.heightPixels, dm.density);
+        SPHelper.putString(LibConstants.COMMON.KEY_SCREEN_PARAM,
+                new ScreenParam(deviceWidth, deviceHeight, density).toString());
     }
 
     public boolean isInitializedScreenParams() {
-        String screenParamStr = SPHelper.getString(KEY_SCREEN_PARAM);
+        String screenParamStr = SPHelper.getString(LibConstants.COMMON.KEY_SCREEN_PARAM);
         if (screenParamStr.isEmpty()) {
             return false;
         }
         ScreenParam param = (ScreenParam) GsonUtil.getObj(screenParamStr, ScreenParam.class);
-        initScreenParams(param.width, param.height, param.density, param.bQmp == 1);
+        initScreenParams(param.width, param.height, param.density);
         return true;
     }
 
@@ -115,13 +105,11 @@ public class MGlobal {
     class ScreenParam extends BaseModel {
         public int width, height;
         public float density;
-        public int bQmp;//是否全面屏
 
-        public ScreenParam(int width, int height, float density, int bQmp) {
+        public ScreenParam(int width, int height, float density) {
             this.width = width;
             this.height = height;
             this.density = density;
-            this.bQmp = bQmp;
         }
     }
 

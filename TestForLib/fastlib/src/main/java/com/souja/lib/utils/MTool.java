@@ -542,7 +542,7 @@ public class MTool {
     public static void saveCityCache(String cityName, String cityCode) {
         CacheCity city = new CacheCity(cityName, cityCode);
         LogUtil.e("保存获得的定位数据：" + city.toString());
-        SPHelper.putString(MGlobal.CACHE_CITY, city.toString());
+        SPHelper.putString(LibConstants.COMMON.CACHE_CITY, city.toString());
     }
 
     public static boolean isEmptyList(List<?> list) {
