@@ -333,8 +333,8 @@ public class SHttpUtil {
 
     private static <T> void loginOutDate(IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         VERSION = "";
-        if (MGlobal.get().containsKey(LibConstants.RX_LOGIN_OUTDATE)) {
-            Flowable.just("").subscribe(MGlobal.get().getAction(LibConstants.RX_LOGIN_OUTDATE));
+        if (MGlobal.get().containsKey(LibConstants.COMMON.RX_LOGIN_OUTDATE)) {
+            Flowable.just("").subscribe(MGlobal.get().getAction(LibConstants.COMMON.RX_LOGIN_OUTDATE));
         } else {
             if (callBack2 != null) {
                 callBack2.handle("登录过期，请重新登录");

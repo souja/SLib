@@ -149,7 +149,7 @@ public class ActPhotoGallery extends ActBase {
                 cropInfo.mActivity.finish();
                 goBack();
             };
-            addAction(LibConstants.CROP_IMG, cropHeadIcon);
+            addAction(LibConstants.COMMON.CROP_IMG, cropHeadIcon);
         }
         if (intent.getStringArrayListExtra(SelectImgOptions.IMAGE_PATH_LIST_SELECTED) != null) {
             //存放调用此类的类传递过来的图片路径
@@ -193,7 +193,7 @@ public class ActPhotoGallery extends ActBase {
             //添加到当前图片目录
             mAdapter.addPath(img.editPath);
         };
-        addAction(LibConstants.RX_EDIT_IMG, onEditImg);
+        addAction(LibConstants.COMMON.RX_EDIT_IMG, onEditImg);
     }
 
     private void initListView() {
@@ -352,7 +352,7 @@ public class ActPhotoGallery extends ActBase {
                     mAdapter.notifyDataSetChanged();
                 }
 //                setResultBack();
-            } else if (LibConstants.REQ_IMAGE_GALLERY == requestCode) { //画廊
+            } else if (LibConstants.COMMON.REQ_IMAGE_GALLERY == requestCode) { //画廊
                 Bundle b = data.getExtras();
                 if (b == null) return;
                 ArrayList<String> newList = b.getStringArrayList(SelectImgOptions.IMAGE_PATH_LIST_SELECTED);
@@ -388,9 +388,9 @@ public class ActPhotoGallery extends ActBase {
     }
 
     private void goBack() {
-        if (containsKey(LibConstants.RX_CHOOSE_PHOTO)) {
+        if (containsKey(LibConstants.COMMON.RX_CHOOSE_PHOTO)) {
             addSubscription(new RxImgPath(this, selectedPathList),
-                    getAction(LibConstants.RX_CHOOSE_PHOTO));
+                    getAction(LibConstants.COMMON.RX_CHOOSE_PHOTO));
         } else {
             LogUtil.e("未设置回调");
             finish();
@@ -412,7 +412,7 @@ public class ActPhotoGallery extends ActBase {
     @Override
     public void onDestroy() {
         instance = null;
-        delAction(LibConstants.CROP_IMG);
+        delAction(LibConstants.COMMON.CROP_IMG);
         super.onDestroy();
     }
 

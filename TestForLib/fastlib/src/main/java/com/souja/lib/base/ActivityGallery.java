@@ -70,7 +70,7 @@ public class ActivityGallery extends ActBase {
                 .putExtra(SelectImgOptions.IMAGES_INDEX, index)
                 .putExtra(SelectImgOptions.IMAGES_MAX_SELECT_COUNT, max)
                 .putExtra(SelectImgOptions.IMAGES_HANDLE_ONLY_SELECTED, handleSelected);
-        context.startActivityForResult(it, LibConstants.REQ_IMAGE_GALLERY);
+        context.startActivityForResult(it, LibConstants.COMMON.REQ_IMAGE_GALLERY);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class ActivityGallery extends ActBase {
                         new Intent(this, IMGEditActivity.class)
                                 .putExtra("IMAGE_URI", uri)
                                 .putExtra("IMAGE_SAVE_PATH", editFile.getAbsolutePath()),
-                        LibConstants.REQ_IMAGE_EDIT);
+                        LibConstants.COMMON.REQ_IMAGE_EDIT);
             } else {
                 showToast("图片加载失败");
             }
@@ -207,7 +207,7 @@ public class ActivityGallery extends ActBase {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LibConstants.REQ_IMAGE_EDIT) {
+        if (requestCode == LibConstants.COMMON.REQ_IMAGE_EDIT) {
             if (resultCode == RESULT_OK) {
                 if (mListSelected.contains(curSelectedPath)) {
                     mListSelected.remove(curSelectedPath);
@@ -217,7 +217,7 @@ public class ActivityGallery extends ActBase {
                     mListSelected.add(editPath);
 //                    checkBox.setChecked(true);
                 }
-                addSubscription(new RxEditImg(curSelectedPath, editPath), getAction(LibConstants.RX_EDIT_IMG));
+                addSubscription(new RxEditImg(curSelectedPath, editPath), getAction(LibConstants.COMMON.RX_EDIT_IMG));
                 mListAll.add(viewPager.getCurrentItem(), editPath);
                 adapter.notifyDataSetChanged();
                 checkBox.setChecked(true);

@@ -72,18 +72,18 @@ public class ActCrop extends ActBase {
 
         //跳过，不剪裁
         tvSkip.setOnClickListener(v -> {
-            if (containsKey(LibConstants.CROP_IMG))
+            if (containsKey(LibConstants.COMMON.CROP_IMG))
                 addSubscription(new RxCropInfo(_this, imgPath),
-                        getAction(LibConstants.CROP_IMG));
+                        getAction(LibConstants.COMMON.CROP_IMG));
             else onBackPressed();
         });
         //完成裁剪
         tvFinish.setOnClickListener(v -> {
             File savedFile = MBitmapUtil.saveCroppedBmpToFile(getCroppedBmp(),
                     FilePath.getTempPicturePath(), MDateUtils.getCurrentDate2() + ".jpg.bk");
-            if (containsKey(LibConstants.CROP_IMG)) {
+            if (containsKey(LibConstants.COMMON.CROP_IMG)) {
                 addSubscription(new RxCropInfo(_this, savedFile.getAbsolutePath()),
-                        getAction(LibConstants.CROP_IMG));
+                        getAction(LibConstants.COMMON.CROP_IMG));
             } else onBackPressed();
         });
         new Thread(() -> {
