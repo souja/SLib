@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/progress_body"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -59,7 +60,8 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
             android:layout_width="569px"
@@ -69,7 +71,9 @@
         <TextView
             android:id="@+id/tv_emptyTip"
             style="@style/text_45px"
-            android:layout_marginTop="30px"
+            android:layout_marginLeft="45px"
+            android:layout_marginTop="45px"
+            android:layout_marginRight="45px"
             android:text="暂无数据"
             android:textColor="@color/grey_80" />
     </LinearLayout>
