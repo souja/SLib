@@ -29,6 +29,7 @@ import com.souja.lib.utils.MGlobal;
 import com.souja.lib.utils.MTool;
 import com.souja.lib.utils.SHttpUtil;
 import com.souja.lib.utils.ScreenUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -254,6 +255,10 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    public String getPageTitle() {
+        return null;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -261,6 +266,8 @@ public abstract class BaseFragment extends Fragment {
             isFirstResume = false;
             return;
         }
+        if (TextUtils.isEmpty(getPageTitle()))
+            MobclickAgent.onPageStart(getPageTitle());
         if (getUserVisibleHint()) {
             onUserVisible();
         }
@@ -269,6 +276,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        if (TextUtils.isEmpty(getPageTitle()))
+            MobclickAgent.onPageEnd(getPageTitle());
         if (getUserVisibleHint()) {
             onUserInvisible();
         }

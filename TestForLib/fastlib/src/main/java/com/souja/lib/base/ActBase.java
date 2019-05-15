@@ -18,6 +18,7 @@ import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.utils.MGlobal;
 import com.souja.lib.utils.SHttpUtil;
 import com.souja.lib.utils.ScreenUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -38,6 +39,7 @@ public abstract class ActBase extends AppCompatActivity {
     public AlertDialog _mDialog;
     public TextView _tvProgressTip;
     public ActBase _this;
+
     /**
      * 设置页面视图Resource
      * e.g. R.layout.act_test
@@ -251,7 +253,7 @@ public abstract class ActBase extends AppCompatActivity {
 
 
     public <T> void Put(AlertDialog dialog, String url, RequestParams params,
-                           final Class<T> dataClass, IHttpCallBack callBack) {
+                        final Class<T> dataClass, IHttpCallBack callBack) {
         addRequest(SHttpUtil.Put(dialog, url, params, dataClass, callBack));
     }
 
@@ -295,7 +297,7 @@ public abstract class ActBase extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         handleOnCreate(savedInstanceState);
         ScreenUtil.setScale(this);
-        _this=this;
+        _this = this;
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (setViewRes() != 0)
             setContentView(setViewRes());
@@ -330,5 +332,27 @@ public abstract class ActBase extends AppCompatActivity {
         }
         mDisposable = null;
         super.onDestroy();
+    }
+
+    public String getPageTitle() {
+        return null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (TextUtils.isEmpty(getPageTitle())) {
+            MobclickAgent.onPageStart(getPageTitle());
+            MobclickAgent.onResume(this);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (TextUtils.isEmpty(getPageTitle())) {
+            MobclickAgent.onPageEnd(getPageTitle());
+            MobclickAgent.onPause(this);
+        }
     }
 }
