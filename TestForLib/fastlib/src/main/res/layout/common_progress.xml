@@ -65,15 +65,14 @@
 
         <ImageView
             android:id="@+id/iv_empty"
-            android:layout_width="569px"
-            android:layout_height="444px"
+            android:layout_width="780px"
+            android:layout_height="780px"
             android:background="@drawable/ic_empty" />
 
         <TextView
             android:id="@+id/tv_emptyTip"
             style="@style/text_45px"
             android:layout_marginLeft="45px"
-            android:layout_marginTop="45px"
             android:layout_marginRight="45px"
             android:text="暂无数据"
             android:textColor="@color/grey_af" />

@@ -28,6 +28,19 @@ public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLaz
     private ImageView mEmptyImgView;
     private int res;
 
+    public void resetEmptyImg(int imgRes, boolean reset) {
+        if (reset)
+            resetEmptyImg(res, 780, 780);
+        else
+            resetEmptyImg(imgRes);
+    }
+
+    public void resetEmptyImg(int imgRes) {
+        if (imgRes == res) return;
+        res = imgRes;
+        mEmptyImgView.setBackgroundResource(imgRes);
+    }
+
     public void resetEmptyImg(int imgRes, int width, int height) {
         if (imgRes == res) return;
         res = imgRes;
