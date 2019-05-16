@@ -46,7 +46,7 @@ public class MLoadingDialog extends LinearLayout {
 
     private final String defaultTip = "请稍候...";
     private TextView mTvTip, mTvBigTip, mTvSmallTip, mTvEmpty;
-    private View llBody, emptyView;
+    private View emptyView;
     private FrameLayout wholeBody;
     private ProgressBar mProgressBar;
 
@@ -54,8 +54,11 @@ public class MLoadingDialog extends LinearLayout {
     private String mTip;
 
     private ImageView mEmptyImgView;
+    private int res;
 
     public void resetEmptyImg(int imgRes, int width, int height) {
+        if (imgRes == res) return;
+        res = imgRes;
         mEmptyImgView.setBackgroundResource(imgRes);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
         params.width = (int) (width * ScreenUtil.mScale);
@@ -68,7 +71,7 @@ public class MLoadingDialog extends LinearLayout {
         mTvTip = findViewById(R.id.content);
         mTvBigTip = findViewById(R.id.tv_big);
         mTvSmallTip = findViewById(R.id.tv_small);
-        llBody = findViewById(R.id.ll_body);
+        View llBody = findViewById(R.id.ll_body);
         wholeBody = findViewById(R.id.progress_body);
         mProgressBar = findViewById(R.id.progressBar);
         emptyView = findViewById(R.id.ll_empty);
@@ -102,6 +105,7 @@ public class MLoadingDialog extends LinearLayout {
                 mClick.onLoadingClick();
         });
     }
+
     public void setMClick(MLoadingClick listener) {
         mClick = listener;
     }

@@ -95,8 +95,11 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
     }
 
     private ImageView mEmptyImgView;
+    private int res;
 
     public void resetEmptyImg(int imgRes, int width, int height) {
+        if (imgRes == res) return;
+        res = imgRes;
         mEmptyImgView.setBackgroundResource(imgRes);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
         params.width = (int) (width * ScreenUtil.mScale);
