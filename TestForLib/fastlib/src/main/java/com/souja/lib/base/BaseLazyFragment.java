@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -92,6 +94,17 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         void onLoadingClick();
     }
 
+    private ImageView mEmptyImgView;
+
+    public void resetEmptyImg(int imgRes, int width, int height) {
+        mEmptyImgView.setBackgroundResource(imgRes);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
+        params.width = (int) (width * ScreenUtil.mScale);
+        params.height = (int) (height * ScreenUtil.mScale);
+        mEmptyImgView.setLayoutParams(params);
+    }
+
+
     private FrameLayout contentView;
     private View progressView, emptyView;
     private TextView mTvTip, mTvEmpty;
@@ -105,7 +118,6 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         initPrepare();
     }
 
-
     @Override
     public int setupLayoutRes() {
         return R.layout.base_f;
@@ -116,6 +128,7 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         contentView = _rootView.findViewById(R.id.base_f_frame);
         progressView = _rootView.findViewById(R.id.rl_progress);
         emptyView = _rootView.findViewById(R.id.layout_empty);
+        mEmptyImgView = _rootView.findViewById(R.id.iv_empty);
         mProgressBar = _rootView.findViewById(R.id.progress_bar);
         mTvTip = _rootView.findViewById(R.id.content);
         mTvEmpty = _rootView.findViewById(R.id.tv_emptyTip);

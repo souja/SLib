@@ -42,6 +42,7 @@
         tools:visibility="visible">
 
         <ImageView
+            android:id="@+id/iv_empty"
             android:layout_width="569px"
             android:layout_height="444px"
             android:background="@drawable/ic_empty" />
@@ -49,8 +50,8 @@
         <TextView
             android:id="@+id/tv_emptyTip"
             style="@style/text_42px"
-            android:layout_marginTop="45px"
             android:layout_marginLeft="45px"
+            android:layout_marginTop="45px"
             android:layout_marginRight="45px"
             android:text="暂无数据"
             android:textColor="@color/grey_af" />

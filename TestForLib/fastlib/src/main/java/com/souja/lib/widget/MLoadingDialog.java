@@ -14,11 +14,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.souja.lib.R;
+import com.souja.lib.utils.ScreenUtil;
 
 
 public class MLoadingDialog extends LinearLayout {
@@ -51,6 +53,15 @@ public class MLoadingDialog extends LinearLayout {
     private MLoadingClick mClick;
     private String mTip;
 
+    private ImageView mEmptyImgView;
+
+    public void resetEmptyImg(int imgRes, int width, int height) {
+        mEmptyImgView.setBackgroundResource(imgRes);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
+        params.width = (int) (width * ScreenUtil.mScale);
+        params.height = (int) (height * ScreenUtil.mScale);
+        mEmptyImgView.setLayoutParams(params);
+    }
 
     private void init(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.common_progress, this);
@@ -62,6 +73,7 @@ public class MLoadingDialog extends LinearLayout {
         mProgressBar = findViewById(R.id.progressBar);
         emptyView = findViewById(R.id.ll_empty);
         mTvEmpty = findViewById(R.id.tv_emptyTip);
+        mEmptyImgView = findViewById(R.id.iv_empty);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MLoadingDialog);
         try {

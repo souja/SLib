@@ -44,6 +44,7 @@
         tools:visibility="visible">
 
         <ImageView
+            android:id="@+id/iv_empty"
             android:layout_width="569px"
             android:layout_height="444px"
             android:background="@drawable/ic_empty" />
