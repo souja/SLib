@@ -340,19 +340,19 @@ public abstract class ActBase extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
         if (TextUtils.isEmpty(getPageTitle())) {
             MobclickAgent.onPageStart(getPageTitle());
-            MobclickAgent.onResume(this);
+            MobclickAgent.onResume(_this);
         }
+        super.onResume();
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         if (TextUtils.isEmpty(getPageTitle())) {
             MobclickAgent.onPageEnd(getPageTitle());
-            MobclickAgent.onPause(this);
+            MobclickAgent.onPause(_this);
         }
+        super.onPause();
     }
 }
