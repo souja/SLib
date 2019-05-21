@@ -9,7 +9,7 @@
         android:layout_width="240px"
         android:layout_height="240px"
         android:layout_margin="30px"
-        android:background="@drawable/lib_dir_bg"
+        android:background="@drawable/dir_bg"
         android:paddingRight="24px"
         android:paddingBottom="24px"
         android:scaleType="centerCrop" />
@@ -47,7 +47,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="45px"
-            android:background="@drawable/lib_dir_dot1" />
+            android:background="@drawable/dir_dot1" />
     </RelativeLayout>
 
 </LinearLayout>
