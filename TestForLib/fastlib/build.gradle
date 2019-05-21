@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:1.7.1'
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-19'
-    implementation project(path: ':oss-android-sdk')
+    compile project(path: ':oss-android-sdk')
 }
 
 apply from: '../gradle/maven_push.gradle'
