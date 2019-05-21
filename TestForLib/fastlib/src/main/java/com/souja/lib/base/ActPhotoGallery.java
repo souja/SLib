@@ -288,17 +288,17 @@ public class ActPhotoGallery extends ActBase {
             // 获取图片的路径
             String path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATA));
             String tempPath = path.substring(path.lastIndexOf(".")).toLowerCase();
-            if (tempPath.equals(".bk") ||
+            File f = new File(path);
+            if (!f.exists() || f.length() <= 0) {
+                LogUtil.e("图片读取失败或者length为0 " + path);
+            } else if (tempPath.equals(".bk") ||
                     (!tempPath.equals(".jpg") && !tempPath.equals(".png") && !tempPath.equals(".jpeg"))) {
                 LogUtil.e("图片路径无效 " + path);
-            } else if (path.contains("counselorfiles") || path.contains("000files")
-                    || path.contains("ymbfiles") || path.contains(SLib.APP_NAME.toLowerCase())) {
+            } else if (path.contains(SLib.APP_NAME.toLowerCase()) || path.contains("counselor")
+                    || path.contains("myzt") || path.contains("ihisun")
+                    || path.contains("ymb")) {
                 LogUtil.e("跳过应用文件 " + path);
-            }
-//            else if (new File(path).length() == 0) {
-//                LogUtil.e("跳过0Length文件" + new File(path).getAbsolutePath());
-//            }
-            else {
+            } else {
                 allImageList.add(path);
                 // 获取该图片的父路径名
                 String parentName = new File(path).getParentFile()
