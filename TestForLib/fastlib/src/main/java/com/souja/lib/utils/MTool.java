@@ -61,6 +61,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -589,8 +590,44 @@ public class MTool {
         mContext.startActivity(intent);
     }
 
+    public static String getFileName() {
+        String uuid = UUID.randomUUID().toString();
+        String newFileName = uuid + ".bk";
+        LogUtil.e("[file name]" + newFileName);
+        return newFileName;
+    }
+
     public static String getPriceString(double price) {
         return "￥" + getMoney(price);
+    }
+
+    public static void showPopImages(Context context, View v, List<String> urls, String imgPath) {
+        int index = 0;
+        ArrayList<ZoomImageModel> zoomImageArrayList = new ArrayList<>();
+        for (int i = 0; i < urls.size(); i++) {
+
+            String url = urls.get(i);
+            if (imgPath.equals(url)) {
+                index = i;
+            }
+            LogUtil.d("pop url " + url);
+            ZoomImageModel imageScale = new ZoomImageModel();
+            int[] xy = new int[2];
+            v.getLocationInWindow(xy);
+            imageScale.rect = new Rect(xy[0], xy[1], xy[0] + v.getWidth(), xy[1] + v.getHeight());
+            imageScale.smallImagePath = url;
+            imageScale.bigImagePath = url;
+            zoomImageArrayList.add(imageScale);
+        }
+        PopZoomGallery popZoomGallery = new PopZoomGallery(context, zoomImageArrayList,
+                (container, position, view, model) -> {
+                    String url = model.bigImagePath;
+                    if (url.contains("http:") || url.contains("https:"))
+                        Glide.with(context).load(url).into(view);
+                    else
+                        Glide.with(context).load(url).into(view);
+                });
+        popZoomGallery.showPop(v, index);
     }
 
  /*   public static double getDistance(PointF p1, PointF p2) {

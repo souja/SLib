@@ -1,1 +1,1 @@
-include ':app', ':fastlib'
+include ':app', ':fastlib', ':oss-android-sdk'
