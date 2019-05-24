@@ -341,4 +341,15 @@ public class ActivityGallery extends ActBase {
         public void startUpdate(View arg0) {
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case PermissionUtil.REQUEST_PHONE_PERMISSIONS:
+                mPermissionUtil.handleResults(grantResults);
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 }
