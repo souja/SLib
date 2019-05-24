@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 
+import com.souja.lib.utils.LibConstants;
 import com.souja.lib.utils.MTool;
 
 import java.io.File;
@@ -80,7 +82,8 @@ public class IMGScanner {
                 if (file.exists()) {
                     // 通过读取文件获取图片宽高
                     BitmapFactory.decodeFile(path, options);
-                    IMGImageViewModel model = new IMGImageViewModel(Uri.fromFile(file));
+                    Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName, file);
+                    IMGImageViewModel model = new IMGImageViewModel(uri);
                     model.setWidth(options.outWidth);
                     model.setHeight(options.outHeight);
                     model.setSize(size);

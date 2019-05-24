@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -282,7 +283,8 @@ public class ActPhotoGallery extends ActBase {
                     + ",exist=" + cameraFile.exists());
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile));
+            Uri imageUri = FileProvider.getUriForFile(_this, LibConstants.packageName, cameraFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_CODE2);
         } catch (IOException e) {
             e.printStackTrace();
@@ -427,7 +429,7 @@ public class ActPhotoGallery extends ActBase {
     private void AddPicToScan(String path) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(path);
-        Uri contentUri = Uri.fromFile(f);
+        Uri contentUri = FileProvider.getUriForFile(_this, LibConstants.packageName, f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }

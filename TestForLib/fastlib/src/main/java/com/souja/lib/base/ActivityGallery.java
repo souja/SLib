@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.AppCompatActivity;
@@ -183,7 +184,8 @@ public class ActivityGallery extends ActBase {
             @Override
             public void ok() {
                 LogUtil.e("selectedFile absolute path:" + selectedFile.getAbsolutePath());
-                Uri uri = Uri.fromFile(selectedFile);
+
+                Uri uri = FileProvider.getUriForFile(_this, LibConstants.packageName, selectedFile);
                 editFile = new File(FilePath.getTempPicturePath() + "/editedimg"
                         + System.currentTimeMillis() + ".jpg.bk");
                 startActivityForResult(

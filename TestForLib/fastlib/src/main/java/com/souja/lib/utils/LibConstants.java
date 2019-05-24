@@ -3,6 +3,8 @@ package com.souja.lib.utils;
 
 public class LibConstants {
 
+    public static String packageName;
+
     public interface COMMON {
         //rx Consumer->key//rx Consumer->key
         int RX_CHOOSE_PHOTO = 12345;//从相册选择图片

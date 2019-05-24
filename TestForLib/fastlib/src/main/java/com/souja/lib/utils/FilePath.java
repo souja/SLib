@@ -29,52 +29,10 @@ public class FilePath {
         }
         return path;
     }
+
     public static String getAvatarPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
                 + File.separator + SLib.APP_NAME + File.separator + "avatar";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-    //案例广场图片缓存
-    public static String getBigImgPath() {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "bigImgs";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-
-    //案例广场图片缓存
-    public static String getSquareCaseImgPath() {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "squareImgs";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-
-    //营销图缓存
-    public static String getSaleCoverPath() {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "saleCover";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-
-    //案例详情缓存
-    public static String getCaseDetailPath() {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "caseDetail";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -104,8 +62,8 @@ public class FilePath {
     }
 
     public static String getCameraPicturePath() {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + "counselor" + File.separator + "camera";
+        String path = Environment.getExternalStorageDirectory()
+                + File.separator + SLib.APP_NAME + File.separator + "camera";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();

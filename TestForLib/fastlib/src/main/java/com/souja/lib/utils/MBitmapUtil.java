@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.NestedScrollView;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -603,7 +604,8 @@ public class MBitmapUtil {
         MediaStore.Images.Media.insertImage(context.getContentResolver(),
                 bmp, fileName, null);
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        Uri uri = Uri.fromFile(file);
+
+        Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName, file);
         intent.setData(uri);
         context.sendBroadcast(intent);
 
