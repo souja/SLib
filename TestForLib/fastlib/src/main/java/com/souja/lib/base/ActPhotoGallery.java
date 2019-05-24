@@ -28,6 +28,7 @@ import com.souja.lib.models.SelectImgOptions;
 import com.souja.lib.utils.FileUtil;
 import com.souja.lib.utils.LibConstants;
 import com.souja.lib.utils.MTool;
+import com.souja.lib.utils.PermissionUtil;
 import com.souja.lib.utils.SPHelper;
 import com.souja.lib.widget.TitleBar;
 
@@ -214,7 +215,7 @@ public class ActPhotoGallery extends ActBase {
 //                selectedPathList.clear();
 //                mAdapter.notifyDataSetChanged();
 //                refreshNum();
-                    turnCamera();
+                    checkCameraPermission();
                 }
             } else {
                 ActivityGallery.open(_this, position - 1, maxCount, false);
@@ -246,6 +247,32 @@ public class ActPhotoGallery extends ActBase {
             });
         }).start();
     }
+
+
+    PermissionUtil mPermissionUtil;
+
+    String[] cameraPermission = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
+
+    private void checkCameraPermission() {
+        if (mPermissionUtil == null) mPermissionUtil = new PermissionUtil(_this);
+        mPermissionUtil.addPermissions(cameraPermission);
+        mPermissionUtil.setListener(new PermissionUtil.PermissionCheckListener() {
+            @Override
+            public void ok() {
+                turnCamera();
+            }
+
+            @Override
+            public void notOk() {
+                showToast("请同意相机权限后再继续");
+            }
+        });
+        mPermissionUtil.check();
+    }
+
 
     private void turnCamera() {
         try {

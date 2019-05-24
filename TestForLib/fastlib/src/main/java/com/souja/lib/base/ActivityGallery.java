@@ -1,5 +1,6 @@
 package com.souja.lib.base;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -25,6 +26,8 @@ import com.souja.lib.models.SelectImgOptions;
 import com.souja.lib.utils.FilePath;
 import com.souja.lib.utils.LibConstants;
 import com.souja.lib.utils.MGlobal;
+import com.souja.lib.utils.MTool;
+import com.souja.lib.utils.PermissionUtil;
 import com.souja.lib.widget.HackyViewPager;
 
 import org.xutils.common.util.LogUtil;
@@ -133,14 +136,7 @@ public class ActivityGallery extends ActBase {
             File selectedFile = new File(curSelectedPath);
             LogUtil.e("file exist:" + selectedFile.exists());
             if (selectedFile.exists()) {
-                LogUtil.e("ab path:" + selectedFile.getAbsolutePath());
-                Uri uri = Uri.fromFile(selectedFile);
-                editFile = new File(FilePath.getTempPicturePath() + "/editedimg" + System.currentTimeMillis() + ".jpg.bk");
-                startActivityForResult(
-                        new Intent(this, IMGEditActivity.class)
-                                .putExtra("IMAGE_URI", uri)
-                                .putExtra("IMAGE_SAVE_PATH", editFile.getAbsolutePath()),
-                        LibConstants.COMMON.REQ_IMAGE_EDIT);
+                checkEditPermission(selectedFile);
             } else {
                 showToast("图片加载失败");
             }
@@ -171,6 +167,38 @@ public class ActivityGallery extends ActBase {
                 btn_complete.setText(strComplete);
 //            }
         });
+    }
+
+    PermissionUtil mPermissionUtil;
+
+    String[] editPhotoPermission = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+    };
+
+    private void checkEditPermission(File selectedFile) {
+        if (mPermissionUtil == null) mPermissionUtil = new PermissionUtil(ActivityGallery.this);
+        mPermissionUtil.addPermissions(editPhotoPermission);
+        mPermissionUtil.setListener(new PermissionUtil.PermissionCheckListener() {
+            @Override
+            public void ok() {
+                LogUtil.e("selectedFile absolute path:" + selectedFile.getAbsolutePath());
+                Uri uri = Uri.fromFile(selectedFile);
+                editFile = new File(FilePath.getTempPicturePath() + "/editedimg"
+                        + System.currentTimeMillis() + ".jpg.bk");
+                startActivityForResult(
+                        new Intent(ActivityGallery.this, IMGEditActivity.class)
+                                .putExtra("IMAGE_URI", uri)
+                                .putExtra("IMAGE_SAVE_PATH", editFile.getAbsolutePath()),
+                        LibConstants.COMMON.REQ_IMAGE_EDIT);
+            }
+
+            @Override
+            public void notOk() {
+                MTool.Toast(ActivityGallery.this, "请同意相关权限后再继续");
+            }
+        });
+        mPermissionUtil.check();
     }
 
     private void initVp() {
