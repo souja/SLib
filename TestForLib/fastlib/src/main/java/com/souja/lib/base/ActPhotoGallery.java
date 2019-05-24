@@ -20,7 +20,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.Button;
 
-import com.souja.lib.SLib;
 import com.souja.lib.models.MediaBean;
 import com.souja.lib.models.RxCropInfo;
 import com.souja.lib.models.RxEditImg;
@@ -53,7 +52,7 @@ import io.reactivex.functions.Consumer;
  */
 public class ActPhotoGallery extends ActBase {
 
-    private static final int REQUEST_CODE2 = 10101;
+    private static final int REQUEST_TAKE_PHONE = 10101;
 
     private TitleBar mTitleBar;
     private Button mBtnSelectDir;
@@ -203,7 +202,7 @@ public class ActPhotoGallery extends ActBase {
         allImageList = new ArrayList<>();
         mAdapter = new PhotoAdapter(this, new ArrayList<>(), position -> {
             if (position == 0) {//拍照
-                if (selectedPathList.size() >= maxCount) {
+                if (maxCount > 1 && selectedPathList.size() >= maxCount) {
                     showToast("已达最大可选择张数");
                     return;
                 }
@@ -285,7 +284,7 @@ public class ActPhotoGallery extends ActBase {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             Uri imageUri = FileProvider.getUriForFile(_this, LibConstants.packageName, cameraFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            startActivityForResult(intent, REQUEST_CODE2);
+            startActivityForResult(intent, REQUEST_TAKE_PHONE);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ActivityNotFoundException e) {
@@ -368,11 +367,12 @@ public class ActPhotoGallery extends ActBase {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (REQUEST_CODE2 == requestCode) { //相机
+            if (REQUEST_TAKE_PHONE == requestCode) { //相机
                 if (cameraFile == null) return;
                 tempPath = cameraFile.getAbsolutePath();
                 AddPicToScan(tempPath);
                 LogUtil.e("tempPath=" + tempPath + ",cameraFile exist=" + cameraFile.exists());
+                if (maxCount == 1) selectedPathList.clear();
                 selectedPathList.add(tempPath);
                 refreshNum();
                 allImageList.add(0, tempPath);
@@ -400,7 +400,7 @@ public class ActPhotoGallery extends ActBase {
                 }
             }
         } else {
-            if (requestCode == REQUEST_CODE2) {//相机拍照
+            if (requestCode == REQUEST_TAKE_PHONE) {//相机拍照
                 LogUtil.e("相机拍照取消");
                 if (cameraFile != null && cameraFile.exists())
                     cameraFile.delete();
