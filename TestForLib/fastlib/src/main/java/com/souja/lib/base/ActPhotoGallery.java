@@ -323,7 +323,7 @@ public class ActPhotoGallery extends ActBase {
             } else if (tempPath.equals(".bk") ||
                     (!tempPath.equals(".jpg") && !tempPath.equals(".png") && !tempPath.equals(".jpeg"))) {
                 LogUtil.e("图片路径无效 " + path);
-            } else if (path.contains(SLib.APP_NAME.toLowerCase()) || path.contains("counselor")
+            } else if (path.contains(LibConstants.APP_NAME.toLowerCase()) || path.contains("counselor")
                     || path.contains("myzt") || path.contains("ihisun")
                     || path.contains("ymb")) {
                 LogUtil.e("跳过应用文件 " + path);

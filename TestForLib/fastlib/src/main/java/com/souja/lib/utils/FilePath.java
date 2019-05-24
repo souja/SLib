@@ -12,7 +12,7 @@ public class FilePath {
     //im日志缓存路径
     public static String getLogPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "00IMLog/";
+                + File.separator + LibConstants.APP_NAME + File.separator + "00IMLog/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -22,7 +22,7 @@ public class FilePath {
 
     public static String getWebCachePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "sonic";
+                + File.separator + LibConstants.APP_NAME + File.separator + "sonic";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -32,7 +32,7 @@ public class FilePath {
 
     public static String getAvatarPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "avatar";
+                + File.separator + LibConstants.APP_NAME + File.separator + "avatar";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -43,7 +43,7 @@ public class FilePath {
     //商机，产品图片，第一张，缓存，用于分享
     public static String getBizImgSharePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "biz";
+                + File.separator + LibConstants.APP_NAME + File.separator + "biz";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -53,7 +53,7 @@ public class FilePath {
 
     public static String getGlidePath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator + SLib.APP_NAME + File.separator + "glideCache";
+                + File.separator + LibConstants.APP_NAME + File.separator + "glideCache";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -63,7 +63,7 @@ public class FilePath {
 
     public static String getCameraPicturePath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "camera";
+                + File.separator + LibConstants.APP_NAME + File.separator + "camera";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -73,7 +73,7 @@ public class FilePath {
 
     public static String getTempPicturePath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "temp";
+                + File.separator + LibConstants.APP_NAME + File.separator + "temp";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -83,7 +83,7 @@ public class FilePath {
 
     public static String getDownloadPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "download";
+                + File.separator + LibConstants.APP_NAME + File.separator + "download";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -93,7 +93,7 @@ public class FilePath {
 
     public static String getDatabasePath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "db";
+                + File.separator + LibConstants.APP_NAME + File.separator + "db";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -103,7 +103,7 @@ public class FilePath {
 
     public static String getTemplateBaseDir() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + "/templates/";
+                + File.separator + LibConstants.APP_NAME + "/templates/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -113,7 +113,7 @@ public class FilePath {
 
     public static String getCompressMarkPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + "/compressMark";
+                + File.separator + LibConstants.APP_NAME + "/compressMark";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -132,7 +132,7 @@ public class FilePath {
 
     public static String getSavingZipPath(int templateId) {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + "/templates/";
+                + File.separator + LibConstants.APP_NAME + "/templates/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -148,7 +148,7 @@ public class FilePath {
 
     public static String getCompressedPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "compressed";
+                + File.separator + LibConstants.APP_NAME + File.separator + "compressed";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -158,7 +158,7 @@ public class FilePath {
 
     public static File getWaterMarkPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "waterMarked";
+                + File.separator + LibConstants.APP_NAME + File.separator + "waterMarked";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -214,7 +214,7 @@ public class FilePath {
     //test ignore
     public static String getTestImgPath() {
         String path = Environment.getExternalStorageDirectory()
-                + File.separator + SLib.APP_NAME + File.separator + "testImgs";
+                + File.separator + LibConstants.APP_NAME + File.separator + "testImgs";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();

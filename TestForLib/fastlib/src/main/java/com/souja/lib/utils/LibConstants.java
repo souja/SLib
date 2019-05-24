@@ -3,6 +3,7 @@ package com.souja.lib.utils;
 
 public class LibConstants {
 
+    public static String APP_NAME;
     public static String packageName;
 
     public interface COMMON {
