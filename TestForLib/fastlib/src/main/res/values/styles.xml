@@ -293,4 +293,10 @@
         <item name="android:textColor">@color/grey_af</item>
         <item name="textAllCaps">false</item>
     </style>
+
+    <style name="blueLoading" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/lib_main_color</item>
+    </style>
 </resources>

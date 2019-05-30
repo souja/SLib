@@ -23,6 +23,7 @@
                 android:id="@+id/progressBar"
                 android:layout_width="120px"
                 android:layout_height="120px"
+                android:theme="@style/blueLoading"
                 android:indeterminate="false" />
 
             <TextView
@@ -60,8 +61,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_empty"

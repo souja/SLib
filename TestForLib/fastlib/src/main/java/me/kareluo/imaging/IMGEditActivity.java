@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 
 import com.souja.lib.utils.MTool;
-import com.souja.lib.widget.LoadingDialog;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -141,11 +141,11 @@ public class IMGEditActivity extends IMGEditBaseActivity {
         finish();
     }
 
-    private LoadingDialog mDialog;
+    private AlertDialog mDialog;
 
     @Override
     public void onDoneClick() {
-        mDialog = new LoadingDialog(IMGEditActivity.this, "图片处理中...");
+        mDialog = MTool.createDialog(IMGEditActivity.this, "图片处理中...");
         mDialog.show();
         String path = getIntent().getStringExtra(EXTRA_IMAGE_SAVE_PATH);
         if (!MTool.isEmpty(path)) {
