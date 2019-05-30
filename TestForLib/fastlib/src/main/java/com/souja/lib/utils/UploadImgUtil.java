@@ -291,7 +291,8 @@ public class UploadImgUtil {
     }
 
     private void startUploadTask(final List<String> urls) {
-        LogUtil.e(urls.size() + " " + uploadIndex + " " + imgPathCompressed.size());
+        LogUtil.e("urls.size():" + urls.size() + " uploadIndex:" + uploadIndex
+                + " imgPathCompressed.size():" + imgPathCompressed.size());
         if (urls.size() <= 0) {
             if (uploadIndex >= imgPathCompressed.size() - 1) {
                 LogUtil.e("所有组图片都已上传");

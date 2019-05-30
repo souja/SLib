@@ -18,9 +18,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -73,6 +75,29 @@ import top.zibin.luban.OnRenameListener;
  */
 
 public class MTool {
+
+    public static void bindEditDel(EditText editText, View deleteView) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    deleteView.setVisibility(View.VISIBLE);
+                } else
+                    deleteView.setVisibility(View.INVISIBLE);
+            }
+        });
+        deleteView.setOnClickListener(v -> editText.setText(""));
+    }
 
     public static AlertDialog createDialog(Context context) {
         return createDialog(context, null);
@@ -241,12 +266,11 @@ public class MTool {
 
                     tabView.setPadding(0, 0, 0, 0);
 
-                    //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
                     int width = mTextView.getWidth();
-                    if (width == 0) {
+//                    if (width == 0) {
                         mTextView.measure(0, 0);
                         width = mTextView.getMeasuredWidth();
-                    }
+//                    }
                     //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                     params.width = width;

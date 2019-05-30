@@ -3,6 +3,7 @@ package com.souja.lib.utils;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -262,6 +263,7 @@ public class SHttpUtil {
                 break;
             }
         }
+        if (TextUtils.isEmpty(M_HTTP)) M_HTTP = SPHelper.getString(LibConstants.COMMON.REQUEST_URL);
         if (outControl) {
             url = M_HTTP + url;
         } else {

@@ -18,6 +18,7 @@ public class LibConstants {
         int RX_LOGIN_OUTDATE = 66666;//登录过期
         String CACHE_CITY = "cacheCity";//缓存城市
         String KEY_SCREEN_PARAM = "windowScreenParams";
+        String REQUEST_URL = "requestUrlPre";//接口请求前缀
     }
 
 }

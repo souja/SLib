@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="135px"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="101px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="12px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_search_bg_base"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="36px"
+                android:layout_height="36px"
+                android:layout_marginLeft="24px"
+                android:background="@drawable/lib_seach" />
+
+            <EditText
+                android:id="@+id/ed_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18px"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入搜索内容"
+                android:imeActionLabel="搜索"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLength="20"
+                android:paddingRight="24px"
+                android:singleLine="true"
+                android:textColor="@color/black_33"
+                android:textColorHint="@color/grey_c3c1"
+                android:textSize="42px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/title_text_btn_style"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:text="取消"
+            android:textColor="@color/lib_main_color" />
+    </LinearLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_top">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_top"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="780px"
+            android:layout_height="780px"
+            android:background="@drawable/ic_empty" />
+
+        <TextView
+            style="@style/text_42px"
+            android:text="未搜到相关数据"
+            android:textColor="@color/grey_af" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 // JitPack Maven
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.github.souja'
+//group = 'com.github.souja'
 
 repositories {
     maven { url 'https://dl.bintray.com/xuuhaoo/maven/'}
@@ -35,25 +35,25 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation fileTree(include: ['*.jar'], dir: 'libs/umeng')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-//    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-    implementation 'jp.wasabeef:glide-transformations:2.0.2'
-    implementation 'com.nineoldandroids:library:2.4.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.facebook.fresco:fresco:1.7.1'
-    implementation 'top.zibin:Luban:1.1.8'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-19'
-    implementation 'com.tonystark.android:defense_crash:2.0.0'
-    implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs/umeng')
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
+    api 'com.android.support:support-v4:27.1.1'
+    api 'com.android.support:cardview-v7:27.1.1'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+//    api 'io.reactivex.rxjava2:rxjava:2.1.10'
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    api 'jp.wasabeef:glide-transformations:2.0.2'
+    api 'com.nineoldandroids:library:2.4.0'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.facebook.fresco:fresco:1.7.1'
+    api 'top.zibin:Luban:1.1.8'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-19'
+    api 'com.tonystark.android:defense_crash:2.0.0'
+    api 'com.aliyun.dpa:oss-android-sdk:2.5.0'
 }
 
 apply from: '../gradle/maven_push.gradle'

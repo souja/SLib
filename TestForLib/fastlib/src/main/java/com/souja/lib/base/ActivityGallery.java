@@ -174,7 +174,7 @@ public class ActivityGallery extends ActBase {
 
     String[] editPhotoPermission = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+//            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
     };
 
     private void checkEditPermission(File selectedFile) {

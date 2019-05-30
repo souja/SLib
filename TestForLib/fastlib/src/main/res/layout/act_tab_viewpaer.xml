@@ -8,7 +8,8 @@
     <com.souja.lib.widget.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mNoLine="true"/>
+        app:mNoLine="true" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,9 +20,10 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             style="@style/mTab"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="135px"
-            app:tabBackground="@color/white" />
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="15px"/>
     </LinearLayout>
 
     <View

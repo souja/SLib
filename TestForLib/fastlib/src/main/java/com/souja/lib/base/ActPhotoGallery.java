@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -13,9 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -207,16 +204,7 @@ public class ActPhotoGallery extends ActBase {
                     return;
                 }
 
-                if (PermissionChecker.checkSelfPermission(_this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(_this, new String[]{Manifest.permission.CAMERA},
-                            1122);
-                } else {
-//                selectedPathList.clear();
-//                mAdapter.notifyDataSetChanged();
-//                refreshNum();
-                    checkCameraPermission();
-                }
+                checkCameraPermission();
             } else {
                 ActivityGallery.open(_this, position - 1, maxCount, false);
             }
@@ -273,6 +261,17 @@ public class ActPhotoGallery extends ActBase {
         mPermissionUtil.check();
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case PermissionUtil.REQUEST_PHONE_PERMISSIONS:
+                mPermissionUtil.handleResults(grantResults);
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 
     private void turnCamera() {
         try {
@@ -451,17 +450,5 @@ public class ActPhotoGallery extends ActBase {
             mDirLayout.dismiss();
         } else
             super.onBackPressed();
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case PermissionUtil.REQUEST_PHONE_PERMISSIONS:
-                mPermissionUtil.handleResults(grantResults);
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }

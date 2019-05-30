@@ -53,9 +53,9 @@ public abstract class ActTabViewpager extends ActBase {
         mTitles = setTitles();
         mFragments = new BaseFragment[mTitles.length];
         initFragments(mFragments);
-        for (String s : mTitles) {
-            tabLayout.addTab(tabLayout.newTab().setText(s));
-        }
+//        for (String s : mTitles) {
+//            tabLayout.addTab(tabLayout.newTab().setText(s));
+//        }
         int[] margins = setTabMargins();
         if (margins != null && margins.length > 0) {
             if (margins.length == 1) {
