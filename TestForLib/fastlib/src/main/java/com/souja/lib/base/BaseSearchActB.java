@@ -72,6 +72,9 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
     public View emptyView;
     public ImageView ivEmpty;
 
+    public ArrayList<T> baseList;
+    public int pageIndex = 1, pageAmount = 1;
+
     private void initViews() {
         mEdSearch = findViewById(R.id.ed_search);
         mListView = findViewById(R.id.lv_search);
@@ -79,9 +82,6 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
         emptyView = findViewById(R.id.layout_nodata);
         ivEmpty = findViewById(R.id.iv_empty);
     }
-
-    private ArrayList<T> baseList;
-    private int pageIndex = 1, pageAmount = 1;
 
     @Override
     public void initMain() {
