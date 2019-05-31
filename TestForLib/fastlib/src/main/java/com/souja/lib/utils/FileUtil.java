@@ -1,5 +1,7 @@
 package com.souja.lib.utils;
 
+import android.os.Environment;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,6 +9,17 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 
 public class FileUtil {
+
+    //分享图片缓存路径
+    public static String getShareImgPath() {
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + File.separator + LibConstants.APP_NAME + File.separator + "shareImgs/";
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return path;
+    }
 
     public static File setUpPhotoFile() throws IOException {
         try {
