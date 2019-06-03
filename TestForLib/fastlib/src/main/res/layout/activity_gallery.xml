@@ -75,7 +75,8 @@
                 android:gravity="center"
                 android:text="@string/edit_img"
                 android:textColor="@color/white"
-                android:textSize="45px" />
+                android:textSize="45px"
+                android:visibility="gone" />
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/gallery_checkbox"
