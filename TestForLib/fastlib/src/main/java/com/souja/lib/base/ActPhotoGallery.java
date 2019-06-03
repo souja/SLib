@@ -281,8 +281,8 @@ public class ActPhotoGallery extends ActBase {
                     + ",exist=" + cameraFile.exists());
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            Uri imageUri = FileProvider.getUriForFile(_this, LibConstants.packageName, cameraFile);
-            Uri imageUri = Uri.fromFile(cameraFile);
+            Uri imageUri = FileProvider.getUriForFile(_this, LibConstants.packageName + ".provider", cameraFile);
+//            Uri imageUri = Uri.fromFile(cameraFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_TAKE_PHONE);
         } catch (IOException e) {
@@ -429,8 +429,8 @@ public class ActPhotoGallery extends ActBase {
     private void AddPicToScan(String path) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(path);
-//        Uri contentUri = FileProvider.getUriForFile(_this, LibConstants.packageName, f);
-        Uri contentUri = Uri.fromFile(f);
+        Uri contentUri = FileProvider.getUriForFile(_this, LibConstants.packageName + ".provider", f);
+//        Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }

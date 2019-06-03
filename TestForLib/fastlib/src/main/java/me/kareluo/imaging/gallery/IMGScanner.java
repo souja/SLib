@@ -82,8 +82,8 @@ public class IMGScanner {
                 if (file.exists()) {
                     // 通过读取文件获取图片宽高
                     BitmapFactory.decodeFile(path, options);
-//                    Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName, file);
-                    Uri uri = Uri.fromFile(file);
+                    Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName + ".provider", file);
+//                    Uri uri = Uri.fromFile(file);
                     IMGImageViewModel model = new IMGImageViewModel(uri);
                     model.setWidth(options.outWidth);
                     model.setHeight(options.outHeight);
