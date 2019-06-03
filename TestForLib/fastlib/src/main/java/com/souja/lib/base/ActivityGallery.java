@@ -185,7 +185,8 @@ public class ActivityGallery extends ActBase {
             public void ok() {
                 LogUtil.e("selectedFile absolute path:" + selectedFile.getAbsolutePath());
 
-                Uri uri = FileProvider.getUriForFile(_this, LibConstants.packageName, selectedFile);
+//                Uri uri = FileProvider.getUriForFile(_this, LibConstants.packageName, selectedFile);
+                Uri uri = Uri.fromFile(selectedFile);
                 editFile = new File(FilePath.getTempPicturePath() + "/editedimg"
                         + System.currentTimeMillis() + ".jpg.bk");
                 startActivityForResult(

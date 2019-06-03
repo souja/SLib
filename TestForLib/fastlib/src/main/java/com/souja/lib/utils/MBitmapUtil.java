@@ -605,7 +605,8 @@ public class MBitmapUtil {
                 bmp, fileName, null);
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
-        Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName, file);
+//        Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName, file);
+        Uri uri = Uri.fromFile(file);
         intent.setData(uri);
         context.sendBroadcast(intent);
 
