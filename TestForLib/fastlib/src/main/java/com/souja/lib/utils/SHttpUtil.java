@@ -15,11 +15,13 @@ import com.souja.lib.models.ODataPage;
 import com.souja.lib.models.RequestResult;
 
 import org.xutils.common.Callback;
+import org.xutils.common.task.PriorityExecutor;
 import org.xutils.common.util.LogUtil;
 import org.xutils.http.HttpMethod;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -347,4 +349,84 @@ public class SHttpUtil {
     }
 
 
+    public interface DownloadListener {
+        void onStart();
+
+        void onSuc(File file);
+
+        void onErr(Throwable ex);
+
+        void onProgress(long totalProgress, long currentProgress, int current);
+    }
+
+    public static Callback.Cancelable downloadFile(String sourceUrl, String savePath, DownloadListener downloadListener) {
+        RequestParams params = new RequestParams(sourceUrl);
+        //设置保存数据
+        LogUtil.e("save path :" + savePath);
+        params.setSaveFilePath(savePath);
+        //设置是否可以立即取消下载
+        params.setCancelFast(true);
+        //设置是否自动根据头信息命名
+        params.setAutoRename(false);
+        //设置断点续传
+        params.setAutoResume(true);
+
+        params.setExecutor(new PriorityExecutor(3, true));//自定义线程池,有效的值范围[1, 3], 设置为3时, 可能阻塞图片加载.
+        params.setRedirectHandler(request -> {
+            RequestParams requestParams = request.getParams();
+            String location = request.getResponseHeader("Location"); //协定的重定向地址
+            if (!TextUtils.isEmpty(location)) {
+                requestParams.setUri(location); //重新设置url地址
+            }
+            return requestParams;
+        });
+        params.setMaxRetryCount(5);
+        addIdentify(params);
+        return x.http().get(params, new Callback.ProgressCallback<File>() {
+
+            @Override
+            public void onSuccess(File file) {
+                downloadListener.onSuc(file);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                downloadListener.onErr(ex);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+                LogUtil.e("完成..." + sourceUrl);
+            }
+
+            @Override
+            public void onWaiting() {
+                LogUtil.e("等待中..." + sourceUrl);
+            }
+
+            @Override
+            public void onStarted() {
+                LogUtil.e("开始下载 ..." + sourceUrl);
+                downloadListener.onStart();
+            }
+
+            @Override
+            public void onLoading(long total, long current, boolean isDownloading) {
+                LogUtil.e("on loading " + current + "/" + total);
+                int cur = 0;
+                if (current > 0) {
+                    float c = (float) current / (float) total;
+                    cur = (int) (c * 100);
+                }
+
+                if (isDownloading) {
+                    downloadListener.onProgress(total, current, cur);
+                }
+            }
+        });
+    }
 }
