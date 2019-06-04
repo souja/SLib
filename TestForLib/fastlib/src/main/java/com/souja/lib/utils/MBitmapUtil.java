@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -589,7 +590,6 @@ public class MBitmapUtil {
             // 获得输出流，如果文件中有内容，追加内容
             outStream = new FileOutputStream(fileName);
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-
         } catch (Exception e) {
             e.getStackTrace();
         } finally {
@@ -601,17 +601,22 @@ public class MBitmapUtil {
                 e.printStackTrace();
             }
         }
-        //通知相册更新
-        MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                bmp, fileName, null);
-        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
-        Uri uri = FileProvider.getUriForFile(context, LibConstants.packageName + ".provider", file);
-//        Uri uri = Uri.fromFile(file);
-        intent.setData(uri);
-        context.sendBroadcast(intent);
+        if (file != null) {
+            //通知相册更新
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                    bmp, fileName, null);
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri;
+            if (Build.VERSION.SDK_INT >= 24) {
+                uri = FileProvider.getUriForFile(context, LibConstants.FILE_PROVIDER, file);
+            } else
+                uri = Uri.fromFile(file);
+            intent.setData(uri);
+            context.sendBroadcast(intent);
 
-        MTool.Toast(context, "图片保存成功");
+            MTool.Toast(context, "图片保存成功");
+        }
 
     }
 

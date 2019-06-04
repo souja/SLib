@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.content.FileProvider;
@@ -185,8 +186,11 @@ public class ActivityGallery extends ActBase {
             public void ok() {
                 LogUtil.e("selectedFile absolute path:" + selectedFile.getAbsolutePath());
 
-                Uri uri = FileProvider.getUriForFile(_this, LibConstants.packageName+".provider", selectedFile);
-//                Uri uri = Uri.fromFile(selectedFile);
+                Uri uri;
+                if (Build.VERSION.SDK_INT >= 24) {
+                    uri = FileProvider.getUriForFile(_this, LibConstants.FILE_PROVIDER, selectedFile);
+                } else
+                    uri = Uri.fromFile(selectedFile);
                 editFile = new File(FilePath.getTempPicturePath() + "/editedimg"
                         + System.currentTimeMillis() + ".jpg.bk");
                 startActivityForResult(
