@@ -66,6 +66,10 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
         return recyclerView.getAdapter();
     }
 
+    public void notifyDatasetChanged() {
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     public RecyclerView recyclerView;
     public SmartRefreshLayout smartRefresh;
     public MLoadingDialog mLoadingDialog;
@@ -135,7 +139,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                         smartRefresh.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) mLoadingDialog.showEmptyView();
                         else hideLoading();
-                        recyclerView.getAdapter().notifyDataSetChanged();
+                        notifyDatasetChanged();
                         notifyAdapter();
                     }
 

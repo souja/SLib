@@ -49,6 +49,10 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
         return new LinearLayoutManager(mBaseActivity);
     }
 
+    public void notifyDatasetChanged(){
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     public RecyclerView recyclerView;
     public SmartRefreshLayout mRefreshLayout;
 
@@ -114,7 +118,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                         mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) ShowEmptyView();
                         else ShowContentView();
-                        recyclerView.getAdapter().notifyDataSetChanged();
+                        notifyDatasetChanged();
                         notifyAdapter();
                     }
 
