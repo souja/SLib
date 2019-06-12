@@ -130,16 +130,22 @@ public class MTool {
 
     public static void Toast(Context context, String msg) {
         if (msg == null || msg.contains("onNext") || context == null) return;
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast toast=Toast.makeText(context,null,Toast.LENGTH_SHORT);
+        toast.setText(msg);
+        toast.show();
     }
 
     public static void Toast(Context context, int msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
+        toast.setText(msg);
+        toast.show();
     }
 
     public static void Toast(Context context, String msg, int duration) {
         if (msg == null || msg.contains("onNext") || context == null) return;
-        Toast.makeText(context, msg, duration).show();
+        Toast toast = Toast.makeText(context, null, duration);
+        toast.setText(msg);
+        toast.show();
     }
 
     public static boolean isMobileNO(String mobiles) {
@@ -269,8 +275,8 @@ public class MTool {
 
                     int width = mTextView.getWidth();
 //                    if (width == 0) {
-                        mTextView.measure(0, 0);
-                        width = mTextView.getMeasuredWidth();
+                    mTextView.measure(0, 0);
+                    width = mTextView.getMeasuredWidth();
 //                    }
                     //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
@@ -617,7 +623,6 @@ public class MTool {
     public static String getPriceString(double price) {
         return "￥" + getMoney(price);
     }
-
 
 
     public static void closeAndroidPDialog() {

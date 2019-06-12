@@ -51,16 +51,22 @@ public abstract class ActBase extends AppCompatActivity {
 
     public void showToast(String msg) {
         if (msg == null || msg.contains("onNext")) return;
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(this, null, Toast.LENGTH_SHORT);
+        toast.setText(msg);
+        toast.show();
     }
 
     public void showToast(int msgRes) {
-        Toast.makeText(this, msgRes, Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(this, null, Toast.LENGTH_SHORT);
+        toast.setText(msgRes);
+        toast.show();
     }
 
     public void showToast(String msg, int duration) {
         if (msg == null || msg.contains("onNext")) return;
-        Toast.makeText(this, msg, duration).show();
+        Toast toast = Toast.makeText(this, null, duration);
+        toast.setText(msg);
+        toast.show();
     }
 
     //跳转页面
