@@ -204,7 +204,7 @@ public class FilePath {
             delAllFile(folderPath); //删除完里面所有内容
             String filePath = folderPath;
             filePath = filePath.toString();
-            java.io.File myFilePath = new java.io.File(filePath);
+            File myFilePath = new File(filePath);
             myFilePath.delete(); //删除空文件夹
         } catch (Exception e) {
             e.printStackTrace();

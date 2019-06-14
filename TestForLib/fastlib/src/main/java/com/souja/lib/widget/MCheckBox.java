@@ -67,7 +67,7 @@ public class MCheckBox extends LinearLayout implements Checkable {
             a.recycle();
         }
 
-        LinearLayout.LayoutParams paramsBox = new LinearLayout.LayoutParams(imgWidth, imgHeight);
+        LayoutParams paramsBox = new LayoutParams(imgWidth, imgHeight);
         checkBox.setLayoutParams(paramsBox);
         checkBox.setBackgroundDrawable(cbBackground);
         checkBox.setClickable(false);

@@ -71,7 +71,7 @@ public class MLoadingDialog extends LinearLayout {
     public void resetEmptyImg(int imgRes, int width, int height) {
         res = imgRes;
         mEmptyImgView.setBackgroundResource(imgRes);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
+        LayoutParams params = (LayoutParams) mEmptyImgView.getLayoutParams();
         params.width = (int) (width * ScreenUtil.mScale);
         params.height = (int) (height * ScreenUtil.mScale);
         mEmptyImgView.setLayoutParams(params);

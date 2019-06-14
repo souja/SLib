@@ -16,6 +16,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.widget.NestedScrollView;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -452,6 +453,84 @@ public class MBitmapUtil {
         return bitmap;
     }
 
+    public static Bitmap getMarkTextBitmap(Context gContext, String gText, int width, int height, boolean is4Showing){
+        float textSize;
+        float inter;
+        if (is4Showing){
+            textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 18, gContext.getResources().getDisplayMetrics());
+            inter = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 25, gContext.getResources().getDisplayMetrics());
+        } else {
+            textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 54, gContext.getResources().getDisplayMetrics());
+            inter = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, gContext.getResources().getDisplayMetrics());
+        }
+
+        int sideLength;
+        if (width > height) {
+            sideLength = (int) Math.sqrt(2*(width * width));
+        } else {
+            sideLength = (int) Math.sqrt(2*(height * height));
+        }
+
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Rect rect = new Rect();
+        paint.setTextSize(textSize);
+        //获取文字长度和宽度
+        paint.getTextBounds(gText, 0, gText.length(), rect);
+
+        int strwid = rect.width();
+        int strhei = rect.height();
+
+        Bitmap markBitmap = null;
+        try {
+            markBitmap = Bitmap.createBitmap(sideLength, sideLength, Bitmap.Config.ARGB_4444);
+            Canvas canvas = new Canvas(markBitmap);
+            //创建透明画布
+            canvas.drawColor(Color.TRANSPARENT);
+
+            paint.setColor(Color.BLACK);
+            paint.setAlpha((int) (0.1*255f));
+            // 获取跟清晰的图像采样
+            paint.setDither(true);
+            paint.setFilterBitmap(true);
+
+            //先平移，再旋转才不会有空白，使整个图片充满
+            if (width > height) {
+                canvas.translate(width - sideLength - inter, sideLength - width + inter);
+            } else {
+                canvas.translate(height - sideLength - inter, sideLength - height + inter);
+            }
+
+            //将该文字图片逆时针方向倾斜45度
+            canvas.rotate(-45);
+
+            for (int i =0; i <= sideLength; ){
+                int count = 0;
+                for (int j =0; j <= sideLength; count++){
+                    if (count % 2 == 0){
+                        canvas.drawText(gText, i, j, paint);
+                    } else {
+                        //偶数行进行错开
+                        canvas.drawText(gText, i + strwid/2, j, paint);
+                    }
+                    j = (int) (j + inter + strhei);
+                }
+                i = (int) (i + strwid + inter);
+            }
+            canvas.save(Canvas.ALL_SAVE_FLAG);
+//  ACache.get(gContext).put(gText, markBitmap);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            if(markBitmap != null && !markBitmap.isRecycled()){
+                markBitmap.recycle();
+                markBitmap = null;
+            }
+        }
+
+        return markBitmap;
+    }
+
+
     public static Bitmap getMarkTextBitmap(String gText, int width, int height, int alpha, boolean needDegree) {
         if (gText == null) gText = " ";
         float textSize = 36 * ScreenUtil.mScale;
@@ -857,4 +936,5 @@ public class MBitmapUtil {
         return newBitmap;
     }
 */
+
 }

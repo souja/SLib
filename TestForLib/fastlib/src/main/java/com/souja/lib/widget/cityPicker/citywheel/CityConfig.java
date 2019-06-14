@@ -148,7 +148,7 @@ public class CityConfig {
      */
     public WheelType mWheelType = WheelType.PRO_CITY_DIS;
     
-    public CityConfig.WheelType getWheelType() {
+    public WheelType getWheelType() {
         return mWheelType;
     }
 
@@ -502,7 +502,7 @@ public class CityConfig {
         /**
          * 定义默认显示省市区三级联动的滚轮选择器
          */
-        private CityConfig.WheelType mWheelType = CityConfig.WheelType.PRO_CITY_DIS;
+        private WheelType mWheelType = WheelType.PRO_CITY_DIS;
 
         /**
          * 是否显示半透明的背景
@@ -745,7 +745,7 @@ public class CityConfig {
          * @param wheelType
          * @return
          */
-        public Builder setCityWheelType(CityConfig.WheelType wheelType) {
+        public Builder setCityWheelType(WheelType wheelType) {
             this.mWheelType = wheelType;
             return this;
         }

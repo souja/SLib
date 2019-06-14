@@ -50,26 +50,26 @@ public final class DbManagerImpl extends DbBase {
     private final static HashMap<DaoConfig, DbManagerImpl> DAO_MAP = new HashMap<DaoConfig, DbManagerImpl>();
 
     private SQLiteDatabase database;
-    private DbManager.DaoConfig daoConfig;
+    private DaoConfig daoConfig;
     private boolean allowTransaction;
 
-    private DbManagerImpl(DbManager.DaoConfig config) {
+    private DbManagerImpl(DaoConfig config) {
         if (config == null) {
             throw new IllegalArgumentException("daoConfig may not be null");
         }
         this.daoConfig = config;
         this.allowTransaction = config.isAllowTransaction();
         this.database = openOrCreateDatabase(config);
-        DbManager.DbOpenListener dbOpenListener = config.getDbOpenListener();
+        DbOpenListener dbOpenListener = config.getDbOpenListener();
         if (dbOpenListener != null) {
             dbOpenListener.onDbOpened(this);
         }
     }
 
-    public synchronized static DbManager getInstance(DbManager.DaoConfig daoConfig) {
+    public synchronized static DbManager getInstance(DaoConfig daoConfig) {
 
         if (daoConfig == null) {//使用默认配置
-            daoConfig = new DbManager.DaoConfig();
+            daoConfig = new DaoConfig();
         }
 
         DbManagerImpl dao = DAO_MAP.get(daoConfig);
@@ -86,7 +86,7 @@ public final class DbManagerImpl extends DbBase {
         int newVersion = daoConfig.getDbVersion();
         if (oldVersion != newVersion) {
             if (oldVersion != 0) {
-                DbManager.DbUpgradeListener upgradeListener = daoConfig.getDbUpgradeListener();
+                DbUpgradeListener upgradeListener = daoConfig.getDbUpgradeListener();
                 if (upgradeListener != null) {
                     upgradeListener.onUpgrade(dao, oldVersion, newVersion);
                 } else {
@@ -109,7 +109,7 @@ public final class DbManagerImpl extends DbBase {
     }
 
     @Override
-    public DbManager.DaoConfig getDaoConfig() {
+    public DaoConfig getDaoConfig() {
         return daoConfig;
     }
 
@@ -402,7 +402,7 @@ public final class DbManagerImpl extends DbBase {
 
     //******************************************** config ******************************************************
 
-    private SQLiteDatabase openOrCreateDatabase(DbManager.DaoConfig config) {
+    private SQLiteDatabase openOrCreateDatabase(DaoConfig config) {
         SQLiteDatabase result = null;
 
         File dbDir = config.getDbDir();

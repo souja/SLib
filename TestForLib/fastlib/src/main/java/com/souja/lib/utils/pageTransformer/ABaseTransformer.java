@@ -6,7 +6,7 @@ import android.view.View;
 public abstract class ABaseTransformer implements ViewPager.PageTransformer {
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)}.
+     * Called each {@link #transformPage(View, float)}.
      *
      * @param page
      *            Apply the transformation to this page
@@ -18,7 +18,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
 
     /**
      * Apply a property transformation to the given page. For most use cases, this method should not be overridden.
-     * Instead use {@link #transformPage(android.view.View, float)} to perform typical transformations.
+     * Instead use {@link #transformPage(View, float)} to perform typical transformations.
      *
      * @param page
      *            Apply the transformation to this page
@@ -53,7 +53,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
     }
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)} before {{@link #onTransform(android.view.View, float)}.
+     * Called each {@link #transformPage(View, float)} before {{@link #onTransform(View, float)}.
      * <p>
      * The default implementation attempts to reset all view properties. This is useful when toggling transforms that do
      * not modify the same page properties. For instance changing from a transformation that applies rotation to a
@@ -89,7 +89,7 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
     }
 
     /**
-     * Called each {@link #transformPage(android.view.View, float)} after {@link #onTransform(android.view.View, float)}.
+     * Called each {@link #transformPage(View, float)} after {@link #onTransform(View, float)}.
      *
      * @param page
      *            Apply the transformation to this page

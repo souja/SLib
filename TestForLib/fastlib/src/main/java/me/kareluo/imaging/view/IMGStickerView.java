@@ -291,12 +291,12 @@ public abstract class IMGStickerView extends ViewGroup implements IMGSticker, Vi
     }
 
     @Override
-    public void registerCallback(IMGStickerPortrait.Callback callback) {
+    public void registerCallback(Callback callback) {
         mStickerHelper.registerCallback(callback);
     }
 
     @Override
-    public void unregisterCallback(IMGStickerPortrait.Callback callback) {
+    public void unregisterCallback(Callback callback) {
         mStickerHelper.unregisterCallback(callback);
     }
 }

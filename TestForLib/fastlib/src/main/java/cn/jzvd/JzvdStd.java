@@ -327,7 +327,7 @@ public class JzvdStd extends Jzvd {
             clarityPopWindow = new PopupWindow(layout, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
             clarityPopWindow.setContentView(layout);
             clarityPopWindow.showAsDropDown(clarity);
-            layout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            layout.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             int offsetX = clarity.getMeasuredWidth() / 3;
             int offsetY = clarity.getMeasuredHeight() / 3;
             clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());

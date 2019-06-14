@@ -18,7 +18,6 @@ import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.utils.MGlobal;
 import com.souja.lib.utils.SHttpUtil;
 import com.souja.lib.utils.ScreenUtil;
-import com.umeng.analytics.MobclickAgent;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;

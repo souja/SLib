@@ -2,6 +2,9 @@ package com.souja.lib.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -31,6 +34,8 @@ import com.souja.lib.models.BaseModel;
 import com.souja.lib.models.ODataPage;
 import com.souja.lib.models.RxImgPath;
 import com.souja.lib.models.SelectImgOptions;
+import com.watermark.androidwm.WatermarkBuilder;
+import com.watermark.androidwm.bean.WatermarkText;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -49,6 +54,7 @@ import io.reactivex.functions.Consumer;
  */
 public class UploadImgUtil {
 
+
     private Context mContext;
     private AlertDialog _mDialog;
     private TextView _tvProgressTip;
@@ -58,6 +64,7 @@ public class UploadImgUtil {
     private AdapterImgs[] mAdapters;
     private SelectImgOptions[] mChooseImgOptions;
     private ArrayList<List<String>> imgPathCompressed;//图片压缩后的文件路径
+    private ArrayList<List<String>> imgPathMarked;//图片添加水印后的文件路径
     private ArrayList<ArrayList<String>> mListImgPath;//图片路径
     private ArrayList<List<String>> relativeUrls;//图片上传成功后的相对路径
     private List<Callback.Cancelable> requests;
@@ -65,6 +72,10 @@ public class UploadImgUtil {
     private int compressFatherIndex = 0;//图片压缩父索引：第compressFatherIndex组图片，值范围<=recyclerViews.length
     private int compressChildIndex;//压缩子索引：第compressFatherIndex组第compressChildIndex张图片
     private int uploadIndex;//上传图片索引
+
+
+    private int markFatherIndex = 0;//图片添加水印父索引：markFatherIndex，值范围<=recyclerViews.length
+    private int markChildIndex;//图片添加水印子索引：第markFatherIndex组第markChildIndex张图片
 
     private UploadParam mUploadParam;//上传图片配置
     private OSS mOSS;
@@ -76,6 +87,10 @@ public class UploadImgUtil {
 
     private float totalProgress;//总进度=>100*图片张数
     private int imgIndex = 0;//图片上传索引
+
+
+    private Boolean[] waterMarkFlags;//添加水印标识
+
 
     public UploadImgUtil(String uploadConfigUrl) {
         this.uploadConfigUrl = uploadConfigUrl;
@@ -89,25 +104,35 @@ public class UploadImgUtil {
         bind(context, new String[]{bzCode}, new SelectImgOptions[]{options}, listener, recyclerViews);
     }
 
+
+    public void bind(Context context, String[] bzCode, SelectImgOptions[] options, RequestListener listener,
+                     RecyclerView... recyclerViews) {
+        bind(context, bzCode, options, listener, null, recyclerViews);
+    }
+
     /**
      * @param bzCode  图片组相应的业务码
      * @param options 选择图片相关参数（是否裁剪、xy比例等）
      */
     public void bind(Context context, String[] bzCode, SelectImgOptions[] options, RequestListener listener,
-                     RecyclerView... recyclerViews) {
+                     Boolean[] marks, RecyclerView... recyclerViews) {
         mContext = context;
         bzCodes = bzCode;
         mChooseImgOptions = options;
         _mDialog = getDialog();
         mRequestListener = listener;
         imgPathCompressed = new ArrayList<>();
-        mListImgPath = new ArrayList();
+        imgPathMarked = new ArrayList<>();
+        mListImgPath = new ArrayList<>();
         relativeUrls = new ArrayList<>();
+
+        waterMarkFlags = marks;
 
         mAdapters = new AdapterImgs[recyclerViews.length];
 
         for (int i = 0; i < recyclerViews.length; i++) {
             imgPathCompressed.add(new ArrayList<>());
+            imgPathMarked.add(new ArrayList<>());
             relativeUrls.add(new ArrayList<>());
             ArrayList<String> path = new ArrayList<>();
             mListImgPath.add(path);
@@ -132,6 +157,7 @@ public class UploadImgUtil {
             recyclerViews[i].setNestedScrollingEnabled(false);
         }
     }
+
 
     //开始压缩、上传
     public void start() {
@@ -228,7 +254,39 @@ public class UploadImgUtil {
                         }
                     }
                     break;
-                case 22://（压缩完成 || 压缩过&&提交过&&没有修改过）=> 获取配置参数
+                case 22://（压缩完成 || 压缩过&&提交过&&没有修改过）=> 判断是否需要添加水印
+                    LogUtil.e("压缩完成 判断是否需要添加水印");
+                    if (waterMarkFlags == null || waterMarkFlags.length == 0) {
+                        mHandler.sendEmptyMessage(33);
+                    } else {
+                        boolean needMark = waterMarkFlags[markFatherIndex];
+                        if (needMark) {
+                            LogUtil.e("第" + markFatherIndex + "组图片需要添加水印");
+
+                            mHandler.sendEmptyMessage(33);
+                        } else {
+                            LogUtil.e("第" + markFatherIndex + "组图片不需要添加水印");
+
+                            checkMarkSize();
+                        }
+                    }
+                    break;
+                case 33://执行添加水印
+                    if (markChildIndex <= imgPathCompressed.get(markFatherIndex).size() - 1) {
+
+                        String toMarkPath = imgPathCompressed.get(markFatherIndex).get(markChildIndex);
+                        String markedPath = addRemark(toMarkPath);
+                        LogUtil.e("水印图片路径：" + markedPath);
+                        imgPathMarked.get(markFatherIndex).add(markedPath);
+
+                        //处理下一张添加水印
+                        markChildIndex++;
+                        mHandler.sendEmptyMessage(33);
+                    } else {//上一组水印添加完成
+                        checkMarkSize();
+                    }
+                    break;
+                case 44://获取上传参数配置
                     getConfig();
                     break;
             }
@@ -236,6 +294,44 @@ public class UploadImgUtil {
             return false;
         }
     });
+
+    private void checkMarkSize() {
+        markFatherIndex++;
+        markChildIndex = 0;
+        if (markFatherIndex > waterMarkFlags.length - 1) {
+            LogUtil.e("水印处理完成");
+            markFatherIndex = 0;
+            mHandler.sendEmptyMessage(44);
+        } else
+            mHandler.sendEmptyMessage(22);
+    }
+
+
+    private String addRemark(String oriFilePath) {
+        File oriFile = new File(oriFilePath);
+        if (!oriFile.exists()) return "";
+        Bitmap bmpOri = BitmapFactory.decodeFile(oriFile.getAbsolutePath());
+
+        WatermarkText watermarkText = new WatermarkText("医连医")
+                .setPositionX(0.5)
+                .setPositionY(0.5)
+                .setTextColor(Color.WHITE)
+//                .setTextShadow(0.1f, 5, 5, Color.parseColor("#eeeeee"))
+                .setTextAlpha(150)
+                .setRotation(30)
+                .setTextSize(20);
+
+
+        Bitmap bmp = WatermarkBuilder
+                .create(mContext, bmpOri)
+                .loadWatermarkText(watermarkText) // use .loadWatermarkImage(watermarkImage) to load an image.
+                .setTileMode(true)
+                .getWatermark()
+                .getOutputImage();
+
+        return MBitmapUtil.saveMarkedBmpToFile(bmp, oriFile.getName()).getAbsolutePath();
+    }
+
 
     private void getConfig() {
         LogUtil.e("获取上传图片配置参数");
@@ -278,7 +374,13 @@ public class UploadImgUtil {
     private void prepareUpload() {
         bSubed = true;
         LogUtil.e("开始上传第" + (uploadIndex + 1) + "组图片");
-        new Thread(() -> startUploadTask(imgPathCompressed.get(uploadIndex))).start();
+        if (waterMarkFlags[uploadIndex]) {
+            LogUtil.e("有水印的");
+            new Thread(() -> startUploadTask(imgPathMarked.get(uploadIndex))).start();
+        } else {
+            LogUtil.e("无水印的");
+            new Thread(() -> startUploadTask(imgPathCompressed.get(uploadIndex))).start();
+        }
     }
 
     private void initOss(UploadParam uploadParam) {
@@ -291,8 +393,7 @@ public class UploadImgUtil {
     }
 
     private void startUploadTask(final List<String> urls) {
-        LogUtil.e("urls.size():" + urls.size() + " uploadIndex:" + uploadIndex
-                + " imgPathCompressed.size():" + imgPathCompressed.size());
+        LogUtil.e("urls.size():" + urls.size() + " uploadIndex:" + uploadIndex);
         if (urls.size() <= 0) {
             if (uploadIndex >= imgPathCompressed.size() - 1) {
                 LogUtil.e("所有组图片都已上传");
@@ -393,6 +494,15 @@ public class UploadImgUtil {
                 File file = new File(fPath);
                 if (file.exists()) {
                     LogUtil.e("删除缓存图片:" + file.getPath());
+                    file.delete();
+                }
+            }
+        }
+        for (List<String> files : imgPathMarked) {
+            for (String fPath : files) {
+                File file = new File(fPath);
+                if (file.exists()) {
+                    LogUtil.e("删除水印图片:" + file.getPath());
                     file.delete();
                 }
             }
