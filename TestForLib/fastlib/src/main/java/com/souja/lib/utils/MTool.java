@@ -624,6 +624,10 @@ public class MTool {
         return String.valueOf("¥" + getMoney(price));
     }
 
+    public static String getPriceStringB(double price) {
+        return String.valueOf("¥ " + getMoney(price));
+    }
+
 
     public static void closeAndroidPDialog() {
         if (Build.VERSION.SDK_INT < 28) return;
