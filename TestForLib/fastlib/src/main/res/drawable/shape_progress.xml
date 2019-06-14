@@ -4,20 +4,11 @@
     android:pivotX="50%"
     android:pivotY="50%"
     android:toDegrees="360">
-    <rotate
-        android:drawable="@drawable/ic_loading_icon"
-        android:duration="1500"
-        android:fromDegrees="0"
-        android:interpolator="@android:anim/linear_interpolator"
-        android:pivotX="50%"
-        android:pivotY="50%"
-        android:repeatCount="-1"
-        android:toDegrees="359"
-        android:visible="true" />
-    <!--<shape
+
+    <shape
         android:innerRadiusRatio="3"
         android:shape="ring"
-        android:thicknessRatio="4"
+        android:thicknessRatio="8"
         android:useLevel="false">
 
         <gradient
@@ -27,5 +18,5 @@
             android:type="sweep"
             android:useLevel="false" />
 
-    </shape>-->
+    </shape>
 </rotate>
