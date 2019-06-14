@@ -621,7 +621,7 @@ public class MTool {
     }
 
     public static String getPriceString(double price) {
-        return "￥" + getMoney(price);
+        return String.valueOf("¥" + getMoney(price));
     }
 
 
