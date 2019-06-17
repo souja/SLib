@@ -374,7 +374,7 @@ public class UploadImgUtil {
     private void prepareUpload() {
         bSubed = true;
         LogUtil.e("开始上传第" + (uploadIndex + 1) + "组图片");
-        if (waterMarkFlags[uploadIndex]) {
+        if ((waterMarkFlags != null && waterMarkFlags.length > 0) && waterMarkFlags[uploadIndex]) {
             LogUtil.e("有水印的");
             new Thread(() -> startUploadTask(imgPathMarked.get(uploadIndex))).start();
         } else {
