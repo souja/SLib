@@ -70,6 +70,17 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
+
+    private int totalCount = 0;
+
+    public void setTotalCount(int count) {
+        totalCount = count;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
     public RecyclerView recyclerView;
     public SmartRefreshLayout smartRefresh;
     public MLoadingDialog mLoadingDialog;
@@ -131,6 +142,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                         if (pageIndex == 1) {
                             baseList.clear();
                             pageAmount = page.getTotalPages();
+                            setTotalCount(page.getTotal());
                         }
 
                         if (data.size() > 0) {

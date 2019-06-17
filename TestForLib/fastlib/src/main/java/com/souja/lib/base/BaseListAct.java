@@ -68,6 +68,17 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         getList(false);
     }
 
+
+    private int totalCount = 0;
+
+    public void setTotalCount(int count) {
+        totalCount = count;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
     public void setContentBg(int color) {
         body.setBackgroundColor(color);
     }
@@ -133,6 +144,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                         if (pageIndex == 1) {
                             baseList.clear();
                             pageAmount = page.getTotalPages();
+                            setTotalCount(page.getTotal());
                         }
 
                         if (data.size() > 0) {
