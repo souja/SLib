@@ -299,4 +299,19 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="colorAccent">@color/lib_main_color</item>
     </style>
+
+    <style name="delWordContainerC">
+        <item name="android:layout_width">120px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="imgDeleteWordB">
+        <item name="android:layout_width">57px</item>
+        <item name="android:layout_height">57px</item>
+        <item name="android:background">@drawable/ic_del_input</item>
+    </style>
+
 </resources>

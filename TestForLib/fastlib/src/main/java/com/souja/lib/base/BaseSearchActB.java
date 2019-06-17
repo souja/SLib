@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.souja.lib.R;
 import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.models.ODataPage;
+import com.souja.lib.utils.MTool;
 import com.souja.lib.utils.NetWorkUtils;
 import com.souja.lib.utils.SHttpUtil;
 
@@ -69,7 +70,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
     public EditText mEdSearch;
     public ListView mListView;
     public SmartRefreshLayout mRefreshLayout;
-    public View emptyView;
+    public View emptyView,deleteWords;
     public ImageView ivEmpty;
 
     public ArrayList<T> baseList;
@@ -80,6 +81,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
         mListView = findViewById(R.id.lv_search);
         mRefreshLayout = findViewById(R.id.smartRefresh);
         emptyView = findViewById(R.id.layout_nodata);
+        deleteWords = findViewById(R.id.deleteWords);
         ivEmpty = findViewById(R.id.iv_empty);
     }
 
@@ -91,6 +93,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
             mEdSearch.setHint(setHintTip());
         }
         if (setHintImg() != -1) ivEmpty.setBackgroundResource(setHintImg());
+        MTool.bindEditDel(mEdSearch, deleteWords);
         findViewById(R.id.tv_cancel).setOnClickListener(v -> onBackPressed());
 
         mEdSearch.setOnEditorActionListener((textView, actionId, keyEvent) -> {
