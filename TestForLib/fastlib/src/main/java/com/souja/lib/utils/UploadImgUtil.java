@@ -257,7 +257,7 @@ public class UploadImgUtil {
                 case 22://（压缩完成 || 压缩过&&提交过&&没有修改过）=> 判断是否需要添加水印
                     LogUtil.e("压缩完成 判断是否需要添加水印");
                     if (waterMarkFlags == null || waterMarkFlags.length == 0) {
-                        mHandler.sendEmptyMessage(33);
+                        mHandler.sendEmptyMessage(44);
                     } else {
                         boolean needMark = waterMarkFlags[markFatherIndex];
                         if (needMark) {
