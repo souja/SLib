@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -46,7 +47,7 @@ public class MLoadingDialog extends LinearLayout {
 
     private final String defaultTip = "请稍候...";
     private TextView mTvTip, mTvBigTip, mTvSmallTip, mTvEmpty;
-    private View emptyView;
+    private LinearLayout emptyView;
     private FrameLayout wholeBody;
     private ProgressBar mProgressBar;
 
@@ -55,6 +56,11 @@ public class MLoadingDialog extends LinearLayout {
 
     private ImageView mEmptyImgView;
     private int res;
+
+
+    public void emptyAlignTop() {
+        emptyView.setGravity(Gravity.CENTER_HORIZONTAL);
+    }
 
     public void resetEmptyImg(int imgRes, boolean reset) {
         if (reset)

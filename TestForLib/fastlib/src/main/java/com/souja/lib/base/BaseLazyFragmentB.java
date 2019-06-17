@@ -1,6 +1,7 @@
 package com.souja.lib.base;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -20,13 +21,19 @@ import com.souja.lib.utils.ScreenUtil;
 public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLazyFragmentListener {
 
     private FrameLayout contentView;
-    private View progressView, emptyView;
+    private View progressView;
+    private LinearLayout emptyView;
     private TextView mTvTip, mTvEmpty;
     private ProgressBar mProgressBar;
     public View _contentView;
 
     private ImageView mEmptyImgView;
     private int res;
+
+
+    public void emptyAlignTop() {
+        emptyView.setGravity(Gravity.CENTER_HORIZONTAL);
+    }
 
     public void resetEmptyImg(int imgRes, boolean reset) {
         if (reset)

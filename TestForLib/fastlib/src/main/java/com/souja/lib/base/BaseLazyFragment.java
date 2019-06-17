@@ -1,6 +1,7 @@
 package com.souja.lib.base;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -121,8 +122,13 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
     }
 
 
+    public void emptyAlignTop() {
+        emptyView.setGravity(Gravity.CENTER_HORIZONTAL);
+    }
+
     private FrameLayout contentView;
-    private View progressView, emptyView;
+    private View progressView;
+    private LinearLayout emptyView;
     private TextView mTvTip, mTvEmpty;
     private ProgressBar mProgressBar;
     public View _contentView;
