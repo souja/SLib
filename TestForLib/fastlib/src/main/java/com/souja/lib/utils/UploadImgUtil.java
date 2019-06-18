@@ -88,12 +88,30 @@ public class UploadImgUtil {
     private float totalProgress;//总进度=>100*图片张数
     private int imgIndex = 0;//图片上传索引
 
+    private int imgColumns = 3;//图片每一行的列数
+    private boolean neesImgIndex;
 
     private Boolean[] waterMarkFlags;//添加水印标识
 
 
     public UploadImgUtil(String uploadConfigUrl) {
         this.uploadConfigUrl = uploadConfigUrl;
+    }
+
+    public UploadImgUtil(String uploadConfigUrl, int imgColumns) {
+        this.uploadConfigUrl = uploadConfigUrl;
+        this.imgColumns = imgColumns;
+    }
+
+    public UploadImgUtil(String uploadConfigUrl, boolean neesImgIndex) {
+        this.uploadConfigUrl = uploadConfigUrl;
+        this.neesImgIndex = neesImgIndex;
+    }
+
+    public UploadImgUtil(String uploadConfigUrl, int imgColumns, boolean neesImgIndex) {
+        this.uploadConfigUrl = uploadConfigUrl;
+        this.imgColumns = imgColumns;
+        this.neesImgIndex = neesImgIndex;
     }
 
     public void bind(Context context, String bzCode, int max, RequestListener listener, RecyclerView... recyclerViews) {
@@ -137,7 +155,7 @@ public class UploadImgUtil {
             ArrayList<String> path = new ArrayList<>();
             mListImgPath.add(path);
             int finalI = i;
-            mAdapters[i] = new AdapterImgs(mContext, path, new AdapterImgs.MListener() {
+            mAdapters[i] = new AdapterImgs(mContext, path, imgColumns, neesImgIndex, new AdapterImgs.MListener() {
                 @Override
                 public void onAdd() {
                     choosePhotos(finalI);

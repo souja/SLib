@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.souja.lib.R;
 import com.souja.lib.base.MBaseAdapter;
@@ -20,6 +21,8 @@ import java.util.List;
 public class AdapterImgs extends MBaseAdapter<String> {
     private MListener mListener;
     private int maxCount = 9;
+    private int imgColumns = 3;
+    private boolean needImgIndex;
 
     private boolean enableDel = true;
 
@@ -42,9 +45,30 @@ public class AdapterImgs extends MBaseAdapter<String> {
         mListener = listener;
     }
 
+    public AdapterImgs(Context context, List<String> list, int imgColumns, MListener listener) {
+        super(context, list);
+        this.imgColumns = imgColumns;
+        mListener = listener;
+    }
+
+    public AdapterImgs(Context context, List<String> list, boolean needImgIndex, MListener listener) {
+        super(context, list);
+        this.needImgIndex = needImgIndex;
+        mListener = listener;
+    }
+
+
+    public AdapterImgs(Context context, List<String> list, int imgColumns, boolean needImgIndex, MListener listener) {
+        super(context, list);
+        this.imgColumns = imgColumns;
+        this.needImgIndex = needImgIndex;
+        mListener = listener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateView(ViewGroup parent, int viewType) {
-        return new HolderImg(LayoutInflater.from(mContext).inflate(R.layout.item_upload_img, parent, false));
+        return new HolderImg(LayoutInflater.from(mContext).inflate(imgColumns == 4
+                ? R.layout.item_upload_img_b : R.layout.item_upload_img, parent, false));
     }
 
     @Override
@@ -57,6 +81,10 @@ public class AdapterImgs extends MBaseAdapter<String> {
                     mListener.onAdd();
             });
             mHolder.delView.setVisibility(View.GONE);
+            if (needImgIndex) {
+                mHolder.tvIndex.setVisibility(View.VISIBLE);
+                mHolder.tvIndex.setText(mList.size() + "/" + maxCount);
+            }
         } else {
             if (!enableDel) mHolder.delView.setVisibility(View.GONE);
             else
@@ -99,12 +127,14 @@ public class AdapterImgs extends MBaseAdapter<String> {
 
         ImageView imageView;
         View delView;
+        TextView tvIndex;
         View vRight;
 
         public HolderImg(View itemView) {
             super(itemView);
             ScreenUtil.initScale(itemView);
             imageView = itemView.findViewById(R.id.iv_img);
+            tvIndex = itemView.findViewById(R.id.tv_index);
             delView = itemView.findViewById(R.id.ll_delImg);
             vRight = itemView.findViewById(R.id.v_right);
         }
