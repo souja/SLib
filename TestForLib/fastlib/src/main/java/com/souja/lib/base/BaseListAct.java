@@ -55,7 +55,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         return new LinearLayoutManager(_this);
     }
 
-    public void notifyDatasetChanged(){
+    public void notifyDatasetChanged() {
         mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
@@ -83,11 +83,16 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
         body.setBackgroundColor(color);
     }
 
+    public void setEmptyControl(boolean b) {
+        bEmptyControl = b;
+    }
+
     public View body;
     public TitleBar mTitleBar;
     public MLoadingDialog mLoadingDialog;
     public SmartRefreshLayout mSmartRefresh;
     public RecyclerView mRecyclerView;
+    private boolean bEmptyControl = false;
 
     public ArrayList<T> baseList;
     public int pageIndex = 1, pageAmount = 1;
@@ -151,8 +156,9 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                             baseList.addAll(data);
                         }
                         mSmartRefresh.setEnableLoadMore(pageIndex < pageAmount);
-                        if (pageIndex == 1 && data.size() == 0) mLoadingDialog.showEmptyView();
-                        else mLoadingDialog.dismiss();
+                        if (pageIndex == 1 && data.size() == 0) {
+                            if (!bEmptyControl) mLoadingDialog.showEmptyView();
+                        } else mLoadingDialog.dismiss();
                         notifyDatasetChanged();
                         notifyAdapter();
                     }

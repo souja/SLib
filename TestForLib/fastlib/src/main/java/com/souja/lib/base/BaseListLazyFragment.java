@@ -25,6 +25,11 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
 
     public static final String KEY_REFRESH = "refreshFlag";
     private boolean enableRefresh = true;
+    private boolean bEmptyControl = false;
+
+    public void setEmptyControl(boolean b) {
+        bEmptyControl = b;
+    }
 
     public int pageIndex = 1, pageAmount = 1;
     public ArrayList<T> baseList;
@@ -49,7 +54,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
         return new LinearLayoutManager(mBaseActivity);
     }
 
-    public void notifyDatasetChanged(){
+    public void notifyDatasetChanged() {
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
@@ -128,8 +133,9 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                             baseList.addAll(data);
                         }
                         mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
-                        if (pageIndex == 1 && data.size() == 0) ShowEmptyView();
-                        else ShowContentView();
+                        if (pageIndex == 1 && data.size() == 0) {
+                            if (!bEmptyControl) ShowEmptyView();
+                        } else ShowContentView();
                         notifyDatasetChanged();
                         notifyAdapter();
                     }

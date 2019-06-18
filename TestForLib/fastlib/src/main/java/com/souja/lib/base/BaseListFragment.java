@@ -28,6 +28,12 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
     public int pageIndex = 1, pageAmount = 1;
     public ArrayList<T> baseList;
 
+    private boolean bEmptyControl = false;
+
+    public void setEmptyControl(boolean b) {
+        bEmptyControl = b;
+    }
+
     public void notifyAdapter() {
         //如果有自己的处理，重写此方法
     }
@@ -149,8 +155,9 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                             baseList.addAll(data);
                         }
                         smartRefresh.setEnableLoadMore(pageIndex < pageAmount);
-                        if (pageIndex == 1 && data.size() == 0) mLoadingDialog.showEmptyView();
-                        else hideLoading();
+                        if (pageIndex == 1 && data.size() == 0) {
+                            if (!bEmptyControl) mLoadingDialog.showEmptyView();
+                        } else hideLoading();
                         notifyDatasetChanged();
                         notifyAdapter();
                     }
