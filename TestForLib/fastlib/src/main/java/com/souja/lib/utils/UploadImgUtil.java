@@ -168,6 +168,7 @@ public class UploadImgUtil {
                     mAdapters[finalI].notifyDataSetChanged();
                     bSubed = false;
                     mRequestListener.notifyImgChanged(path);
+                    if (mCallBack != null) mCallBack.onPicSelect(mListImgPath.get(finalI), finalI);
                 }
             });
             mAdapters[i].setMaxCount(options[i].max);
