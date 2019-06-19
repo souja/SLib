@@ -71,11 +71,7 @@
 
         <TextView
             android:id="@+id/tv_emptyTip"
-            style="@style/text_45px"
-            android:layout_marginLeft="45px"
-            android:layout_marginRight="45px"
-            android:text="暂无数据"
-            android:textColor="@color/grey_af" />
+            style="@style/emptyText" />
     </LinearLayout>
 
 </FrameLayout>

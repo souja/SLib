@@ -314,4 +314,13 @@
         <item name="android:background">@drawable/ic_del_input</item>
     </style>
 
+    <style name="emptyText" parent="text_42px">
+        <item name="android:textColor">@color/grey_af</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">42px</item>
+        <item name="android:layout_marginRight">42px</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:text">暂无数据</item>
+    </style>
 </resources>
