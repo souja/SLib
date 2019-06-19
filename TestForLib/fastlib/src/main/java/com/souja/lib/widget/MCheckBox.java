@@ -6,9 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,7 +18,7 @@ import com.souja.lib.R;
  * 图片、文字，checked属性的layout
  * Created by yangdz on 2016/2/23.
  */
-public class MCheckBox extends LinearLayout implements Checkable {
+public class MCheckBox extends FrameLayout implements Checkable {
     public MCheckBox(Context context) {
         this(context, null, 0);
     }
@@ -35,7 +35,7 @@ public class MCheckBox extends LinearLayout implements Checkable {
     private CheckBox checkBox;
     private TextView tvTitle;
     //    private TextView vMsg;
-    private View vMsg;
+    private TextView vMsg;
     private boolean mChecked, mSelfControl, noBg;
     private int textColor, textColorFocus;
     private String text, textFocus;
@@ -67,7 +67,9 @@ public class MCheckBox extends LinearLayout implements Checkable {
             a.recycle();
         }
 
-        LayoutParams paramsBox = new LayoutParams(imgWidth, imgHeight);
+        LinearLayout.LayoutParams paramsBox = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
+        paramsBox.width = imgWidth;
+        paramsBox.height = imgHeight;
         checkBox.setLayoutParams(paramsBox);
         checkBox.setBackgroundDrawable(cbBackground);
         checkBox.setClickable(false);
@@ -141,8 +143,30 @@ public class MCheckBox extends LinearLayout implements Checkable {
 //        vMsg.setText("" + count);
 //    }
 
-    public void showMsg() {
-        vMsg.setVisibility(VISIBLE);
+//    public void showMsg() {
+//        vMsg.setVisibility(VISIBLE);
+//    }
+
+    private int msgCount;
+
+    public void setMsgCount(int count) {
+        msgCount = count;
+        notifyCount();
+    }
+
+    private void notifyCount() {
+        if (msgCount > 0)
+            vMsg.setVisibility(VISIBLE);
+        else
+            vMsg.setVisibility(GONE);
+        if (msgCount > 99)
+            vMsg.setText("99+");
+        else
+            vMsg.setText("" + msgCount);
+    }
+
+    public void addMsgCount(int count) {
+        msgCount += count;
     }
 
     public void hideMsg() {

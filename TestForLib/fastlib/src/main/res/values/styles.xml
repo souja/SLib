@@ -282,7 +282,7 @@
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabPaddingStart">-1dp</item>
         <item name="tabPaddingEnd">-1dp</item>
-        <item name="tabMode">fixed</item>
+        <item name="tabMode">scrollable</item>
         <item name="tabBackground">@color/white</item>
         <item name="tabTextAppearance">@style/mTabTxt</item>
         <item name="tabSelectedTextColor">@color/black_33</item>

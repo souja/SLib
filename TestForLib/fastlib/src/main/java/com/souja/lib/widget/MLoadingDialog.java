@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -216,11 +217,21 @@ public class MLoadingDialog extends LinearLayout {
     }
 
     public void showEmptyView() {
+        if (getVisibility() != VISIBLE) setVisibility(VISIBLE);
         emptyView.setVisibility(VISIBLE);
     }
 
     public void showEmptyView(String emptyTip) {
+        if (getVisibility() != VISIBLE) setVisibility(VISIBLE);
         mTvEmpty.setText(emptyTip);
+        emptyView.setVisibility(VISIBLE);
+    }
+
+    public void showEmptyView(String emptyTip, int emptyImgRes) {
+        if (getVisibility() != VISIBLE) setVisibility(VISIBLE);
+        if (!TextUtils.isEmpty(emptyTip))
+            mTvEmpty.setText(emptyTip);
+        resetEmptyImg(emptyImgRes);
         emptyView.setVisibility(VISIBLE);
     }
 

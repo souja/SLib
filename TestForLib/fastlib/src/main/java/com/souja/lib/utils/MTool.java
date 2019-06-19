@@ -130,7 +130,7 @@ public class MTool {
 
     public static void Toast(Context context, String msg) {
         if (msg == null || msg.contains("onNext") || context == null) return;
-        Toast toast=Toast.makeText(context,null,Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
         toast.setText(msg);
         toast.show();
     }
@@ -274,10 +274,10 @@ public class MTool {
                     tabView.setPadding(0, 0, 0, 0);
 
                     int width = mTextView.getWidth();
-//                    if (width == 0) {
-                    mTextView.measure(0, 0);
-                    width = mTextView.getMeasuredWidth();
-//                    }
+                    if (width == 0) {
+                        mTextView.measure(0, 0);
+                        width = mTextView.getMeasuredWidth();
+                    }
                     //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                     params.width = width;

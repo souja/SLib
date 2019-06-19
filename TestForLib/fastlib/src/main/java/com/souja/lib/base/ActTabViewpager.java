@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.LinearLayout;
 
 import com.souja.lib.R;
 import com.souja.lib.utils.MTool;
@@ -15,20 +16,21 @@ import org.xutils.common.util.LogUtil;
 
 /**
  * 页面结构：TitleBar + TabLayout + ViewPager
- * */
+ */
 public abstract class ActTabViewpager extends ActBase {
     public TitleBar mTitleBar;
     public TabLayout tabLayout;
     public ViewPager viewpager;
+    public LinearLayout tabContainer;
 
     /**
      * 设置各页面小标题
-     * */
+     */
     public abstract String[] setTitles();
 
     /**
      * 设置标题文字间距
-     * */
+     */
     public abstract int[] setTabMargins();
 
 
@@ -41,11 +43,13 @@ public abstract class ActTabViewpager extends ActBase {
         return R.layout.act_tab_viewpaer;
     }
 
-    private void initViews(){
+    private void initViews() {
         mTitleBar = findViewById(R.id.m_title);
+        tabContainer = findViewById(R.id.tabContainer);
         tabLayout = findViewById(R.id.tabLayout);
         viewpager = findViewById(R.id.viewpager);
     }
+
 
     @Override
     public void initMain() {
@@ -53,9 +57,9 @@ public abstract class ActTabViewpager extends ActBase {
         mTitles = setTitles();
         mFragments = new BaseFragment[mTitles.length];
         initFragments(mFragments);
-//        for (String s : mTitles) {
-//            tabLayout.addTab(tabLayout.newTab().setText(s));
-//        }
+        for (String s : mTitles) {
+            tabLayout.addTab(tabLayout.newTab().setText(s));
+        }
         int[] margins = setTabMargins();
         if (margins != null && margins.length > 0) {
             if (margins.length == 1) {
