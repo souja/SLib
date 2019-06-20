@@ -2,6 +2,7 @@ package com.souja.lib.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,6 +23,9 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
     public List<T> mList;
     public LayoutInflater mInflater;
     public final int type_empty = 3;
+
+    public String emptyTip;
+    public int emptyRes = -1;
 
     public BaseAdapterEmpty(Context context, List<T> list) {
         mContext = context;
@@ -50,8 +54,13 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
                 holder.itemView.setOnClickListener(view -> mCallBack.handleOnCallBack());
             } else tvEmpty.setText(R.string.noNetWorkB);
         } else {
-            ivEmpty.setBackgroundResource(R.drawable.ic_empty);
-            tvEmpty.setText("暂无数据");
+            if (emptyRes == -1)
+                ivEmpty.setBackgroundResource(R.drawable.ic_empty);
+            else ivEmpty.setBackgroundResource(emptyRes);
+
+            if (TextUtils.isEmpty(emptyTip))
+                tvEmpty.setText("暂无数据");
+            else tvEmpty.setText(emptyTip);
         }
     }
 
