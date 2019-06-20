@@ -165,8 +165,8 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                     @Override
                     public void OnFailure(String msg) {
                         if (mLoadingDialog.isShowing()) {
-                            mLoadingDialog.setErrMsgRetry(msg);
                             mLoadingDialog.setMClick(() -> getList(true));
+                            mLoadingDialog.setErrMsgRetry(msg);
                         } else {
                             smartRefresh.finishRefresh();
                             smartRefresh.finishLoadMore();

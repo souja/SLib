@@ -1,18 +1,15 @@
 package com.souja.lib.base;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.souja.lib.R;
 import com.souja.lib.inter.IBaseLazyFragmentListener;
+import com.souja.lib.inter.ICommonEmptyCallBack;
 import com.souja.lib.utils.ScreenUtil;
+import com.souja.lib.widget.MLoadingDialog;
 
 
 /**
@@ -20,42 +17,84 @@ import com.souja.lib.utils.ScreenUtil;
  */
 public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLazyFragmentListener {
 
-    private FrameLayout contentView;
-    private View progressView;
-    private LinearLayout emptyView;
-    private TextView mTvTip, mTvEmpty;
-    private ProgressBar mProgressBar;
-    public View _contentView;
+    //Show Loading并设置loading文字:tip
+    public void setTip(String tip) {
+        mLoadingDialog.setTip(tip);
+    }
 
-    private ImageView mEmptyImgView;
-    private int res;
+    //Show Loading并设置默认loading文字
+    public void setRetryDefaultTip() {
+        mLoadingDialog.setRetryDefaultTip();
+    }
 
+    public void setErrMsg(String msg) {
+        mLoadingDialog.setErrMsg(msg);
+    }
 
-    public void emptyAlignTop() {
-        emptyView.setGravity(Gravity.CENTER_HORIZONTAL);
+    public void setErrMsg(int msgRes) {
+        mLoadingDialog.setErrMsg(msgRes);
+    }
+
+    public void setErrMsgRetry(String msg) {
+        mLoadingDialog.setErrMsgRetry(msg);
+    }
+
+    public void ShowEmptyView() {
+        mLoadingDialog.showEmptyView();
+    }
+
+    public void ShowEmptyView(String emptyTip) {
+        mLoadingDialog.showEmptyView(emptyTip);
+    }
+
+    public void setEmptyTip(String emptyTip) {
+        mLoadingDialog.setEmptyTip(emptyTip);
+    }
+
+    public void hideEmptyView() {
+        mLoadingDialog.hideEmptyView();
+    }
+
+    public void hideProgress() {
+        mLoadingDialog.hideProgress();
+    }
+
+    public void setMClick(ICommonEmptyCallBack listener) {
+        mLoadingDialog.setMClick(listener);
     }
 
     public void resetEmptyImg(int imgRes, boolean reset) {
-        if (reset)
-            resetEmptyImg(res, 780, 780);
-        else
-            resetEmptyImg(imgRes);
+        mLoadingDialog.resetEmptyImg(imgRes, reset);
     }
 
     public void resetEmptyImg(int imgRes) {
-        if (imgRes == res) return;
-        res = imgRes;
-        mEmptyImgView.setBackgroundResource(imgRes);
+        mLoadingDialog.resetEmptyImg(imgRes);
     }
 
     public void resetEmptyImg(int imgRes, int width, int height) {
-        if (imgRes == res) return;
-        res = imgRes;
-        mEmptyImgView.setBackgroundResource(imgRes);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mEmptyImgView.getLayoutParams();
-        params.width = (int) (width * ScreenUtil.mScale);
-        params.height = (int) (height * ScreenUtil.mScale);
-        mEmptyImgView.setLayoutParams(params);
+        mLoadingDialog.resetEmptyImg(imgRes, width, height);
+    }
+
+    public void emptyAlignTop() {
+        mLoadingDialog.emptyAlignTop();
+    }
+
+    private FrameLayout contentView;
+    private MLoadingDialog mLoadingDialog;
+    public View _contentView;
+    //    private View progressView;
+//    private LinearLayout emptyView;
+//    private TextView mTvTip;
+    //mTvEmpty;
+//    private ProgressBar mProgressBar;
+//    private ICommonEmptyCallBack mClick;
+//    private ImageView mEmptyImgView;
+//    private int res;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initPrepare();
     }
 
     @Override
@@ -66,19 +105,15 @@ public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLaz
     @Override
     public void initMain() {
         contentView = _rootView.findViewById(R.id.base_f_frame);
-        progressView = _rootView.findViewById(R.id.rl_progress);
-        emptyView = _rootView.findViewById(R.id.layout_empty);
-        mEmptyImgView = _rootView.findViewById(R.id.iv_empty);
-        mProgressBar = _rootView.findViewById(R.id.progress_bar);
-        mTvTip = _rootView.findViewById(R.id.content);
-        mTvEmpty = _rootView.findViewById(R.id.tv_emptyTip);
-
-        progressView.setOnClickListener(vv -> {
-            if (mClick != null)
-                mClick.onLoadingClick();
-        });
+        mLoadingDialog = _rootView.findViewById(R.id.m_loading);
+//        progressView = _rootView.findViewById(R.id.rl_progress);
+//        emptyView = _rootView.findViewById(R.id.layout_empty);
+//        mEmptyImgView = _rootView.findViewById(R.id.iv_empty);
+//        mProgressBar = _rootView.findViewById(R.id.progress_bar);
+//        mTvTip = _rootView.findViewById(R.id.content);
+//        mTvEmpty = _rootView.findViewById(R.id.tv_emptyTip);
+//        progressView.setClickable(true);
     }
-
 
     public void setContentView(View v) {
         ScreenUtil.initScale(v);
@@ -86,99 +121,20 @@ public abstract class BaseLazyFragmentB extends BaseFragment implements IBaseLaz
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initPrepare();
-    }
-
-    public void setTip(String tip) {
-        setMClick(null);
-        if (mProgressBar.getVisibility() != View.VISIBLE) mProgressBar.setVisibility(View.VISIBLE);
-        mTvTip.setText(tip);
-    }
-
-    public void setRetryDefaultTip() {
-        setMClick(null);
-        if (progressView != null && progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
-        if (mProgressBar.getVisibility() != View.VISIBLE) mProgressBar.setVisibility(View.VISIBLE);
-        if (mTvTip != null) {
-            if (mTvTip.getVisibility() != View.VISIBLE) mTvTip.setVisibility(View.VISIBLE);
-            mTvTip.setText("请稍候...");
-        }
-    }
-
-
-    public void setErrMsgRetry(String msg) {
-        if (progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msg + "\n\n点击重试");
-    }
-
-    public void setErrMsg(String msg) {
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msg);
-    }
-
-    public void setErrMsg(int msgRes) {
-        if (progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
-        hideProgress();
-        mTvTip.setVisibility(View.VISIBLE);
-        mTvTip.setText(msgRes);
-    }
-
-    public void hideProgress() {
-        mProgressBar.setVisibility(View.GONE);
-    }
-
-    private MLoadingClick mClick;
-
-    public void setMClick(MLoadingClick listener) {
-        mClick = listener;
-    }
-
-    public interface MLoadingClick {
-        void onLoadingClick();
-    }
-
-    public void ShowEmptyView() {
-        emptyView.setVisibility(View.VISIBLE);
-    }
-
-    public void ShowEmptyView(String emptyTip) {
-        mTvEmpty.setText(emptyTip);
-        emptyView.setVisibility(View.VISIBLE);
-    }
-
-    public void setEmptyTip(String emptyTip) {
-        mTvEmpty.setText(emptyTip);
-    }
-
-    public void HideEmptyView() {
-        emptyView.setVisibility(View.GONE);
-    }
-
     public boolean isProgressing() {
-        return progressView.getVisibility() == View.VISIBLE;
+        return mLoadingDialog.isShowing();
     }
 
     @Override
     public void ShowProgress() {
-        if (progressView.getVisibility() != View.VISIBLE)
-            progressView.setVisibility(View.VISIBLE);
+        mLoadingDialog.show();
         if (contentView.getVisibility() != View.GONE)
             contentView.setVisibility(View.GONE);
     }
 
     @Override
     public void ShowContentView() {
-        if (progressView.getVisibility() != View.GONE)
-            progressView.setVisibility(View.GONE);
+        mLoadingDialog.dismiss();
         if (contentView.getVisibility() != View.VISIBLE)
             contentView.setVisibility(View.VISIBLE);
     }

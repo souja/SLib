@@ -20,4 +20,7 @@
     <string name="replay" translatable="false">重播</string>
     <string name="click_to_restart" translatable="false">点击重试</string>
     <string name="video_loading_faild" translatable="false">视频加载失败</string>
+    <string name="noNetWork" translatable="false">网络问题，请点击刷新</string>
+    <string name="noNetWorkB" translatable="false">网络问题，请检查网络后重试</string>
+    <string name="netNoGeilible" translatable="false">网络不给力</string>
 </resources>

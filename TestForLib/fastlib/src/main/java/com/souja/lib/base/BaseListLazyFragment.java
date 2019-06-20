@@ -143,8 +143,8 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                     @Override
                     public void OnFailure(String msg) {
                         if (isProgressing()) {
-                            setErrMsgRetry(msg);
                             setMClick(() -> getList(true));
+                            setErrMsgRetry(msg);
                         } else {
                             mRefreshLayout.finishRefresh();
                             mRefreshLayout.finishLoadMore();

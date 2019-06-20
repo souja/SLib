@@ -166,8 +166,8 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                     @Override
                     public void OnFailure(String msg) {
                         if (mLoadingDialog.isShowing()) {
-                            mLoadingDialog.setErrMsgRetry(msg);
                             mLoadingDialog.setMClick(() -> getList(true));
+                            mLoadingDialog.setErrMsgRetry(msg);
                         } else {
                             mSmartRefresh.finishRefresh();
                             mSmartRefresh.finishLoadMore();
