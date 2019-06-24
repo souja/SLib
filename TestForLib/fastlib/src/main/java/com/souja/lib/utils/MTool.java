@@ -19,7 +19,6 @@ import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -382,10 +381,6 @@ public class MTool {
     }
 
     public static void showPopEditView(Context context, PopEditListener listener, View anchor) {
-        showPopEditView(context, listener, anchor, 200);
-    }
-
-    public static void showPopEditView(Context context, PopEditListener listener, View anchor, int maxLength) {
         View contentView = LayoutInflater.from(context).inflate(R.layout.popup_comment, null);
         ScreenUtil.initScale(contentView);
         PopupWindow mPopWindow = new PopupWindow(contentView,
@@ -400,7 +395,6 @@ public class MTool {
 
         //设置各个控件的点击响应
         EditText edComment = contentView.findViewById(R.id.ed_comment);
-        edComment.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         contentView.findViewById(R.id.btn_send).setOnClickListener(v ->
                 listener.onResult(mPopWindow, edComment.getText().toString()));
         //是否具有获取焦点的能力

@@ -30,7 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-//    implementation project(path: ':fastlib')
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation project(path: ':fastlib')
 //    implementation 'com.github.souja:SLib:1.1.77'//SoujaLib
 }

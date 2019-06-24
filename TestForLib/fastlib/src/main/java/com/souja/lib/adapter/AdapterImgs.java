@@ -89,10 +89,10 @@ public class AdapterImgs extends MBaseAdapter<String> {
             if (!enableDel) mHolder.delView.setVisibility(View.GONE);
             else
                 mHolder.delView.setVisibility(View.VISIBLE);
-            String path = getItem(position);
+            GlideUtil.load(mContext, getItem(position), R.drawable.lib_img_default, mHolder.imageView);
 
             mHolder.itemView.setOnClickListener(v ->
-                    GlideUtil.showPopImages(mContext, v, mList, path));
+                    GlideUtil.showPopImages(mContext, v, mList, position));
             mHolder.delView.setOnClickListener(v -> {
                 if (mListener != null)
                     mListener.onDelete(position);
