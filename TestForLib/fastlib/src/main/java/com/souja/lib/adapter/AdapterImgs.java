@@ -90,10 +90,6 @@ public class AdapterImgs extends MBaseAdapter<String> {
             else
                 mHolder.delView.setVisibility(View.VISIBLE);
             String path = getItem(position);
-            if (path.contains("http"))
-                GlideUtil.load(mContext, path, R.drawable.lib_default_rec, mHolder.imageView);
-            else
-                GlideUtil.loadLocal(mContext, path, R.drawable.lib_default_rec, mHolder.imageView);
 
             mHolder.itemView.setOnClickListener(v ->
                     GlideUtil.showPopImages(mContext, v, mList, path));

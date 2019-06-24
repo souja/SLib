@@ -1,1 +1,1 @@
-include ':app', ':fastlib'
+include ':fastlib', ':myapplication'

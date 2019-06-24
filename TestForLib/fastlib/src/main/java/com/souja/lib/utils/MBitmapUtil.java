@@ -517,7 +517,8 @@ public class MBitmapUtil {
                 }
                 i = (int) (i + strwid + inter);
             }
-            canvas.save(Canvas.ALL_SAVE_FLAG);
+//            canvas.save(Canvas.ALL_SAVE_FLAG);
+            canvas.save();
 //  ACache.get(gContext).put(gText, markBitmap);
         } catch (OutOfMemoryError e) {
             e.printStackTrace();

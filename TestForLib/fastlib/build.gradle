@@ -4,12 +4,9 @@ apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
 group = 'com.github.souja'
 
-repositories {
-    maven { url 'https://dl.bintray.com/xuuhaoo/maven/'}
-}
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
@@ -18,12 +15,30 @@ android {
         versionName "1.0.0"
 
         multiDexEnabled true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+
+        ndk {
+            // Add libs for ndk, here is log.
+            ldLibs("log")
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 
@@ -37,11 +52,11 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation fileTree(include: ['*.jar'], dir: 'libs/umeng')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 //    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
@@ -52,9 +67,9 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:1.7.1'
     implementation 'top.zibin:Luban:1.1.8'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-19'
-    implementation 'com.tonystark.android:defense_crash:2.0.0'
     implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
-    implementation 'com.huangyz0918:androidwm:0.2.3'
+//    implementation 'com.huangyz0918:androidwm:0.2.3'
+//    implementation 'com.huangyz0918:androidwm-light:0.1.2'
 }
 
 apply from: '../gradle/maven_push.gradle'
