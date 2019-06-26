@@ -489,7 +489,6 @@ public class MTool {
         return df.format(oriLen / 1024d) + "kb";
     }
 
-
     public static void floatAnim(View view) {
         List<Animator> animators = new ArrayList<>();
         /*ObjectAnimator translationXAnim = ObjectAnimator.ofFloat(view, "translationX", -6.0f, 6.0f, -6.0f);
@@ -510,22 +509,6 @@ public class MTool {
         AnimatorSet btnSexAnimatorSet = new AnimatorSet();
         btnSexAnimatorSet.playTogether(animators);
         btnSexAnimatorSet.start();
-    }
-
-    public static String getHospitalSize(int size) {
-        return size + "m²";
-    }
-
-    public static String getHospitalLevel(String ratingName) {
-        return ratingName + "机构";
-    }
-
-    public static String getHospitalAge(int age) {
-        return "院龄" + age + "年";
-    }
-
-    public static String getDoctorWorkAge(int age) {
-        return String.valueOf("医龄" + age + "年");
     }
 
     public static void compressImage(Context context, String oriFilePath, OnRenameListener renameListener,
