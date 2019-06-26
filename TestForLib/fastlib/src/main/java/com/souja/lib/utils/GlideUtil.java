@@ -2,6 +2,7 @@ package com.souja.lib.utils;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.souja.lib.R;
+import com.souja.lib.models.OImageBase;
 import com.souja.lib.widget.PopZoomGallery;
 import com.souja.lib.widget.ZoomImageModel;
 
@@ -23,6 +25,25 @@ import java.util.List;
 
 public class GlideUtil {
 
+
+
+    public static void loadDefaultLong(Context context, String path, ImageView target) {
+        load(context, path, R.drawable.lib_img_default_grey, target);
+    }
+
+    public static void loadHeadIcon(Context context, String url, ImageView target) {
+        if (MTool.isEmpty(url)) target.setImageResource(R.drawable.ic_p_default);
+        else {
+            load(context, url, R.drawable.ic_p_default, target);
+        }
+    }
+
+    public static void loadHospitalIcon(Context context, String url, ImageView target) {
+        if (MTool.isEmpty(url)) target.setImageResource(R.drawable.lib_hos_default_icon);
+        else {
+            load(context, url, R.drawable.lib_hos_default_icon, target);
+        }
+    }
 
     public static void load(Context context, String url, RequestOptions options, ImageView target) {
         if (context == null) return;
@@ -71,6 +92,7 @@ public class GlideUtil {
                 .apply(requestOptions)
                 .into(target);
     }
+
 
     public static void loadRound(Context context, String url, int radius, int placeholder, ImageView target) {
         RoundedCorners roundedCorners = new RoundedCorners(radius);
@@ -167,9 +189,32 @@ public class GlideUtil {
         popZoomGallery.showPop(v, index);
     }
 
-    public static RequestOptions DefaultPlaceHolderOption(int placeHolder) {
-        return new RequestOptions().placeholder(placeHolder);
+
+    public static void showPopImgs22(Context context, View v, List<OImageBase> list, int index) {
+        ArrayList<ZoomImageModel> zoomImageArrayList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            OImageBase img = list.get(i);
+            String url = img.getPictureUrl();
+            if (TextUtils.isEmpty(url)) url = img.getImageUrl();
+            LogUtil.d("pop url " + url);
+            ZoomImageModel imageScale = new ZoomImageModel();
+            int[] xy = new int[2];
+            v.getLocationInWindow(xy);
+            imageScale.rect = new Rect(xy[0], xy[1], xy[0] + v.getWidth(), xy[1] + v.getHeight());
+            imageScale.smallImagePath = url;
+            imageScale.bigImagePath = url;
+            zoomImageArrayList.add(imageScale);
+        }
+        PopZoomGallery popZoomGallery = new PopZoomGallery(context, zoomImageArrayList,
+                (container, position, view, model) -> {
+                    String url = model.bigImagePath;
+                    Glide.with(context).load(url).into(view);
+                });
+        popZoomGallery.showPop(v, index);
     }
 
 
+    public static RequestOptions DefaultPlaceHolderOption(int placeHolder) {
+        return new RequestOptions().placeholder(placeHolder);
+    }
 }
