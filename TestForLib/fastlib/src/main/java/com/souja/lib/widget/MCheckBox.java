@@ -167,6 +167,7 @@ public class MCheckBox extends FrameLayout implements Checkable {
 
     public void addMsgCount(int count) {
         msgCount += count;
+        notifyCount();
     }
 
     public void hideMsg() {
