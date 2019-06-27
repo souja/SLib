@@ -135,6 +135,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                         mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) {
                             if (!bEmptyControl) ShowEmptyView();
+                            else ShowContentView();
                         } else ShowContentView();
                         notifyDatasetChanged();
                         notifyAdapter();

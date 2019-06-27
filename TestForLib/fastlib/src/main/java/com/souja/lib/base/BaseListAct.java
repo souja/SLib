@@ -158,6 +158,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                         mSmartRefresh.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) {
                             if (!bEmptyControl) mLoadingDialog.showEmptyView();
+                            else mLoadingDialog.dismiss();
                         } else mLoadingDialog.dismiss();
                         notifyDatasetChanged();
                         notifyAdapter();

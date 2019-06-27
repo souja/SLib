@@ -157,6 +157,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                         smartRefresh.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) {
                             if (!bEmptyControl) mLoadingDialog.showEmptyView();
+                            else hideLoading();
                         } else hideLoading();
                         notifyDatasetChanged();
                         notifyAdapter();
