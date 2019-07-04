@@ -54,9 +54,8 @@ public class PhotoAdapter extends MBaseAdapter<String> {
     public void onBindView(RecyclerView.ViewHolder holder, int position) {
         HolderPhoto mHolder = (HolderPhoto) holder;
         if (position == 0) {
-            Uri path = Uri.parse("file:///android_asset/images/gallery_to_camera.png");
             Glide.with(mContext)
-                    .load(path)
+                    .load(R.drawable.gallery_to_camera)
                     .into(mHolder.mIvPreview);
             mHolder.mCheckBox.setVisibility(View.GONE);
             mHolder.vChoose.setVisibility(View.GONE);
