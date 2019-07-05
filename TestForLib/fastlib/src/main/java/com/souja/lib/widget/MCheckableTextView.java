@@ -26,7 +26,7 @@ public class MCheckableTextView extends AppCompatTextView implements Checkable {
     public MCheckableTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MCheckableTextView);
-        boolean checked = a.getBoolean(R.styleable.MCheckableTextView_mCheck, false);
+        boolean checked = a.getBoolean(R.styleable.MCheckableTextView_ctv_checked, false);
         if (checked) {
             setChecked(true);
         }

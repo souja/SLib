@@ -43,12 +43,12 @@ public class MCropCoverView extends View {
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MCropCoverView);
             try {
-                size = a.getInt(R.styleable.MCropCoverView_mSize, 960);
-                mLeft = a.getInt(R.styleable.MCropCoverView_mLeftDis, 60);
-                mRatioType = a.getInt(R.styleable.MCropCoverView_mRatioType, 1);
+                size = a.getInt(R.styleable.MCropCoverView_ccv_size, 960);
+                mLeft = a.getInt(R.styleable.MCropCoverView_ccv_left_dis, 60);
+                mRatioType = a.getInt(R.styleable.MCropCoverView_ccv_ratio_type, 1);
 
-                cropWidth = a.getInt(R.styleable.MCropCoverView_mCropWidth, -1);
-                cropHeight = a.getInt(R.styleable.MCropCoverView_mCropHeight, -1);
+                cropWidth = a.getInt(R.styleable.MCropCoverView_ccv_crop_width, -1);
+                cropHeight = a.getInt(R.styleable.MCropCoverView_ccv_crop_height, -1);
                 LogUtil.e("size:" + size + ",left:" + mLeft + ",type:" + mRatioType
                         + ",width:" + cropWidth + ",height:" + cropHeight);
             } finally {

@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Yangdz on 2015/3/12.
  */
 
-public class MyFlowLayout extends ViewGroup {
+public class FlowLayoutA extends ViewGroup {
     private boolean
             /**
              * 自动计算所有间距
@@ -82,15 +82,15 @@ public class MyFlowLayout extends ViewGroup {
     //最终测量的宽度
     private int mFinalWidth;
 
-    public MyFlowLayout(Context context) {
+    public FlowLayoutA(Context context) {
         this(context, null);
     }
 
-    public MyFlowLayout(Context context, AttributeSet attrs) {
+    public FlowLayoutA(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MyFlowLayout(Context context, AttributeSet attrs, int defStyle) {
+    public FlowLayoutA(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initSelf(context, attrs);
     }
@@ -98,27 +98,27 @@ public class MyFlowLayout extends ViewGroup {
     private int maxLine;
 
     private void initSelf(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MyFlowLayout);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlowLayoutA);
         try {
-            minHeight = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mMinHeight, 0);
-            columns = a.getInt(R.styleable.MyFlowLayout_columns, 0);
-            autoPadding = a.getBoolean(R.styleable.MyFlowLayout_autoPadding, false);
-            autoVerPadding = a.getBoolean(R.styleable.MyFlowLayout_autoVerPadding, false);
-            autoHorPadding = a.getBoolean(R.styleable.MyFlowLayout_autoHorPadding, false);
-            centerVertical = a.getBoolean(R.styleable.MyFlowLayout_centerVertical, false);
-            centerHorizontal = a.getBoolean(R.styleable.MyFlowLayout_centerHorizontal, false);
-            mPadding = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mPadding, 0);
+            minHeight = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_min_height, 0);
+            columns = a.getInt(R.styleable.FlowLayoutA_fla_columns, 0);
+            autoPadding = a.getBoolean(R.styleable.FlowLayoutA_fla_auto_padding, false);
+            autoVerPadding = a.getBoolean(R.styleable.FlowLayoutA_fla_auto_ver_padding, false);
+            autoHorPadding = a.getBoolean(R.styleable.FlowLayoutA_fla_auto_hor_padding, false);
+            centerVertical = a.getBoolean(R.styleable.FlowLayoutA_fla_center_vertical, false);
+            centerHorizontal = a.getBoolean(R.styleable.FlowLayoutA_fla_center_horizontal, false);
+            mPadding = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_padding, 0);
             if (mPadding > 0) {
                 mlPadding = mtPadding = mrPadding = mbPadding = mPadding;
             } else {
-                mlPadding = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mlPadding, 0);
-                mtPadding = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mtPadding, 0);
-                mrPadding = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mrPadding, 0);
-                mbPadding = a.getDimensionPixelSize(R.styleable.MyFlowLayout_mbPadding, 0);
+                mlPadding = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_left_padding, 0);
+                mtPadding = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_top_padding, 0);
+                mrPadding = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_right_padding, 0);
+                mbPadding = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_bottom_padding, 0);
             }
-            vLineMargin = a.getDimensionPixelSize(R.styleable.MyFlowLayout_vLineMargin, 0);
-            hLineMargin = a.getDimensionPixelSize(R.styleable.MyFlowLayout_hLineMargin, 0);
-            maxLine = a.getInteger(R.styleable.MyFlowLayout_mMaxLine, -1);
+            vLineMargin = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_ver_margin, 0);
+            hLineMargin = a.getDimensionPixelSize(R.styleable.FlowLayoutA_fla_hor_margin, 0);
+            maxLine = a.getInteger(R.styleable.FlowLayoutA_fla_max_line, -1);
         } finally {
             a.recycle();
         }

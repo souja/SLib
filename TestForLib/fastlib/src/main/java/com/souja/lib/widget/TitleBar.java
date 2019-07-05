@@ -62,22 +62,22 @@ public class TitleBar extends RelativeLayout {
 
         try {
             //max title length
-            int maxLength = a.getInteger(R.styleable.TitleBar_mMaxTitleLength, 0);
+            int maxLength = a.getInteger(R.styleable.TitleBar_tb_max_title_length, 0);
             if (maxLength > 0)
                 mTitle.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
             //title
-            String titleValue = a.getString(R.styleable.TitleBar_mTitle);
+            String titleValue = a.getString(R.styleable.TitleBar_tb_title);
             mTitle.setText(titleValue != null ? titleValue : "");
-            int titleColor = a.getColor(R.styleable.TitleBar_mTitleColor, -123);
+            int titleColor = a.getColor(R.styleable.TitleBar_tb_title_color, -123);
             if (titleColor != -123) mTitle.setTextColor(titleColor);
             else mTitle.setTextColor(colorBlack);
 
             //left menu
-            boolean defaultBackIcon = a.getBoolean(R.styleable.TitleBar_mDefaultBack, true);
+            boolean defaultBackIcon = a.getBoolean(R.styleable.TitleBar_tb_default_back, true);
             //left text menu
-            String leftText = a.getString(R.styleable.TitleBar_mLeftText);
+            String leftText = a.getString(R.styleable.TitleBar_tb_left_text);
             //left image menu
-            int leftSrc = a.getResourceId(R.styleable.TitleBar_mLeftSrc, -123);
+            int leftSrc = a.getResourceId(R.styleable.TitleBar_tb_left_src, -123);
             if (leftText != null && leftText.length() > 0) {//left text btn
                 mLeftTextBtn.setVisibility(VISIBLE);
                 mLeftTextBtn.setText(leftText);
@@ -90,20 +90,20 @@ public class TitleBar extends RelativeLayout {
                 mLeftImageBtn.setImageResource(R.drawable.ic_back_blue);
             }
             //点击左边的按钮，关闭页面
-            boolean goBack = a.getBoolean(R.styleable.TitleBar_mGoBack, true);
+            boolean goBack = a.getBoolean(R.styleable.TitleBar_tb_go_back, true);
             if (goBack) {
                 mLeftImageBtn.setOnClickListener(view -> ((Activity) getContext()).finish());
             }
             //底部分割线，默认不显示
-            boolean noLine = a.getBoolean(R.styleable.TitleBar_mNoLine, false);
+            boolean noLine = a.getBoolean(R.styleable.TitleBar_tb_no_line, false);
             if (noLine) {
                 mLineBot.setVisibility(INVISIBLE);
             }
             //right text menu
-            String rightText = a.getString(R.styleable.TitleBar_mRightText);
+            String rightText = a.getString(R.styleable.TitleBar_tb_right_text);
             //right image menu
-            int rightSrc = a.getResourceId(R.styleable.TitleBar_mRightSrc, 0);
-            int rightSrcB = a.getResourceId(R.styleable.TitleBar_mRightSrcB, 0);
+            int rightSrc = a.getResourceId(R.styleable.TitleBar_tb_right_src, 0);
+            int rightSrcB = a.getResourceId(R.styleable.TitleBar_tb_right_src_b, 0);
             if (rightText != null) {//left text btn
                 mRightTextBtn.setVisibility(VISIBLE);
                 mRightTextBtn.setText(rightText);
@@ -116,20 +116,20 @@ public class TitleBar extends RelativeLayout {
                 mRightImageBtnB.setImageResource(rightSrcB);
             }
             //right text menu color
-            int rTxtColor = a.getColor(R.styleable.TitleBar_mRightTextColor, -123);
+            int rTxtColor = a.getColor(R.styleable.TitleBar_tb_right_text_color, -123);
             if (rTxtColor != -123) mRightTextBtn.setTextColor(rTxtColor);
             else mRightTextBtn.setTextColor(colorMain);
 
             //titlebar background color
-            int titleBgColor = a.getColor(R.styleable.TitleBar_mBgColor, -1);
+            int titleBgColor = a.getColor(R.styleable.TitleBar_tb_bg_color, -1);
 
-            int titleBgRes = a.getResourceId(R.styleable.TitleBar_mBgRes, -1);
+            int titleBgRes = a.getResourceId(R.styleable.TitleBar_tb_bg_res, -1);
             if (titleBgColor == -1 && titleBgRes == -1) setBackgroundColor(Color.WHITE);
             else {
                 if (titleBgColor != -1) setBackgroundColor(titleBgColor);
                 if (titleBgRes != -1) setBackgroundResource(titleBgRes);
             }
-            boolean defineId = a.getBoolean(R.styleable.TitleBar_mDefineId, false);
+            boolean defineId = a.getBoolean(R.styleable.TitleBar_tb_define_id, false);
             if (!defineId) setId(R.id.m_title);
         } finally {
             a.recycle();

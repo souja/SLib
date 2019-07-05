@@ -185,11 +185,11 @@ public class SwipeMenuLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             int attr = ta.getIndex(i);
             //如果引用成AndroidLib 资源都不是常量，无法使用switch case
-            if (attr == R.styleable.SwipeMenuLayout_swipeEnable) {
+            if (attr == R.styleable.SwipeMenuLayout_sml_swipe_enable) {
                 isSwipeEnable = ta.getBoolean(attr, true);
-            } else if (attr == R.styleable.SwipeMenuLayout_ios) {
+            } else if (attr == R.styleable.SwipeMenuLayout_sml_ios) {
                 isIos = ta.getBoolean(attr, true);
-            } else if (attr == R.styleable.SwipeMenuLayout_leftSwipe) {
+            } else if (attr == R.styleable.SwipeMenuLayout_sml_left_swipe) {
                 isLeftSwipe = ta.getBoolean(attr, true);
             }
         }

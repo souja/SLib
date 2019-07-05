@@ -261,20 +261,20 @@ public class MLoadingDialog extends LinearLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MLoadingDialog);
         try {
-            String tip = a.getString(R.styleable.MLoadingDialog_mTip);
+            String tip = a.getString(R.styleable.MLoadingDialog_mld_tip);
             mTip = tip == null ? defaultTip : tip;
             mTvTip.setText(mTip);
-            int txtColor = a.getColor(R.styleable.MLoadingDialog_txtColor, -123);
+            int txtColor = a.getColor(R.styleable.MLoadingDialog_mld_txt_color, -123);
             if (txtColor != -123) {
                 mTvTip.setTextColor(txtColor);
             }
-            int bgColor = a.getColor(R.styleable.MLoadingDialog_mLoadBg, Color.WHITE);
+            int bgColor = a.getColor(R.styleable.MLoadingDialog_mld_load_bg, Color.WHITE);
             llBody.setBackgroundColor(bgColor);
 //            boolean noShape = a.getBoolean(R.styleable.MLoadingDialog_noShape, false);
 //            if (noShape) {
 //                mProgressBar.setBackgroundResource(R.drawable.drawable_transparent);
 //            }
-            boolean defineId = a.getBoolean(R.styleable.MLoadingDialog_definedId, false);
+            boolean defineId = a.getBoolean(R.styleable.MLoadingDialog_mld_defined_id, false);
             if (!defineId)
                 setId(R.id.m_loading);
         } finally {

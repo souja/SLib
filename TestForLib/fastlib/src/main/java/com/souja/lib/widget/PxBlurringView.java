@@ -24,13 +24,13 @@ import com.souja.lib.R;
  * Use {@link #setBlurredView(View)} to set up the reference to the view to be blurred.
  * After that, call {@link #invalidate()} to trigger blurring whenever necessary.
  */
-public class BlurringView extends View {
+public class PxBlurringView extends View {
 
-    public BlurringView(Context context) {
+    public PxBlurringView(Context context) {
         this(context, null);
     }
 
-    public BlurringView(Context context, AttributeSet attrs) {
+    public PxBlurringView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         final Resources res = getResources();
@@ -41,10 +41,10 @@ public class BlurringView extends View {
         initializeRenderScript(context);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PxBlurringView);
-        setBlurRadius(a.getInt(R.styleable.PxBlurringView_blurRadius, defaultBlurRadius));
-        setDownsampleFactor(a.getInt(R.styleable.PxBlurringView_downsampleFactor,
+        setBlurRadius(a.getInt(R.styleable.PxBlurringView_pbv_blur_radius, defaultBlurRadius));
+        setDownsampleFactor(a.getInt(R.styleable.PxBlurringView_pbv_down_sample_factor,
                 defaultDownsampleFactor));
-        setOverlayColor(a.getColor(R.styleable.PxBlurringView_overlayColor, defaultOverlayColor));
+        setOverlayColor(a.getColor(R.styleable.PxBlurringView_pbv_overlay_color, defaultOverlayColor));
         a.recycle();
     }
 

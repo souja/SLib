@@ -52,17 +52,17 @@ public class MCheckBox extends FrameLayout implements Checkable {
 
         TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.MCheckBox);
         try {
-            noBg = a.getBoolean(R.styleable.MCheckBox_noBg, false);
-            mSelfControl = a.getBoolean(R.styleable.MCheckBox_mSelfControl, false);
-            mChecked = a.getBoolean(R.styleable.MCheckBox_mChecked, false);
-            imgWidth = a.getDimensionPixelSize(R.styleable.MCheckBox_mDrawableWidth, 0);
-            imgHeight = a.getDimensionPixelSize(R.styleable.MCheckBox_mDrawableHeight, 0);
-            cbBackground = a.getDrawable(R.styleable.MCheckBox_mDrawable);
-            text = a.getString(R.styleable.MCheckBox_mText);
-            textFocus = a.getString(R.styleable.MCheckBox_mTextFocus);
-            textColor = a.getColor(R.styleable.MCheckBox_mTxtColor,
+            noBg = a.getBoolean(R.styleable.MCheckBox_mcb_no_bg, false);
+            mSelfControl = a.getBoolean(R.styleable.MCheckBox_mcb_self_control, false);
+            mChecked = a.getBoolean(R.styleable.MCheckBox_mcb_checked, false);
+            imgWidth = a.getDimensionPixelSize(R.styleable.MCheckBox_mcb_drawable_width, 0);
+            imgHeight = a.getDimensionPixelSize(R.styleable.MCheckBox_mcb_drawable_height, 0);
+            cbBackground = a.getDrawable(R.styleable.MCheckBox_mcb_drawable);
+            text = a.getString(R.styleable.MCheckBox_mcb_text);
+            textFocus = a.getString(R.styleable.MCheckBox_mcb_text_focus);
+            textColor = a.getColor(R.styleable.MCheckBox_mcb_txt_color,
                     getResources().getColor(R.color.lib_main_color));
-            textColorFocus = a.getColor(R.styleable.MCheckBox_mTxtColorFocus, -1);
+            textColorFocus = a.getColor(R.styleable.MCheckBox_mcb_txt_color_focus, -1);
         } finally {
             a.recycle();
         }

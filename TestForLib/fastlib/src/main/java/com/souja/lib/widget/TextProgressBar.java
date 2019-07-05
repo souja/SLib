@@ -51,7 +51,7 @@ public class TextProgressBar extends ProgressBar {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TextProgressBar);
         try {
-            String text = a.getString(R.styleable.TextProgressBar_mPTxt);
+            String text = a.getString(R.styleable.TextProgressBar_tpb_text);
             if (!MTool.isEmpty(text)) mText = text;
         } finally {
             a.recycle();

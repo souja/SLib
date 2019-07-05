@@ -72,15 +72,21 @@
         <item name="android:background">@color/page_bg</item>
     </style>
 
+    <style name="dividerLine36">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36px</item>
+        <item name="android:background">@color/grey_f7f6</item>
+    </style>
+
     <style name="lineEb">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2px</item>
+        <item name="android:layout_height">1px</item>
         <item name="android:background">@color/line_eb</item>
     </style>
 
     <style name="lineEbMargin">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2px</item>
+        <item name="android:layout_height">1px</item>
         <item name="android:layout_marginLeft">36px</item>
         <item name="android:layout_marginRight">36px</item>
         <item name="android:background">@color/line_eb</item>
@@ -194,6 +200,13 @@
         <item name="android:textSize">48px</item>
         <item name="android:textColor">@color/black_33</item>
         <item name="android:textColorHint">@color/grey_99</item>
+    </style>
+
+    <style name="text48pxb31">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">48px</item>
+        <item name="android:textColor">@color/black_31</item>
     </style>
 
     <style name="text_commonB">
