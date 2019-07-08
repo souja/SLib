@@ -156,6 +156,17 @@
     </declare-styleable>
 
     <declare-styleable name="MCheckableImageView">
-        <attr name="bCheck" format="boolean" />
+        <attr name="mciv_checked" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayoutB">
+        <attr name="flb_max_select" format="integer" />
+        <attr name="flb_max_line" format="integer" />
+        <attr name="flb_need_last" format="boolean" />
+        <attr name="flb_tag_gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
     </declare-styleable>
 </resources>

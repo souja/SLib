@@ -22,7 +22,7 @@ public class MCheckableImageView extends AppCompatImageView implements Checkable
     public MCheckableImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MCheckableImageView);
-        boolean checked = a.getBoolean(R.styleable.MCheckableImageView_bCheck, false);
+        boolean checked = a.getBoolean(R.styleable.MCheckableImageView_mciv_checked, false);
         if (checked) {
             setChecked(true);
         }
