@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 
 import org.xutils.common.util.LogUtil;
+import org.xutils.x;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -453,10 +454,10 @@ public class MBitmapUtil {
         return bitmap;
     }
 
-    public static Bitmap getMarkTextBitmap(Context gContext, String gText, int width, int height, boolean is4Showing){
+    public static Bitmap getMarkTextBitmap(Context gContext, String gText, int width, int height, boolean is4Showing) {
         float textSize;
         float inter;
-        if (is4Showing){
+        if (is4Showing) {
             textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 18, gContext.getResources().getDisplayMetrics());
             inter = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 25, gContext.getResources().getDisplayMetrics());
         } else {
@@ -466,9 +467,9 @@ public class MBitmapUtil {
 
         int sideLength;
         if (width > height) {
-            sideLength = (int) Math.sqrt(2*(width * width));
+            sideLength = (int) Math.sqrt(2 * (width * width));
         } else {
-            sideLength = (int) Math.sqrt(2*(height * height));
+            sideLength = (int) Math.sqrt(2 * (height * height));
         }
 
 
@@ -489,7 +490,7 @@ public class MBitmapUtil {
             canvas.drawColor(Color.TRANSPARENT);
 
             paint.setColor(Color.BLACK);
-            paint.setAlpha((int) (0.1*255f));
+            paint.setAlpha((int) (0.1 * 255f));
             // 获取跟清晰的图像采样
             paint.setDither(true);
             paint.setFilterBitmap(true);
@@ -504,14 +505,14 @@ public class MBitmapUtil {
             //将该文字图片逆时针方向倾斜45度
             canvas.rotate(-45);
 
-            for (int i =0; i <= sideLength; ){
+            for (int i = 0; i <= sideLength; ) {
                 int count = 0;
-                for (int j =0; j <= sideLength; count++){
-                    if (count % 2 == 0){
+                for (int j = 0; j <= sideLength; count++) {
+                    if (count % 2 == 0) {
                         canvas.drawText(gText, i, j, paint);
                     } else {
                         //偶数行进行错开
-                        canvas.drawText(gText, i + strwid/2, j, paint);
+                        canvas.drawText(gText, i + strwid / 2, j, paint);
                     }
                     j = (int) (j + inter + strhei);
                 }
@@ -521,7 +522,7 @@ public class MBitmapUtil {
 //  ACache.get(gContext).put(gText, markBitmap);
         } catch (OutOfMemoryError e) {
             e.printStackTrace();
-            if(markBitmap != null && !markBitmap.isRecycled()){
+            if (markBitmap != null && !markBitmap.isRecycled()) {
                 markBitmap.recycle();
                 markBitmap = null;
             }
@@ -558,7 +559,7 @@ public class MBitmapUtil {
             //创建透明画布
             canvas.drawColor(Color.TRANSPARENT);
 
-            paint.setColor(Color.WHITE);
+            paint.setColor(x.isDebug() ? Color.RED : Color.WHITE);
             paint.setAlpha(alpha);
             // 获取跟清晰的图像采样
             paint.setDither(true);

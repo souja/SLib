@@ -208,7 +208,8 @@ public class SHttpUtil {
                 callBack.OnSuccess(msg, pageObj, dataList);
             }
         } else {
-            if (code == M_MULT_LOGIN) loginOutDate(callBack, callBack2);
+            if (code == M_MULT_LOGIN || (msg != null && msg.equals("用户非法")))
+                loginOutDate(callBack, callBack2);
             else {
                 if (callBack2 != null) {
                     callBack2.handle("服务器异常");
@@ -228,7 +229,7 @@ public class SHttpUtil {
 
 
         LogUtil.e("===" + params.getUri() + "===\n===>>>onError:" + errStr);
-        if (errStr.contains("404")) {
+        if (errStr.contains("404") || errStr.equals("用户非法")) {
             loginOutDate(callBack, callBack2);
         } else {
             if (callBack2 != null) {
@@ -337,8 +338,8 @@ public class SHttpUtil {
 
     private static <T> void loginOutDate(IHttpCallBack<T> callBack, SelfHandleCallBack callBack2) {
         VERSION = "";
-        if (MGlobal.get().containsKey(LibConstants.COMMON.RX_LOGIN_OUTDATE)) {
-            Flowable.just("").subscribe(MGlobal.get().getAction(LibConstants.COMMON.RX_LOGIN_OUTDATE));
+        if (MGlobal.containsKey(LibConstants.COMMON.RX_LOGIN_OUTDATE)) {
+            Flowable.just("").subscribe(MGlobal.getAction(LibConstants.COMMON.RX_LOGIN_OUTDATE));
         } else {
             if (callBack2 != null) {
                 callBack2.handle("登录过期，请重新登录");

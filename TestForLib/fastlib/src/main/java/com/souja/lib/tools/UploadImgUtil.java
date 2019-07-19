@@ -332,20 +332,16 @@ public class UploadImgUtil {
             mHandler.sendEmptyMessage(22);
     }
 
-
     private String addRemark(String oriFilePath) {
         File oriFile = new File(oriFilePath);
         if (!oriFile.exists()) return "";
         Bitmap bmpOri = BitmapFactory.decodeFile(oriFile.getAbsolutePath());
 
         WatermarkText watermarkText = new WatermarkText("医连医")
-                .setPositionX(0.5)
-                .setPositionY(0.5)
                 .setTextColor(Color.WHITE)
-//                .setTextShadow(0.1f, 5, 5, Color.parseColor("#eeeeee"))
-                .setTextAlpha(150)
-                .setRotation(30)
-                .setTextSize(20);
+                .setTextAlpha(130)
+                .setRotation(45)
+                .setTextSize(10);
 
 
         Bitmap bmp = WatermarkBuilder
@@ -354,8 +350,7 @@ public class UploadImgUtil {
                 .setTileMode(true)
                 .getWatermark()
                 .getOutputImage();
-
-        return MBitmapUtil.saveMarkedBmpToFile(bmp, oriFile.getName()).getAbsolutePath();
+        return MBitmapUtil.saveMarkedBmpToFile(bmp, System.currentTimeMillis() + "marked.jpg").getAbsolutePath();
     }
 
 
@@ -593,9 +588,9 @@ public class UploadImgUtil {
                     mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
                 if (mCallBack != null) mCallBack.onPicSelect(model.pathList, choosePhotoIndex);
             }
-            MGlobal.get().delAction(LibConstants.COMMON.RX_CHOOSE_PHOTO);
+            MGlobal.delAction(LibConstants.COMMON.RX_CHOOSE_PHOTO);
         };
-        MGlobal.get().addAction(LibConstants.COMMON.RX_CHOOSE_PHOTO, chooseImgs);
+        MGlobal.addAction(LibConstants.COMMON.RX_CHOOSE_PHOTO, chooseImgs);
         ActPhotoGallery.open(mContext, mChooseImgOptions[choosePhotoIndex].setSelected(mListImgPath.get(choosePhotoIndex)));
     }
 
@@ -604,7 +599,7 @@ public class UploadImgUtil {
     }
 
     public void onDestroy() {
-        MGlobal.get().delAction(LibConstants.COMMON.RX_CHOOSE_PHOTO);
+        MGlobal.delAction(LibConstants.COMMON.RX_CHOOSE_PHOTO);
         cancelRequest();
         new Thread(() -> clearTempFiles()).start();
     }

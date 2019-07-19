@@ -32,7 +32,7 @@ public class AdIndicatorView extends LinearLayout {
         if (getChildCount() > 0) removeAllViews();
         for (int i = 0; i < count; i++) {
             MCheckableView indicatorView = new MCheckableView(getContext());
-            LayoutParams params = new LinearLayout.LayoutParams(36, 6);
+            LayoutParams params = new LayoutParams(36, 6);
             indicatorView.setLayoutParams(params);
             if (i > 0) {
                 params.leftMargin = 15;

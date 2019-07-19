@@ -92,22 +92,22 @@ public abstract class ActBase extends AppCompatActivity {
      */
     public void addAction(int actionCode, Consumer<Object> action) {
         if (!containsKey(actionCode)) {
-            MGlobal.get().addAction(actionCode, action);
+            MGlobal.addAction(actionCode, action);
             if (actions == null) actions = new ArrayList<>();
             actions.add(actionCode);
         }
     }
 
     public Consumer<Object> getAction(int key) {
-        return MGlobal.get().getAction(key);
+        return MGlobal.getAction(key);
     }
 
     public void delAction(int actionCode) {
-        MGlobal.get().delAction(actionCode);
+        MGlobal.delAction(actionCode);
     }
 
     public boolean containsKey(int actionCode) {
-        return MGlobal.get().containsKey(actionCode);
+        return MGlobal.containsKey(actionCode);
     }
 
     //“发送订阅”
@@ -328,7 +328,7 @@ public abstract class ActBase extends AppCompatActivity {
         }
         if (actions != null) {
             for (int actionCode : actions) {
-                MGlobal.get().delAction(actionCode);
+                MGlobal.delAction(actionCode);
             }
         }
         if (mDisposable != null) {

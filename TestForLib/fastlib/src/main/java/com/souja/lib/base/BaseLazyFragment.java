@@ -47,6 +47,11 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         mLoadingDialog.showEmptyView(emptyTip);
     }
 
+
+    public void ShowEmptyView(String emptyTip, int emptyRes) {
+        mLoadingDialog.showEmptyView(emptyTip, emptyRes);
+    }
+
     public void setEmptyTip(String emptyTip) {
         mLoadingDialog.setEmptyTip(emptyTip);
     }
@@ -79,8 +84,8 @@ public abstract class BaseLazyFragment extends BaseFragment implements IBaseLazy
         mLoadingDialog.emptyAlignTop();
     }
 
-    private FrameLayout contentView;
-    private MLoadingDialog mLoadingDialog;
+    public FrameLayout contentView;
+    public MLoadingDialog mLoadingDialog;
     public View _contentView;
     //    private View progressView;
 //    private LinearLayout emptyView;

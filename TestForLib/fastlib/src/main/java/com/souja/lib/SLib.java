@@ -1,19 +1,40 @@
 package com.souja.lib;
 
-import android.content.Context;
+import android.app.Application;
 
 import com.souja.lib.utils.LibConstants;
 import com.souja.lib.utils.SHttpUtil;
+import com.souja.lib.utils.SPHelper;
 
 import org.xutils.common.util.KeyValue;
+import org.xutils.common.util.LogUtil;
+import org.xutils.x;
 
 public class SLib {
 
+    public static class DebugInfo {
+        boolean isDebug;
+        String dirDebug;
+        String dirPro;
 
-    public static void init(Context context, String appName, String packageName,
+        public DebugInfo(boolean isDebug, String dirDebug, String dirPro) {
+            this.isDebug = isDebug;
+            this.dirDebug = dirDebug;
+            this.dirPro = dirPro;
+        }
+    }
+
+    public static void init(Application context, String packageName, DebugInfo debugInfo,
                             String[] noVersionContrlApis, KeyValue... identifyParams) {
+
+        x.Ext.init(context);
+        x.Ext.setDebug(debugInfo.isDebug);
+        LogUtil.customTagPrefix = "【" + packageName.substring(packageName.lastIndexOf(".") + 1) + "】";
+
+        SPHelper.init(context, packageName);
+
         SHttpUtil.setContext(context);
-        LibConstants.APP_NAME = appName;
+        LibConstants.APP_NAME = debugInfo.isDebug ? debugInfo.dirDebug : debugInfo.dirPro;
         LibConstants.packageName = packageName;
         LibConstants.FILE_PROVIDER = packageName + ".fileProvider";
 

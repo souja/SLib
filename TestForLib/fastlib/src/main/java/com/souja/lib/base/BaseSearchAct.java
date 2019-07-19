@@ -52,7 +52,7 @@ public abstract class BaseSearchAct<T> extends ActBaseEd {
     }
 
     //在获取到列表数据并且ui更新完毕后，如果有自己的一些其他处理，重写此方法进行
-    public void notifyAdapter() {
+    public void onRequestFinish(boolean b) {
 
     }
 
@@ -172,8 +172,7 @@ public abstract class BaseSearchAct<T> extends ActBaseEd {
 
                         mRecyclerView.getAdapter().notifyDataSetChanged();
 
-
-                        notifyAdapter();
+                        onRequestFinish(true);
                     }
 
                     @Override
@@ -182,6 +181,7 @@ public abstract class BaseSearchAct<T> extends ActBaseEd {
                         emptyView.setVisibility(View.GONE);
                         if (pageIndex > 1) pageIndex--;
                         showToast(msg);
+                        onRequestFinish(false);
                     }
                 }));
     }

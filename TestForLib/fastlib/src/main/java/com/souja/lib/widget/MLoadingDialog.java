@@ -61,7 +61,7 @@ public class MLoadingDialog extends LinearLayout {
     //Show Loading并设置loading文字:tip
     public void setTip(String tip) {
         hideEmptyView();
-        llBody.setOnClickListener(null);
+        mTvEmpty.setOnClickListener(null);
         if (mProgressBar != null && mProgressBar.getVisibility() != VISIBLE)
             mProgressBar.setVisibility(VISIBLE);
         mTip = tip;
@@ -74,7 +74,7 @@ public class MLoadingDialog extends LinearLayout {
     //Show Loading并设置默认loading文字
     public void setRetryDefaultTip() {
         hideEmptyView();
-        llBody.setOnClickListener(null);
+        mTvEmpty.setOnClickListener(null);
         if (mProgressBar != null && mProgressBar.getVisibility() != VISIBLE)
             mProgressBar.setVisibility(VISIBLE);
         mTip = defaultTip;
@@ -127,7 +127,7 @@ public class MLoadingDialog extends LinearLayout {
         resetEmptyImg(R.drawable.ic_no_net);
         if (mClick != null) {
             mTvEmpty.setText(R.string.noNetWork);
-            llBody.setOnClickListener(v -> mClick.handleOnCallBack());
+            mTvEmpty.setOnClickListener(v -> mClick.handleOnCallBack());
         } else
             mTvEmpty.setText(R.string.noNetWorkB);
         emptyView.setVisibility(VISIBLE);
@@ -161,7 +161,7 @@ public class MLoadingDialog extends LinearLayout {
             MTool.Toast(getContext(), R.string.netNoGeilible);
             resetEmptyImg(R.drawable.ic_no_net);
             mTvEmpty.setText(R.string.noNetWork);
-            llBody.setOnClickListener(v -> {
+            mTvEmpty.setOnClickListener(v -> {
                 if (mClick != null) mClick.handleOnCallBack();
             });
         }
@@ -287,6 +287,6 @@ public class MLoadingDialog extends LinearLayout {
     public void setMClick(ICommonEmptyCallBack listener) {
         mClick = listener;
 
-        llBody.setOnClickListener(v -> mClick.handleOnCallBack());
+        mTvEmpty.setOnClickListener(v -> mClick.handleOnCallBack());
     }
 }

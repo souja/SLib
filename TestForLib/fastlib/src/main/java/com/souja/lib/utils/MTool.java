@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.ActivityManager;
@@ -43,6 +44,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.souja.lib.R;
 import com.souja.lib.inter.CompressImgCallBack;
+import com.souja.lib.inter.GetCacheCallBack;
 import com.souja.lib.inter.PopEditListener;
 import com.souja.lib.models.CacheCity;
 import com.souja.lib.models.MediaBean;
@@ -52,8 +54,16 @@ import com.souja.lib.widget.PopZoomGallery;
 import com.souja.lib.widget.ZoomImageModel;
 
 import org.xutils.common.util.LogUtil;
+import org.xutils.x;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -96,6 +106,29 @@ public class MTool {
                     deleteView.setVisibility(View.VISIBLE);
                 } else
                     deleteView.setVisibility(View.INVISIBLE);
+            }
+        });
+        deleteView.setOnClickListener(v -> editText.setText(""));
+    }
+
+    public static void bindEditDelB(EditText editText, View deleteView) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() > 0) {
+                    deleteView.setVisibility(View.VISIBLE);
+                } else
+                    deleteView.setVisibility(View.GONE);
             }
         });
         deleteView.setOnClickListener(v -> editText.setText(""));
@@ -284,6 +317,51 @@ public class MTool {
                     params.width = width;
                     params.leftMargin = leftPadding;
                     params.rightMargin = rightPadding;
+                    tabView.setLayoutParams(params);
+
+                    tabView.invalidate();
+                }
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    public static void reflexB(final TabLayout tabLayout, int left, int right) {
+        //线的宽度是根据 tabView的宽度来设置的
+        tabLayout.post(() -> {
+            try {
+                //拿到tabLayout的mTabStrip属性
+                Field mTabStripField = tabLayout.getClass().getDeclaredField("mTabStrip");
+                mTabStripField.setAccessible(true);
+
+                LinearLayout mTabStrip = (LinearLayout) mTabStripField.get(tabLayout);
+
+
+                for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+                    View tabView = mTabStrip.getChildAt(i);
+
+                    //拿到tabView的mTextView属性
+                    Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
+                    mTextViewField.setAccessible(true);
+
+                    TextView mTextView = (TextView) mTextViewField.get(tabView);
+
+                    tabView.setPadding(0, 0, 0, 0);
+
+                    int width = mTextView.getWidth();
+                    if (width == 0) {
+                        mTextView.measure(0, 0);
+                        width = mTextView.getMeasuredWidth();
+                    }
+                    //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+                    params.width = width;
+                    params.leftMargin = (int) (left * ScreenUtil.mScale);
+                    params.rightMargin = (int) (right * ScreenUtil.mScale);
                     tabView.setLayoutParams(params);
 
                     tabView.invalidate();
@@ -604,6 +682,7 @@ public class MTool {
 
     }
 
+    @SuppressLint("MissingPermission")
     public static void CallPhone(Context mContext, String phoneNo) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNo));
         mContext.startActivity(intent);
@@ -639,6 +718,108 @@ public class MTool {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * 保存数据到本地文件
+     *
+     * @param dir      存储的目录
+     * @param filename 存储的文件名(a.txt)
+     * @param content  存储的数据({'a':'b'})
+     */
+    public static void saveCache(File dir, String filename, String content) {
+        try {
+            File file = new File(dir, filename);
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter writer = new OutputStreamWriter(fos, "UTF-8");
+            writer.write(content);
+            writer.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * ↑→读取
+     */
+    public static String readCache(File dir, String fileName) {
+        StringBuilder sb = new StringBuilder();
+        InputStream ins = null;
+        long readTime = 0;
+        if (x.isDebug()) {
+            readTime = System.currentTimeMillis();
+            LogUtil.e("【Read json start】" + readTime);
+        }
+        try {
+            File file = new File(dir, fileName);
+            if (!file.exists()) return null;
+            ins = new FileInputStream(file);
+
+            InputStreamReader reader = new InputStreamReader(ins, "UTF-8");
+            BufferedReader br = new BufferedReader(reader);
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+            reader.close();
+            if (x.isDebug()) {
+                long readTime2 = System.currentTimeMillis();
+                LogUtil.e("【Read json finish】" + readTime2 + ",cost time:" +
+                        (readTime2 - readTime) + "\nresult:" + sb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ins != null) {
+                try {
+                    ins.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * ↑→读取并解析
+     */
+    public static <T> void getCache(File dir, String fileName, Class cacheClass,
+                                    GetCacheCallBack<T> callBack) {
+        LogUtil.e("读取缓存：" + fileName);
+        String cacheJson = readCache(dir, fileName);
+        if (TextUtils.isEmpty(cacheJson)) {
+            LogUtil.e("无缓存:" + fileName);
+            callBack.notExist();
+            return;
+        }
+        try {
+            ArrayList<T> cacheList = GsonUtil.getArr(cacheJson, cacheClass);
+            if (MTool.isEmptyList(cacheList)) {
+                LogUtil.e("无缓存:" + fileName);
+                callBack.notExist();
+            } else {
+                LogUtil.e(cacheList.size() + "条");
+                callBack.exist(cacheList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (!TextUtils.isEmpty(e.getMessage())) LogUtil.e(e.getMessage());
+            LogUtil.e("解析缓存失败");
+            try {
+                File cacheFile = new File(dir, fileName);
+                if (cacheFile.exists()) cacheFile.delete();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                if (!TextUtils.isEmpty(e1.getMessage())) LogUtil.e(e1.getMessage());
+                LogUtil.e("删除缓存文件失败");
+            }
+            callBack.notExist();
+        }
+    }
+
  /*   public static double getDistance(PointF p1, PointF p2) {
         double _x = Math.abs(p1.x - p2.x);
         double _y = Math.abs(p1.y - p2.y);

@@ -62,7 +62,7 @@ public class MCropCoverView extends View {
     private void setupValues() {
         if (!bInited) {
             bInited = true;
-            int screenHeight = MGlobal.get().getDeviceHeight();
+            int screenHeight = MGlobal.getDeviceHeight();
             LogUtil.e("screenHeight:" + screenHeight);
 
             if (cropWidth != -1) {

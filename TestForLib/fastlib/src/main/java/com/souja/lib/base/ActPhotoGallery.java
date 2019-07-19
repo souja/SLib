@@ -80,6 +80,10 @@ public class ActPhotoGallery extends ActBase {
 
     private static ActPhotoGallery instance;
 
+    public static void open(Context context, int max) {
+        open(context, max, null);
+    }
+
     public static void open(Context context, int max, ArrayList<String> selected) {
         Intent it = new Intent(context, ActPhotoGallery.class);
         it.putExtra(SelectImgOptions.IMAGES_MAX_SELECT_COUNT, max);

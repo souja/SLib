@@ -11,4 +11,6 @@ public interface IListPage<T> {
      String getRequestUrl(int pageIndex);
 
      Class getResultClass();
+
+     void onRequestFinish(boolean success);
 }

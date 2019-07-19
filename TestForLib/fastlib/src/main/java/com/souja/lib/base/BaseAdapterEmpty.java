@@ -24,8 +24,9 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
     public LayoutInflater mInflater;
     public final int type_empty = 3;
 
-    public String emptyTip;
-    public int emptyRes = -1;
+    public String emptyTip;//空数据提示
+    public int emptyRes = -1;//空数据图片
+
 
     public BaseAdapterEmpty(Context context, List<T> list) {
         mContext = context;
@@ -40,7 +41,7 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
 
     private ICommonEmptyCallBack mCallBack;
 
-    public void setCallBack(ICommonEmptyCallBack callBack) {
+    public void setEmptyCallBack(ICommonEmptyCallBack callBack) {
         mCallBack = callBack;
     }
 
@@ -51,8 +52,11 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
             ivEmpty.setBackgroundResource(R.drawable.ic_no_net);
             if (mCallBack != null) {
                 tvEmpty.setText(R.string.noNetWork);
-                holder.itemView.setOnClickListener(view -> mCallBack.handleOnCallBack());
-            } else tvEmpty.setText(R.string.noNetWorkB);
+                tvEmpty.setOnClickListener(view -> mCallBack.handleOnCallBack());
+            } else {
+                tvEmpty.setText(R.string.noNetWorkB);
+                tvEmpty.setOnClickListener(null);
+            }
         } else {
             if (emptyRes == -1)
                 ivEmpty.setBackgroundResource(R.drawable.ic_empty);
@@ -61,6 +65,10 @@ public abstract class BaseAdapterEmpty<T> extends RecyclerView.Adapter<RecyclerV
             if (TextUtils.isEmpty(emptyTip))
                 tvEmpty.setText("暂无数据");
             else tvEmpty.setText(emptyTip);
+
+            if (mCallBack != null) {
+                tvEmpty.setOnClickListener(view -> mCallBack.handleOnCallBack());
+            } else tvEmpty.setOnClickListener(null);
         }
     }
 

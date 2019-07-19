@@ -21,6 +21,7 @@ public class LibConstants {
         String FIRST_USE = "hospitalFirstUse";//首次使用
         String KEY_SCREEN_PARAM = "windowScreenParams";
         String REQUEST_URL = "requestUrlPre";//接口请求前缀
+        String STATUS_BAR_HEIGHT = "statusBarHeight";//statusBar height
     }
 
 }

@@ -26,7 +26,6 @@ import java.util.List;
 public class GlideUtil {
 
 
-
     public static void loadDefaultLong(Context context, String path, ImageView target) {
         load(context, path, R.drawable.lib_img_default_grey, target);
     }
@@ -135,6 +134,30 @@ public class GlideUtil {
                 .into(target);
     }
 
+
+    public static void showPopImage(Context context, View v, String imagePath) {
+        int index = 0;
+        ArrayList<ZoomImageModel> zoomImageArrayList = new ArrayList<>();
+
+        LogUtil.d("pop url " + imagePath);
+        ZoomImageModel imageScale = new ZoomImageModel();
+        int[] xy = new int[2];
+        v.getLocationInWindow(xy);
+        imageScale.rect = new Rect(xy[0], xy[1], xy[0] + v.getWidth(), xy[1] + v.getHeight());
+        imageScale.smallImagePath = imagePath;
+        imageScale.bigImagePath = imagePath;
+        zoomImageArrayList.add(imageScale);
+
+        PopZoomGallery popZoomGallery = new PopZoomGallery(context, zoomImageArrayList,
+                (container, position, view, model) -> {
+                    String url = model.bigImagePath;
+                    if (url.contains("http:") || url.contains("https:"))
+                        Glide.with(context).load(url).into(view);
+                    else
+                        Glide.with(context).load(url).into(view);
+                });
+        popZoomGallery.showPop(v, index);
+    }
 
     public static void showPopImages(Context context, View v, List<String> urls, String imgPath) {
         int index = 0;

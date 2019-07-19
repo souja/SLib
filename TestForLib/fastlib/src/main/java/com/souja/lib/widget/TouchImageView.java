@@ -73,8 +73,8 @@ public class TouchImageView extends AppCompatImageView {
     public int startX, startY;
 
     private void calcStartXY() {
-        int viewWidth = MGlobal.get().getDeviceWidth();
-        int viewHeight = MGlobal.get().getDeviceHeight();
+        int viewWidth = MGlobal.getDeviceWidth();
+        int viewHeight = MGlobal.getDeviceHeight();
 
         LogUtil.e("view size " + viewWidth + "&" + viewHeight);
 

@@ -1,15 +1,10 @@
 package com.souja.lib.base;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.souja.lib.R;
 import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.inter.IListPage;
@@ -22,10 +17,8 @@ import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 
-public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implements IListPage<T> {
+public abstract class BaseListLazyFragmentNoRefresh<T> extends BaseLazyFragment implements IListPage<T> {
 
-    public static final String KEY_REFRESH = "refreshFlag";
-    private boolean enableRefresh = true;
     private boolean bEmptyControl = false;
 
     public void setEmptyControl(boolean b) {
@@ -36,7 +29,7 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
     public ArrayList<T> baseList;
 
     @Override
-    public void onRequestFinish(boolean b) {
+    public void onRequestFinish(boolean success) {
         //如果有自己的处理，重写此方法
     }
 
@@ -72,43 +65,18 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
     }
 
     public RecyclerView recyclerView;
-    public SmartRefreshLayout mRefreshLayout;
 
     private void initViews() {
         recyclerView = _contentView.findViewById(R.id.recyclerView);
-        mRefreshLayout = _contentView.findViewById(R.id.smartRefresh);
     }
 
     @Override
     public void onFirstUserVisible() {
-        _contentView = LayoutInflater.from(mBaseActivity).inflate(R.layout.frag_list_lazy, null);
+        _contentView = LayoutInflater.from(mBaseActivity).inflate(R.layout.frag_list_lazy_no_refresh, null);
         ScreenUtil.initScale(_contentView);
         setContentView(_contentView);
         initViews();
 
-        Bundle bd = getArguments();
-        if (bd != null) {
-            enableRefresh = bd.getBoolean(KEY_REFRESH, true);
-        }
-        if (!enableRefresh) {
-            mRefreshLayout.setEnableRefresh(false);
-            mRefreshLayout.setEnableLoadMore(false);
-        } else {
-            mRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-                @Override
-                public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                    if (pageIndex < pageAmount) {
-                        pageIndex++;
-                        getList(false);
-                    }
-                }
-
-                @Override
-                public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                    updateList();
-                }
-            });
-        }
         recyclerView.setLayoutManager(getLayoutMgr());
         baseList = new ArrayList<>();
         setAdapter(recyclerView, baseList);
@@ -126,8 +94,6 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                 getRequestParams(), getResultClass(), new IHttpCallBack<T>() {
                     @Override
                     public void OnSuccess(String msg, ODataPage page, ArrayList<T> data) {
-                        mRefreshLayout.finishRefresh();
-                        mRefreshLayout.finishLoadMore();
                         if (pageIndex == 1) {
                             baseList.clear();
                             pageAmount = page.getTotalPages();
@@ -137,7 +103,6 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
                         if (data.size() > 0) {
                             baseList.addAll(data);
                         }
-                        mRefreshLayout.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) {
                             if (!bEmptyControl) ShowEmptyView();
                             else ShowContentView();
@@ -148,12 +113,11 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
 
                     @Override
                     public void OnFailure(String msg) {
-                        if (isProgressing()) {
+                        if (!bEmptyControl && isProgressing()) {
                             setMClick(() -> getList(true));
                             setErrMsgRetry(msg);
                         } else {
-                            mRefreshLayout.finishRefresh();
-                            mRefreshLayout.finishLoadMore();
+                            ShowContentView();
                             showToast(msg);
                             if (pageIndex > 1) pageIndex--;
                         }
@@ -165,5 +129,14 @@ public abstract class BaseListLazyFragment<T> extends BaseLazyFragment implement
     public void updateList() {
         pageIndex = 1;
         getList(false);
+    }
+
+    public void loadMore() {
+        recyclerView.stopScroll();
+        recyclerView.stopNestedScroll();
+        if (pageIndex < pageAmount) {
+            pageIndex++;
+            getList(false);
+        }
     }
 }

@@ -34,6 +34,7 @@ public class WatermarkText {
 
     private String text;
     private int alpha = 50;
+    private int offset = 50;
     private double size = 20;
     @ColorInt
     private int color = Color.BLACK;
@@ -68,6 +69,14 @@ public class WatermarkText {
 
     public WatermarkText(EditText editText) {
         textFromEditText(editText);
+    }
+
+    public WatermarkText setOffSet(int offset) {
+        this.offset = offset;
+        return this;
+    }
+    public int getOffSet() {
+        return offset;
     }
 
     /**

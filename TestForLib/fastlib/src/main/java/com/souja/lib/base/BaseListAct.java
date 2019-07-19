@@ -39,7 +39,8 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
     }
 
     //在获取到列表数据并且ui更新完毕后，如果有自己的一些其他处理，重写此方法进行
-    public void notifyAdapter() {
+    @Override
+    public void onRequestFinish(boolean b) {
 
     }
 
@@ -161,7 +162,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                             else mLoadingDialog.dismiss();
                         } else mLoadingDialog.dismiss();
                         notifyDatasetChanged();
-                        notifyAdapter();
+                        onRequestFinish(true);
                     }
 
                     @Override
@@ -175,6 +176,7 @@ public abstract class BaseListAct<T> extends ActBase implements IListPage<T> {
                             showToast(msg);
                             if (pageIndex > 1) pageIndex--;
                         }
+                        onRequestFinish(false);
                     }
                 }));
     }

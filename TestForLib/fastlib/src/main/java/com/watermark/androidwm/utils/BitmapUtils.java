@@ -94,11 +94,11 @@ public class BitmapUtils {
         watermarkPaint.getTextBounds(watermarkText.getText(),
                 0, watermarkText.getText().length(), bounds);
 
-        int boundWidth = bounds.width() + 20;
+        int boundWidth = bounds.width() + watermarkText.getOffSet();
         int mTextMaxWidth = (int) watermarkPaint.measureText(watermarkText.getText());
-        if (boundWidth > mTextMaxWidth) {
-            boundWidth = mTextMaxWidth;
-        }
+//        if (boundWidth > mTextMaxWidth) {
+//            boundWidth = mTextMaxWidth;
+//        }
         StaticLayout staticLayout = new StaticLayout(watermarkText.getText(),
                 0, watermarkText.getText().length(),
                 watermarkPaint, mTextMaxWidth, android.text.Layout.Alignment.ALIGN_NORMAL, 2.0f,

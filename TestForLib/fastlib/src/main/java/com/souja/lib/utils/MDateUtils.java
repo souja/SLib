@@ -283,6 +283,17 @@ public class MDateUtils {
     }
 
     /**
+     * yyyy-MM-dd HH:mm
+     */
+    public static String longToStringDate22(long timemiles) {
+        if (timemiles <= 0) return "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date dt = new Date(timemiles);
+        String sDateTime = sdf.format(dt);
+        return sDateTime;
+    }
+
+    /**
      * MM-dd HH:mm
      */
     public static String longToStringDate4(long timemiles) {

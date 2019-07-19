@@ -1,7 +1,5 @@
 package com.souja.lib.base;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -47,7 +45,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
     }
 
     //在获取到列表数据并且ui更新完毕后，如果有自己的一些其他处理，重写此方法进行
-    public void notifyAdapter() {
+    public void onRequestFinish(boolean b) {
 
     }
 
@@ -70,7 +68,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
     public EditText mEdSearch;
     public ListView mListView;
     public SmartRefreshLayout mRefreshLayout;
-    public View emptyView,deleteWords;
+    public View emptyView, deleteWords;
     public ImageView ivEmpty;
 
     public ArrayList<T> baseList;
@@ -166,7 +164,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
 
                         ((BaseListAdapter) mListView.getAdapter()).notifyDataSetChanged();
 
-                        notifyAdapter();
+                        onRequestFinish(true);
                     }
 
                     @Override
@@ -175,6 +173,7 @@ public abstract class BaseSearchActB<T> extends ActBaseEd {
                         emptyView.setVisibility(View.GONE);
                         if (pageIndex > 1) pageIndex--;
                         showToast(msg);
+                        onRequestFinish(false);
                     }
                 }));
     }

@@ -45,61 +45,65 @@ public class MGlobal {
                 + ",height=" + deviceHeight + ",density=" + density);
     }
 
-    public void initScreenParam(DisplayMetrics dm) {
-        this.deviceWidth = dm.widthPixels;
-        this.deviceHeight = dm.heightPixels;
-        this.density = dm.density;
-        LogUtil.e("mScale=" + (double) deviceWidth / 1080d);
-        initScreenParams(dm.widthPixels, dm.heightPixels, dm.density);
+    public static void initScreenParam(DisplayMetrics dm) {
+        get().deviceWidth = dm.widthPixels;
+        instance.deviceHeight = dm.heightPixels;
+        instance.density = dm.density;
+        LogUtil.e("mScale=" + (double) instance.deviceWidth / 1080d);
+        instance.initScreenParams(dm.widthPixels, dm.heightPixels, dm.density);
+        instance.saveParam();
+    }
+
+    private void saveParam() {
         SPHelper.putString(LibConstants.COMMON.KEY_SCREEN_PARAM,
                 new ScreenParam(deviceWidth, deviceHeight, density).toString());
     }
 
-    public boolean isInitializedScreenParams() {
+    public static boolean isInitializedScreenParams() {
         String screenParamStr = SPHelper.getString(LibConstants.COMMON.KEY_SCREEN_PARAM);
         if (screenParamStr.isEmpty()) {
             return false;
         }
         ScreenParam param = (ScreenParam) GsonUtil.getObj(screenParamStr, ScreenParam.class);
-        initScreenParams(param.width, param.height, param.density);
+        get().initScreenParams(param.width, param.height, param.density);
         return true;
     }
 
     //Rx functions======>>>
-    public void addAction(int key, Consumer<Object> consumer) {
-        actionMap.put(key, consumer);
+    public static void addAction(int key, Consumer<Object> consumer) {
+        get().actionMap.put(key, consumer);
     }
 
-    public Consumer<Object> getAction(int key) {
-        if (actionMap.containsKey(key))
-            return actionMap.get(key);
+    public static Consumer<Object> getAction(int key) {
+        if (get().actionMap.containsKey(key))
+            return get().actionMap.get(key);
         else return null;
     }
 
-    public void delAction(int key) {
-        if (actionMap.containsKey(key))
-            actionMap.remove(key);
+    public static void delAction(int key) {
+        if (get().actionMap.containsKey(key))
+            get().actionMap.remove(key);
     }
 
-    public boolean containsKey(int key) {
-        return actionMap.containsKey(key);
+    public static boolean containsKey(int key) {
+        return get().actionMap.containsKey(key);
     }
 
-    public void clearActions() {
-        if (actionMap == null) return;
-        actionMap.clear();
+    public static void clearActions() {
+        if (get().actionMap == null) return;
+        get().actionMap.clear();
     }
 
-    public int getDeviceWidth() {
-        return deviceWidth;
+    public static int getDeviceWidth() {
+        return get().deviceWidth;
     }
 
-    public int getDeviceHeight() {
-        return deviceHeight;
+    public static int getDeviceHeight() {
+        return get().deviceHeight;
     }
 
-    public float getDensity() {
-        return density;
+    public static float getDensity() {
+        return get().density;
     }
 
     class ScreenParam extends BaseModel {

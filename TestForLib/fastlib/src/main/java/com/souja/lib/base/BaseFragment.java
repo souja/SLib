@@ -172,19 +172,19 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void addAction(int actionCode, Consumer<Object> action) {
-        if (!MGlobal.get().containsKey(actionCode)) {
-            MGlobal.get().addAction(actionCode, action);
+        if (!MGlobal.containsKey(actionCode)) {
+            MGlobal.addAction(actionCode, action);
             if (actions == null) actions = new ArrayList<>();
             actions.add(actionCode);
         }
     }
 
     public Consumer<Object> getAction(int key) {
-        return MGlobal.get().getAction(key);
+        return MGlobal.getAction(key);
     }
 
     public void delAction(int actionCode) {
-        MGlobal.get().delAction(actionCode);
+        MGlobal.delAction(actionCode);
     }
 
     public void addRequest(Callback.Cancelable req) {
@@ -329,7 +329,7 @@ public abstract class BaseFragment extends Fragment {
         }
         if (actions != null) {
             for (int actionCode : actions) {
-                MGlobal.get().delAction(actionCode);
+                MGlobal.delAction(actionCode);
             }
         }
         super.onDestroy();

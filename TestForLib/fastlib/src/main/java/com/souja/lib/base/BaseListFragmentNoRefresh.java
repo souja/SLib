@@ -1,14 +1,9 @@
 package com.souja.lib.base;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.souja.lib.R;
 import com.souja.lib.inter.IHttpCallBack;
 import com.souja.lib.inter.IListPage;
@@ -21,10 +16,8 @@ import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 
-public abstract class BaseListFragment<T> extends BaseFragment implements IListPage<T> {
+public abstract class BaseListFragmentNoRefresh<T> extends BaseFragment implements IListPage<T> {
 
-    public static final String KEY_REFRESH = "refreshFlag";
-    private boolean enableRefresh = true;
     public int pageIndex = 1, pageAmount = 1;
     public ArrayList<T> baseList;
 
@@ -61,6 +54,15 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
         getList(false);
     }
 
+    public void loadMore() {
+        recyclerView.stopScroll();
+        recyclerView.stopNestedScroll();
+        if (pageIndex < pageAmount) {
+            pageIndex++;
+            getList(false);
+        }
+    }
+
     public void hideLoading() {
         mLoadingDialog.dismiss();
     }
@@ -77,59 +79,23 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
-
-    private int totalCount = 0;
-
-    public void setTotalCount(int count) {
-        totalCount = count;
-    }
-
-    public int getTotalCount() {
-        return totalCount;
-    }
-
     public RecyclerView recyclerView;
-    public SmartRefreshLayout smartRefresh;
     public MLoadingDialog mLoadingDialog;
 
 
     @Override
     public int setupLayoutRes() {
-        return R.layout.frag_list;
+        return R.layout.frag_list_no_refresh;
     }
 
     private void initViews() {
         recyclerView = _rootView.findViewById(R.id.recyclerView);
-        smartRefresh = _rootView.findViewById(R.id.smartRefresh);
         mLoadingDialog = _rootView.findViewById(R.id.m_loading);
     }
 
     @Override
     public void initMain() {
         initViews();
-        Bundle bd = getArguments();
-        if (bd != null) {
-            enableRefresh = bd.getBoolean(KEY_REFRESH, true);
-        }
-        if (!enableRefresh) {
-            smartRefresh.setEnableRefresh(false);
-            smartRefresh.setEnableLoadMore(false);
-        } else {
-            smartRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-                @Override
-                public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                    if (pageIndex < pageAmount) {
-                        pageIndex++;
-                        getList(false);
-                    }
-                }
-
-                @Override
-                public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                    updateList();
-                }
-            });
-        }
         recyclerView.setLayoutManager(getLayoutMgr());
         baseList = new ArrayList<>();
         setAdapter(recyclerView, baseList);
@@ -144,18 +110,14 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
                 getRequestParams(), getResultClass(), new IHttpCallBack<T>() {
                     @Override
                     public void OnSuccess(String msg, ODataPage page, ArrayList<T> data) {
-                        smartRefresh.finishRefresh();
-                        smartRefresh.finishLoadMore();
                         if (pageIndex == 1) {
                             baseList.clear();
                             pageAmount = page.getTotalPages();
-                            setTotalCount(page.getTotal());
                         }
 
                         if (data.size() > 0) {
                             baseList.addAll(data);
                         }
-                        smartRefresh.setEnableLoadMore(pageIndex < pageAmount);
                         if (pageIndex == 1 && data.size() == 0) {
                             if (!bEmptyControl) mLoadingDialog.showEmptyView();
                             else hideLoading();
@@ -166,12 +128,11 @@ public abstract class BaseListFragment<T> extends BaseFragment implements IListP
 
                     @Override
                     public void OnFailure(String msg) {
-                        if (mLoadingDialog.isShowing()) {
+                        if (!bEmptyControl && mLoadingDialog.isShowing()) {
                             mLoadingDialog.setMClick(() -> getList(true));
                             mLoadingDialog.setErrMsgRetry(msg);
                         } else {
-                            smartRefresh.finishRefresh();
-                            smartRefresh.finishLoadMore();
+                            hideLoading();
                             showToast(msg);
                             if (pageIndex > 1) pageIndex--;
                         }

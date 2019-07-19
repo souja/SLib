@@ -9,6 +9,16 @@ import java.io.File;
 
 public class FilePath {
 
+    public static File getPath(String dirName){
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + File.separator + LibConstants.APP_NAME + File.separator + dirName;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return file;
+    }
+
     //im日志缓存路径
     public static String getLogPath() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath()
@@ -101,28 +111,9 @@ public class FilePath {
         return path;
     }
 
-    public static String getTemplateBaseDir() {
-        String path = Environment.getExternalStorageDirectory()
-                + File.separator + LibConstants.APP_NAME + "/templates/";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-
     public static String getCompressMarkPath() {
         String path = Environment.getExternalStorageDirectory()
                 + File.separator + LibConstants.APP_NAME + "/compressMark";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
-    }
-
-    public static String getTemplateDir(int templateId) {
-        String path = getTemplateBaseDir() + templateId + "/";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -139,11 +130,6 @@ public class FilePath {
         }
         path = path + templateId + ".zip";
         return path;
-    }
-
-    //获取营销模板图的路径
-    public static String getTemplateImgPath(int templateId, String bgImgName) {
-        return getTemplateDir(templateId) + bgImgName;
     }
 
     public static String getCompressedPath() {
@@ -164,10 +150,6 @@ public class FilePath {
             file.mkdirs();
         }
         return file;
-    }
-
-    public static void deleteTpDirs(int templateId) {
-        delAllFile(getTemplateDir(templateId));
     }
 
     public static boolean delAllFile(String path) {
@@ -209,16 +191,5 @@ public class FilePath {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    //test ignore
-    public static String getTestImgPath() {
-        String path = Environment.getExternalStorageDirectory()
-                + File.separator + LibConstants.APP_NAME + File.separator + "testImgs";
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
     }
 }

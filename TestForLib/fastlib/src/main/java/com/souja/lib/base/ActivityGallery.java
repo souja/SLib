@@ -210,7 +210,7 @@ public class ActivityGallery extends ActBase {
 
     private void initVp() {
         int mVp_h = 0;
-        int mVp_w = MGlobal.get().getDeviceWidth();
+        int mVp_w = MGlobal.getDeviceWidth();
         updateImgCount();
         mPoint.set(mVp_w, mVp_h);
         adapter = new MyPagerAdapter(this);
