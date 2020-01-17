@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="day_view_adapter_class"/>
+
+    <item name="m_title" type="id"/>
+    <item name="m_loading" type="id"/>
+
+    <item name="m_swipeRefresh" type="id" />
+    <item name="v_statusBar" type="id" />
+    <item name="ib_back" type="id" />
+
+    <item name="jz_fullscreen_id" type="id" />
+    <item name="jz_tiny_id" type="id" />
+    <item name="floating_header" type="id" />
+
+
+    <item type="id" name="expandable_text"/>
+    <item type="id" name="expand_collapse"/>
+</resources>

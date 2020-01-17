@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_dialog"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="30px">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ProgressBar
+            android:layout_width="81px"
+            android:layout_height="81px"
+            android:layout_marginRight="36px"
+            android:indeterminate="false"
+            android:indeterminateDuration="1000"
+            android:theme="@style/CustomProgressDialog" />
+
+        <TextView
+            android:id="@+id/tv_tip"
+            style="@style/text_48_black31"
+            android:text="请稍候..."
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="450px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:max="100"
+        android:progressDrawable="@drawable/lib_upload_progress"
+        android:visibility="invisible"
+        tools:progress="50"
+        tools:visibility="visible" />
+
+
+</LinearLayout>

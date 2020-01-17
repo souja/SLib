@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/mtb_titleBar">
+
+    <FrameLayout
+        android:id="@+id/left_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15px"
+        android:background="@drawable/trans_half_trans_bg_selector"
+        android:clickable="true"
+        android:paddingLeft="39px"
+        android:paddingRight="39px"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_Left"
+            android:layout_width="54px"
+            android:layout_height="54px"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="48px" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_pageTitle"
+        style="@style/mtb_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/right_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/trans_half_trans_bg_selector"
+        android:clickable="true"
+        android:paddingLeft="39px"
+        android:paddingRight="39px"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="54px"
+            android:layout_height="54px"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="48px" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/right_menuB"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15px"
+        android:background="@drawable/trans_half_trans_bg_selector"
+        android:clickable="true"
+        android:paddingLeft="39px"
+        android:paddingRight="39px"
+        android:visibility="gone"
+        app:layout_constraintRight_toLeftOf="@id/right_menu">
+
+        <ImageView
+            android:id="@+id/iv_rightB"
+            android:layout_width="54px"
+            android:layout_height="54px"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+    </FrameLayout>
+
+    <View
+        android:id="@+id/v_lineBot"
+        style="@style/mtb_head_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

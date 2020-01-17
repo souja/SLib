@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:drawable="@drawable/rdp_state_range_middle_deactivated"
+        app:ccv_state_deactivated="true" app:ccv_state_range_middle="true" />
+
+    <item android:drawable="@drawable/rdp_state_range_middle"
+        app:ccv_state_deactivated="false" app:ccv_state_range_middle="true" />
+
+    <item android:drawable="@drawable/rdp_state_selected"
+        android:state_selected="true"
+        app:ccv_state_range_first="false" app:ccv_state_range_last="false" />
+
+    <item android:drawable="@drawable/rdp_state_range_first"
+        app:ccv_state_range_first="true"  app:ccv_state_highlighted="false"/>
+    <item android:drawable="@drawable/rdp_state_range_last"
+        app:ccv_state_range_last="true"   app:ccv_state_highlighted="false"/>
+    <item android:drawable="@drawable/rdp_state_range_highlight_first"
+        app:ccv_state_range_first="true"   app:ccv_state_highlighted="true"/>
+    <item android:drawable="@drawable/rdp_state_range_highlight_last"
+        app:ccv_state_range_last="true"   app:ccv_state_highlighted="true"/>
+
+    <item android:drawable="@drawable/rdp_state_highlighted" app:ccv_state_highlighted="true" />
+
+    <item app:ccv_state_current_month="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item android:drawable="@android:color/transparent"
+        app:ccv_state_today="true" app:ccv_state_unavailable="false" />
+
+    <item android:drawable="@drawable/rdp_state_range_middle_unavailable" app:ccv_state_unavailable="true" />
+</selector>

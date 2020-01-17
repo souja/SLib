@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="UnknownId">
+
+    <com.souja.lib.widget.TitleBar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tb_no_line="true"
+        tools:tb_title="搜索xx" />
+
+    <View
+        android:id="@+id/v_bg"
+        android:layout_width="0dp"
+        android:layout_height="117px"
+        android:layout_marginLeft="45px"
+        android:layout_marginTop="15px"
+        android:layout_marginRight="45px"
+        android:background="@drawable/shape_grayf2_round_bg"
+        android:gravity="center_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/m_title" />
+
+    <ImageView
+        android:id="@+id/icSearch"
+        android:layout_width="48px"
+        android:layout_height="48px"
+        android:layout_marginLeft="36px"
+        android:background="@drawable/lib_seach"
+        app:layout_constraintBottom_toBottomOf="@id/v_bg"
+        app:layout_constraintLeft_toLeftOf="@id/v_bg"
+        app:layout_constraintTop_toTopOf="@id/v_bg" />
+
+    <LinearLayout
+        android:id="@+id/deleteWords"
+        android:layout_width="120px"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/v_bg"
+        app:layout_constraintRight_toRightOf="@id/v_bg"
+        app:layout_constraintTop_toTopOf="@id/v_bg"
+        tools:visibility="visible">
+
+        <ImageView style="@style/imgDeleteWordB" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ed_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="24px"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="请输入搜索内容"
+        android:imeActionLabel="搜索"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLength="20"
+        android:paddingRight="24px"
+        android:singleLine="true"
+        android:textColor="@color/black_31"
+        android:textColorHint="@color/grey_96"
+        android:textSize="42px"
+        app:layout_constraintBottom_toBottomOf="@id/v_bg"
+        app:layout_constraintLeft_toRightOf="@id/icSearch"
+        app:layout_constraintRight_toLeftOf="@id/deleteWords"
+        app:layout_constraintTop_toTopOf="@id/v_bg"/>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_bg">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_nodata"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_bg"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="780px"
+            android:layout_height="780px"
+            android:layout_marginTop="300px"
+            android:background="@drawable/ic_empty" />
+
+        <TextView
+            android:id="@+id/tv_emptyTip"
+            style="@style/emptyText"
+            android:text="未搜到相关数据" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

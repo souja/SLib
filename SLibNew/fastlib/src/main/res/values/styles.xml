@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="mtb_titleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">129px</item>
+    </style>
+
+    <style name="mtb_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLength">13</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">51px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="mtb_title_text_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">45px</item>
+        <item name="android:paddingRight">45px</item>
+        <item name="android:background">@drawable/trans_half_trans_bg_selector</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">48px</item>
+    </style>
+
+    <style name="mtb_title_img_btn">
+        <item name="android:layout_width">111px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/trans_half_trans_bg_selector</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="mtb_head_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2px</item>
+        <item name="android:background">@color/line_dc</item>
+    </style>
+
+
+    <style name="wrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text_30_grey96" parent="wrapContent">
+        <item name="android:textColor">@color/grey_96</item>
+        <item name="android:textSize">30px</item>
+    </style>
+
+    <style name="text_30_grey4b" parent="wrapContent">
+        <item name="android:textColor">@color/grey_4b</item>
+        <item name="android:textSize">30px</item>
+    </style>
+
+    <style name="text_33_grey96" parent="wrapContent">
+        <item name="android:textColor">@color/grey_96</item>
+        <item name="android:textSize">33px</item>
+    </style>
+
+    <style name="text_36_grey96" parent="wrapContent">
+        <item name="android:textSize">36px</item>
+        <item name="android:textColor">@color/grey_96</item>
+    </style>
+
+    <style name="text_36" parent="wrapContent">
+        <item name="android:textSize">36px</item>
+    </style>
+
+    <style name="text_36_grey4b" parent="wrapContent">
+        <item name="android:textSize">36px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+    <style name="text_36_blue467" parent="wrapContent">
+        <item name="android:textSize">36px</item>
+        <item name="android:textColor">@color/blue_467</item>
+    </style>
+
+    <style name="text_36_singleLine" parent="text_36_grey96">
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="text_39_grey96" parent="wrapContent">
+        <item name="android:textSize">39px</item>
+        <item name="android:textColor">@color/grey_96</item>
+    </style>
+
+    <style name="text_39_blue467" parent="wrapContent">
+        <item name="android:textSize">39px</item>
+        <item name="android:textColor">@color/blue_467</item>
+    </style>
+
+    <style name="text_39_grey4b" parent="wrapContent">
+        <item name="android:textSize">39px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+
+    <style name="text_42_grey96" parent="wrapContent">
+        <item name="android:textSize">42px</item>
+        <item name="android:textColor">@color/grey_96</item>
+    </style>
+
+    <style name="text_42_grey4b" parent="wrapContent">
+        <item name="android:textSize">42px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+
+    <style name="text_42_blue467" parent="wrapContent">
+        <item name="android:textSize">42px</item>
+        <item name="android:textColor">@color/blue_467</item>
+    </style>
+
+    <style name="text_42_black31" parent="wrapContent">
+        <item name="android:textSize">42px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_45_black31" parent="wrapContent">
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_45_grey96" parent="wrapContent">
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/grey_96</item>
+    </style>
+
+    <style name="text_45_redff2" parent="wrapContent">
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/red_ff2</item>
+    </style>
+
+    <style name="text_45_grey4b" parent="wrapContent">
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+
+    <style name="text_45_black31_w0_hwrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+
+    <style name="text_45_grey4b_w0_hwrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+
+    <style name="text_48_black31" parent="wrapContent">
+        <item name="android:textSize">48px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_48_grey4b" parent="wrapContent">
+        <item name="android:textSize">48px</item>
+        <item name="android:textColor">@color/grey_4b</item>
+    </style>
+
+    <style name="text_48_grey96" parent="wrapContent">
+        <item name="android:textSize">48px</item>
+        <item name="android:textColor">@color/grey_96</item>
+    </style>
+
+    <style name="text_48_blue467" parent="wrapContent">
+        <item name="android:textSize">48px</item>
+        <item name="android:textColor">@color/blue_467</item>
+    </style>
+
+    <style name="text_51_black31" parent="wrapContent">
+        <item name="android:textSize">51px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_54_black31" parent="wrapContent">
+        <item name="android:textSize">54px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_57_black31" parent="wrapContent">
+        <item name="android:textSize">57px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_57_redff2" parent="wrapContent">
+        <item name="android:textSize">57px</item>
+        <item name="android:textColor">@color/red_ff2</item>
+    </style>
+
+    <style name="text_60_black31" parent="wrapContent">
+        <item name="android:textSize">60px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="text_66_black31" parent="wrapContent">
+        <item name="android:textSize">66px</item>
+        <item name="android:textColor">@color/black_31</item>
+    </style>
+
+    <style name="Theme_dialog_with_parent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="loading_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="trans_loading_dialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="mProgressStyleCir">
+        <item name="android:indeterminateDrawable">@drawable/shape_progress</item>
+        <item name="android:minWidth">10dp</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxWidth">60dp</item>
+        <item name="android:maxHeight">60dp</item>
+    </style>
+
+    <style name="dividerLine30">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30px</item>
+        <item name="android:background">@color/page_bg</item>
+    </style>
+
+    <style name="dividerLine36">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">36px</item>
+        <item name="android:background">@color/white_f7f6</item>
+    </style>
+
+    <style name="lineEb">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/line_eb</item>
+    </style>
+
+    <style name="lineEbMargin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_marginLeft">36px</item>
+        <item name="android:layout_marginRight">36px</item>
+        <item name="android:background">@color/line_eb</item>
+    </style>
+
+    <style name="lineE2Margin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_marginLeft">36px</item>
+        <item name="android:layout_marginRight">36px</item>
+        <item name="android:background">@color/line_e2d</item>
+    </style>
+
+    <style name="jz_style_dialog_progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/jz_popup_toast_anim</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="jz_popup_toast_anim" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="dot_msgCount">
+        <item name="android:layout_width">54px</item>
+        <item name="android:layout_height">54px</item>
+        <item name="android:background">@drawable/shape_red_dot</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">30px</item>
+    </style>
+
+    <style name="cropImgBtn">
+        <item name="android:layout_width">210px</item>
+        <item name="android:layout_height">120px</item>
+        <item name="android:background">@drawable/trans_half_trans_bg_selector</item>
+        <item name="android:textSize">48px</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">5</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowColor">#ff000000</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="mTextProgress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:progressDrawable">@drawable/layer_text_progress</item>
+    </style>
+
+    <style name="mTextProgressLight" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:progressDrawable">@drawable/layer_text_progress_light</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="CommProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="CustomProgressDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+
+    <style name="mTab">
+        <item name="tabIndicatorColor">@color/blue_5d5</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">-1dp</item>
+        <item name="tabPaddingEnd">-1dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/mTabTxt</item>
+        <item name="tabSelectedTextColor">@color/black_31</item>
+    </style>
+
+    <style name="mTabTxt">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/grey_af</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="mTab2">
+        <item name="tabIndicatorColor">@color/blue_81d</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabPaddingStart">-1dp</item>
+        <item name="tabPaddingEnd">-1dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabTextAppearance">@style/mTabTxt2</item>
+        <item name="tabSelectedTextColor">@color/blue_81d</item>
+    </style>
+
+    <style name="mTabTxt2">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/grey_96</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="blueLoading" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/blue_4b9</item>
+    </style>
+
+    <style name="delWordContainerC">
+        <item name="android:layout_width">120px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="imgDeleteWordB">
+        <item name="android:layout_width">57px</item>
+        <item name="android:layout_height">57px</item>
+        <item name="android:background">@drawable/ic_del_input</item>
+    </style>
+
+    <style name="emptyText" parent="text_42_black31">
+        <item name="android:textColor">@color/grey_af</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">42px</item>
+        <item name="android:layout_marginRight">42px</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:text">暂无数据</item>
+    </style>
+
+    <color name="line_e2d">#e2dede</color>
+
+
+    <!--    parent="Theme.AppCompat.Dialog"-->
+    <style name="imgProgressDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--        <item name="colorAccent">@android:color/white</item>-->
+    </style>
+
+    <style name="img_text_45px">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">45px</item>
+        <item name="android:textColor">#313131</item>
+    </style>
+</resources>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_color">#3D6EE4</color>
+
+    <color name="light_blue_bcb">#BCBDF1</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="grey2c_50per">#502c2c2c</color>
+    <color name="white40per">#40ffffff</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_fe">#fefefe</color>
+    <color name="white_f7f6">#f7f6f6</color>
+
+    <color name="black">#000000</color>
+    <color name="black_tttt">#cc000000</color>
+    <color name="black_80per">#80000000</color>
+    <color name="black_60per">#60000000</color>
+    <color name="black_50per">#50000000</color>
+    <color name="black_77per">#77000000</color>
+    <color name="black_40per">#40000000</color>
+    <color name="black_19">#191919</color>
+
+    <color name="gray">#666666</color>
+    <color name="black_28">#282828</color>
+    <color name="black_33">#333333</color>
+    <color name="black_31">#313131</color>
+    <color name="black_38">#383838</color>
+    <color name="grey_566267">#566267</color>
+    <color name="grey_4b">#4b4b4b</color>
+    <color name="grey_80">#808080</color>
+    <color name="grey_96">#969696</color>
+    <color name="grey_98">#989898</color>
+    <color name="grey_99">#999999</color>
+    <color name="grey_93">#939393</color>
+    <color name="grey_ad">#adadad</color>
+    <color name="grey_a1">#a1a1a1</color>
+    <color name="grey_af">#afafaf</color>
+    <color name="grey_d3">#d3d3d3</color>
+    <color name="grey_d4">#d4d4d4</color>
+    <color name="grey_d4d1">#d4d1cb</color>
+    <color name="grey_d8">#d8d8d8</color>
+    <color name="grey_e4">#e4e4e4</color>
+    <color name="grey_ef">#efefef</color>
+    <color name="grey_fa">#fafafa</color>
+
+    <color name="blue_dcdc">#dcdcfb</color>
+    <color name="blue_ebf">#EBF9FE</color>
+    <color name="btn_disable">#D8DBFB</color>
+    <color name="blue_e7f">#e7f9fe</color>
+
+
+
+    <color name="blue_5d5">#5d5ff0</color>
+    <color name="blue_0f7">#0F73CB</color>
+    <color name="blue_1e8">#1E86E4</color>
+    <color name="blue_117b">#1173CB</color>
+    <color name="blue_117a">#1173CA</color>
+    <color name="blue_4b9">#4b9efa</color>
+    <color name="purple_7f8">#7f81f3</color>
+    <color name="blue_7f8">#7f81f3</color>
+    <color name="green_bg">#5ddcdc</color>
+    <color name="blue_46c">#46CBFD</color>
+    <color name="blue_69b">#69beff</color>
+    <color name="blue_71c">#71dcfc</color>
+    <color name="blue_71dc">#71dcfc</color>
+    <color name="blue_75d">#75defe</color>
+    <color name="blue_8ed">#8edcfa</color>
+    <color name="blue_26c">#26c2f2</color>
+    <color name="blue_74d">#74dfff</color>
+    <color name="blue_81d">#81deff</color>
+    <color name="blue_e2e">#e2ebff</color>
+    <color name="blue_ebe">#ebedfd</color>
+    <color name="blue_82d8">#82d8d9fb</color>
+    <color name="blue_3d6">#3d6ee4</color>
+    <color name="blue_467">#467cfd</color>
+
+
+    <color name="green_85d">#85d0cc</color>
+    <color name="green_2bef">#2befdb</color>
+    <color name="green_2be7">#2be7dd</color>
+    <color name="green_2be5">#2be5de</color>
+    <color name="green_64c">#64C41B</color>
+
+    <color name="red_ff2">#ff2d55</color>
+    <color name="red_ff3d39">#ff3d39</color>
+    <color name="red_fc3">#fc343e</color>
+    <color name="red_fb2">#FB2B52</color>
+    <color name="red_f35">#f3585a</color>
+    <color name="red_ff5">#ff535b</color>
+    <color name="red_fe2">#fe2e55</color>
+    <color name="red_ff0">#ff041d</color>
+    <color name="red_fb1">#fb183f</color>
+    <color name="red_f45">#f45e6b</color>
+    <color name="red_fa5">#fa5f73</color>
+    <color name="red_fe8">#FE8D93</color>
+    <color name="red_ff8">#ff8096</color>
+    <color name="red_fdc">#fdc9cc</color>
+
+    <color name="yellow_ecc">#eccf14</color>
+    <color name="yellow_fc8">#fc8906</color>
+    <color name="yellow_f1">#f1cd1a</color>
+    <color name="yellow_f9c">#f9c22e</color>
+    <color name="purple_ab6">#ab68dc</color>
+
+    <color name="grey_7e">#7e7e7e</color>
+    <color name="light_yellow">#90ffbe00</color>
+    <color name="line_ee70">#70eeeeee</color>
+    <color name="line_ee80">#80eeeeee</color>
+    <color name="blue_69b_half">#5069beff</color>
+    <color name="blue_71c_half">#5071dcfc</color>
+    <color name="grey_f5">#f5f5f5</color>
+    <color name="blue_e9f">#e9f7fb</color>
+    <color name="line_d1">#d1d1d1</color>
+    <color name="yellow_fdd">#fdd194</color>
+    <color name="grey_d2c">#d2cfcf</color>
+    <color name="grey_6b">#6b6b6b</color>
+    <color name="yellow_ff9">#ff9900</color>
+    <color name="white_fb">#fbfbfb</color>
+    <color name="white_fc">#fcfcfc</color>
+
+
+    <color name="purple_d8d">#d8d9fb</color>
+    <color name="split_line_bootom_color">#ffa8adb3</color>
+
+    <color name="line_ee">#eeeeee</color>
+    <color name="line_eb">#ebebeb</color>
+    <color name="line_dc">#dcdcdc</color>
+    <color name="line_dd">#dddddd</color>
+    <color name="page_bg">@color/grey_f3</color>
+    <color name="textHint">#aeaeae</color>
+    <color name="grey_75">#757575</color>
+    <color name="grey_66">#666666</color>
+
+
+    <color name="__actionbar_color">@android:color/holo_blue_dark</color>
+
+    <color name="__pick_complete_btn_color">@android:color/white</color>
+
+    <color name="__pick_pic_item_normal_color">@android:color/white</color>
+
+    <color name="__pick_pic_item_slected_color">@android:color/holo_blue_light</color>
+
+    <color name="__display_item_delete_bg_color">#2f000000</color>
+
+    <color name="btn_red">#D63F41</color>
+    <color name="btn_red_hover">#E8484B</color>
+
+    <color name="btn_text">#FFFFFF</color>
+    <color name="btn_text_hover">#CCFFFFFF</color>
+
+    <color name="grey_bb">#BBBBBB</color>
+    <color name="grey_bab">#babbda</color>
+    <color name="grey_b6">#b6b6b6</color>
+    <color name="grey_cc">#cccccc</color>
+    <color name="grey_eb">#EBEBEB</color>
+
+    <color name="background">#F9F7F8</color>
+    <color name="background_gray1">#EBEBEB</color>
+    <color name="background_gray2">#E6E6E6</color>
+    <color name="background_gray3">#D4D4D4</color>
+    <color name="background_gray4">#EFEFF4</color>
+    <color name="text_gray1">#777777</color>
+    <color name="text_gray2">#767676</color>
+
+    <color name="lightRed">#FC8E90</color>
+
+    <color name="textHintWhite">#80ffffff</color>
+    <color name="accountBgColor">#50000000</color>
+    <color name="halfBlack">#50000000</color>
+    <color name="halfWhite">#50ffffff</color>
+    <color name="black_80">#80000000</color>
+
+    <color name="yellow_f0a13a">#f0a13a</color>
+    <color name="yellow_ffb">#ffbe00</color>
+    <color name="grey_e7">#e7e7e7</color>
+    <color name="grey_f7">#7F7F7F</color>
+    <color name="grey_c0">#c0c0c0</color>
+    <color name="grey_ee">#eeeeee</color>
+    <color name="grey_dd">#dddddd</color>
+
+    <color name="grey_c4">#c4c4c4</color>
+    <color name="grey_c8">#c8c8c8</color>
+    <color name="grey_f1">#f1f1f1</color>
+    <color name="grey_f6f8">#f6f8f7</color>
+    <color name="grey_f6f5">#f6f5f5</color>
+    <color name="grey_f2">#f2f2f2</color>
+    <color name="grey_f3">#f3f3f3</color>
+    <color name="grey_cf">#cfcfcf</color>
+    <color name="red_fd">#fd3838</color>
+    <color name="halfBlue">#5041c3fc</color>
+    <color name="halfRed">#50f35557</color>
+    <color name="red_f9a">#F9AAAB</color>
+    <color name="grey_ea">#EAEAEA</color>
+    <color name="grey_ae">#aeaeae</color>
+    <color name="grey_c3c1">#c3c1c1</color>
+    <color name="grey_e1">#e1e1e1</color>
+
+
+    <color name="calendar_active_month_bg">@color/white</color>
+    <color name="calendar_bg">@color/white</color>
+    <color name="calendar_divider">@color/grey_f5</color>
+    <color name="calendar_inactive_month_bg">@color/white</color>
+<!--    <color name="calendar_selected_day_bg">#ffcf40</color>-->
+    <color name="calendar_selected_day_bg">@color/blue_81d</color>
+    <color name="calendar_selected_range_bg">@color/blue_81d</color>
+    <color name="calendar_highlighted_day_bg">#C0EEFF</color>
+    <color name="calendar_unavailable_bg">@color/grey_96</color>
+    <color name="calendar_range_middle_unavailable_bg">@color/grey_96</color>
+    <color name="calendar_range_middle_deactivated_bg">#80000000</color>
+
+
+    <color name="calendar_text_inactive">#ffffff</color>
+    <color name="calendar_text_active">#212121</color>
+    <color name="calendar_text_selected">#ffffff</color>
+    <color name="calendar_text_unselected">#7ffefeff</color>
+    <color name="calendar_text_highlighted">#f5f5f5</color>
+
+    <color name="dateTimeRangePickerStateDefault">@android:color/black</color>
+    <color name="dateTimeRangePickerStateNonSelectable">@android:color/white</color>
+    <color name="dateTimeRangePickerStateToday">@color/blue_81d</color>
+    <color name="dateTimeRangePickerHeaderTextColor">@android:color/black</color>
+    <color name="dateTimeRangePickerTitleTextColor">@android:color/black</color>
+    <color name="dateTimeRangePickerRangeTextColorActive">@android:color/white</color>
+    <color name="dateTimeRangePickerRangeTextColorInactive">#B9B9B9</color>
+    <color name="m_edit_underline">#4a3c3c43</color>
+    <color name="green_04d">#04dbc5</color>
+    <color name="blue_88a">#88abff</color>
+    <color name="grey_be_44per">#70BEC2CC</color>
+    <color name="grey_70">#707070</color>
+    <color name="grey_2e70">#2e707070</color>
+</resources>

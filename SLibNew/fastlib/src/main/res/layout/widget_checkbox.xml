@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.souja.lib.widget.MCheckableImageView
+            android:id="@+id/mcbBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:mciv_checked="false" />
+
+        <TextView
+            android:id="@+id/mcbTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12px"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textSize="33px"
+            tools:text="Menu" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/v_msg"
+        android:layout_width="51px"
+        android:layout_height="51px"
+        android:layout_gravity="right"
+        android:layout_marginTop="12px"
+        android:layout_marginRight="66px"
+        android:background="@drawable/shape_msg_dot"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="27px"
+        android:visibility="invisible"
+        tools:text="11"
+        tools:visibility="visible" />
+
+</FrameLayout>

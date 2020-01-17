@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_19"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        style="@style/mtb_titleBar"
+        android:background="@color/blue_5d5">
+
+        <ImageButton
+            android:id="@+id/backbutton"
+            style="@style/mtb_title_img_btn"
+            android:src="@drawable/ic_back_white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="66px"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/backbutton"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/gallery_nums"
+            style="@style/text_45_black31"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="60px"
+            android:layout_toRightOf="@+id/backbutton"
+            android:text="图片"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/delbutton"
+            style="@style/mtb_title_img_btn"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_delete_grey"
+            android:tint="@color/white" />
+    </RelativeLayout>
+
+    <com.souja.lib.widget.HackyViewPager
+        android:id="@+id/gallery_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
